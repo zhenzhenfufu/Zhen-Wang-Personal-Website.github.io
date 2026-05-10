@@ -1,114 +1,103 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>王臻 Zhen Wang | AI Agent & Data Product</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;700&family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <title>Zhen Wang | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700&family=Roboto+Mono&display=swap" rel="stylesheet">
     <style>
         :root {
-            --ucsd-blue: #006A96;
-            --tech-indigo: #4F46E5;
-            --text-dark: #1F2937;
-            --text-gray: #4B5563;
-            --soft-bg: #F9FAFB;
+            --ucsd-navy: #182B49;
+            --ucsd-gold: #C69214;
+            --accent-blue: #006A96;
+            --text-dark: #1A202C;
+            --text-light: #4A5568;
+            --bg-gray: #F7FAFC;
         }
 
         body {
-            font-family: 'Plus Jakarta Sans', 'Noto Sans SC', sans-serif;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
             margin: 0;
             display: flex;
-            background: #fff;
             color: var(--text-dark);
+            background: #fff;
         }
 
-        /* Sidebar - 清爽布局 */
+        /* Sidebar */
         .sidebar {
             width: 320px;
             height: 100vh;
             position: sticky;
             top: 0;
-            padding: 50px 30px;
-            background: var(--soft-bg);
-            border-right: 1px solid #E5E7EB;
+            padding: 50px 35px;
+            background: var(--ucsd-navy);
+            color: white;
             display: flex;
             flex-direction: column;
             box-sizing: border-box;
         }
 
         .profile-img {
-            width: 160px;
-            height: 160px;
-            border-radius: 20px;
+            width: 150px;
+            height: 150px;
+            border-radius: 8px; /* Formal professional look */
             object-fit: cover;
             margin-bottom: 25px;
-            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+            border: 2px solid rgba(255,255,255,0.2);
         }
 
-        .sidebar h1 { font-size: 1.8rem; margin: 0; color: var(--ucsd-blue); }
-        .sidebar .identity { font-size: 0.9rem; color: var(--tech-indigo); font-weight: 600; margin-top: 5px; }
+        .sidebar h1 { font-size: 1.6rem; margin: 0; font-weight: 700; letter-spacing: -0.5px; }
+        .sidebar .title { font-size: 0.9rem; color: #A0AEC0; margin-top: 8px; font-weight: 400; }
         
-        .contact-group { margin-top: 40px; }
-        .contact-item { 
-            font-size: 0.85rem; 
-            margin-bottom: 12px; 
-            color: var(--text-gray);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-        }
-        .contact-item:hover { color: var(--tech-indigo); }
+        .contact-section { margin-top: auto; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); }
+        .contact-item { font-size: 0.85rem; margin-bottom: 12px; color: #CBD5E0; text-decoration: none; display: block; }
+        .contact-item:hover { color: white; }
 
-        /* Main Content - 信息流布局 */
-        .main { flex: 1; padding: 60px 80px; max-width: 900px; }
-
-        .about-me { font-size: 1.15rem; line-height: 1.8; color: var(--text-gray); margin-bottom: 50px; }
-        .about-me strong { color: var(--text-dark); border-bottom: 2px solid #E5E7EB; }
-
+        /* Main Content */
+        .main { flex: 1; padding: 60px 80px; max-width: 1000px; }
+        
+        section { margin-bottom: 50px; }
+        
         h2 { 
-            font-size: 1.4rem; 
-            display: flex; 
-            align-items: center; 
-            margin-top: 40px; 
-            color: var(--text-dark);
+            font-size: 1.25rem; 
+            color: var(--ucsd-navy); 
+            border-bottom: 2px solid #E2E8F0; 
+            padding-bottom: 8px; 
+            margin-bottom: 25px;
             text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        h2::after { content: ""; flex: 1; height: 1px; background: #E5E7EB; margin-left: 15px; }
-
-        .entry { margin-bottom: 35px; position: relative; }
-        .entry-header { display: flex; justify-content: space-between; align-items: flex-start; }
-        .entry-title { font-size: 1.2rem; font-weight: 700; color: var(--text-dark); }
-        .entry-org { color: var(--tech-indigo); font-weight: 600; margin: 4px 0; font-size: 0.95rem; }
-        .entry-time { font-size: 0.85rem; color: #9CA3AF; font-weight: 500; }
-
-        .badge-container { margin: 8px 0; }
-        .badge { 
-            background: #EEF2FF; 
-            color: var(--tech-indigo); 
-            padding: 2px 10px; 
-            border-radius: 6px; 
-            font-size: 0.75rem; 
-            font-weight: 700; 
-            margin-right: 6px;
+            letter-spacing: 1.5px;
+            font-weight: 700;
         }
 
-        .desc { font-size: 0.95rem; color: var(--text-gray); margin-top: 10px; padding-left: 18px; }
-        .desc li { margin-bottom: 6px; }
+        .intro { font-size: 1.1rem; line-height: 1.7; color: var(--text-light); margin-bottom: 40px; }
 
-        .demo-btn {
+        /* Entry Style */
+        .entry { margin-bottom: 35px; }
+        .entry-header { display: flex; justify-content: space-between; align-items: baseline; }
+        .entry-name { font-size: 1.15rem; font-weight: 700; color: var(--text-dark); }
+        .entry-date { font-family: 'Roboto Mono', monospace; font-size: 0.85rem; color: #718096; }
+        .entry-sub { color: var(--accent-blue); font-weight: 600; font-size: 0.95rem; margin: 4px 0; }
+        
+        .tags { margin: 10px 0; display: flex; gap: 8px; flex-wrap: wrap; }
+        .tag { background: #EDF2F7; color: #4A5568; padding: 2px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; }
+
+        ul { padding-left: 20px; margin-top: 10px; }
+        li { margin-bottom: 8px; color: var(--text-light); font-size: 0.95rem; }
+
+        .project-link {
             display: inline-block;
-            margin-top: 12px;
-            padding: 6px 16px;
-            background: var(--tech-indigo);
-            color: #fff !important;
-            border-radius: 8px;
-            font-size: 0.85rem;
+            margin-top: 10px;
+            color: var(--accent-blue);
             text-decoration: none;
             font-weight: 600;
+            font-size: 0.9rem;
+            border: 1px solid var(--accent-blue);
+            padding: 4px 12px;
+            border-radius: 4px;
         }
+        .project-link:hover { background: var(--accent-blue); color: white; }
 
-        @media (max-width: 900px) {
+        @media (max-width: 850px) {
             body { flex-direction: column; }
             .sidebar { width: 100%; height: auto; position: relative; padding: 40px 20px; }
             .main { padding: 40px 25px; }
@@ -118,133 +107,152 @@
 <body>
 
     <aside class="sidebar">
-        <img src="My Picture.JPG" alt="王臻" class="profile-img">
-        <h1>王臻 Zhen Wang</h1>
-        <div class="identity">AI Agent & Data Product Explorer</div>
+        <img src="My Picture.JPG" alt="Zhen Wang" class="profile-img">
+        <h1>Zhen Wang</h1>
+        <div class="title">UC San Diego<br>Data Science & Math-CS</div>
         
-        <div class="contact-group">
-            <div style="font-weight: 700; font-size: 0.9rem; margin-bottom: 10px;">UC San Diego</div>
-            <div class="contact-item">🎓 数据科学 & 数学-CS 双专业</div>
-            <a href="mailto:zhw124@ucsd.edu" class="contact-item">✉️ zhw124@ucsd.edu</a>
-            <a href="https://github.com/YourGitHub" class="contact-item">💻 GitHub / Project Home</a>
-            <a href="https://space.bilibili.com/YourUID" class="contact-item">📺 B站 (15.5万播放)</a>
+        <div class="contact-section">
+            <a href="mailto:zhw124@ucsd.edu" class="contact-item">✉ zhw124@ucsd.edu</a>
+            <a href="https://github.com/YourGitHub" class="contact-item">💻 GitHub Portfolio</a>
+            <a href="https://ucsd-course-planning-tutor.streamlit.app/" class="contact-item">🚀 AI Course Tutor</a>
+            <a href="https://space.bilibili.com/YourUID" class="contact-item">📺 Bilibili (155K+ Views)</a>
+            <p style="font-size: 0.75rem; color: #718096; margin-top: 20px;">📍 San Diego / Shanghai</p>
         </div>
     </aside>
 
     <main class="main">
-        <section class="about-me">
-            我是王臻，目前在 <strong>UCSD</strong> 攻读双专业。我正专注于 <strong>ML 与 AI Agent</strong> 赛道，并致力于探索 <strong>AI 产品的赛道摸索与落地</strong>。我擅长从 0 到 1 构建智能化工具，并利用数据驱动增长。
-        </section>
-
         <section>
-            <h2>AI Projects & Products</h2>
-            <div class="entry">
-                <div class="entry-header">
-                    <span class="entry-title">UCSD Course Planning Tutor</span>
-                    <span class="entry-time">2026.04 - 至今</span>
-                </div>
-                <div class="entry-org">AI Agent 开发者 | 独立项目</div>
-                <div class="badge-container">
-                    <span class="badge">Gemini Flash API</span><span class="badge">RAG</span><span class="badge">LLM Agent</span>
-                </div>
-                <ul class="desc">
-                    <li>针对 DSC 学生选课痛点，开发基于 <strong>RAG (检索增强生成)</strong> 的智能课程顾问代理。</li>
-                    <li>实现全系课程大纲的高精度检索，并利用网络拓扑算法实现 <strong>Prerequisite Tree (先修树) 可视化</strong>。</li>
-                </ul>
-                <a href="https://ucsd-course-planning-tutor.streamlit.app/" class="demo-btn">运行 AI 代理 Demo →</a>
-            </div>
-
-            <div class="entry">
-                <div class="entry-header">
-                    <span class="entry-title">Edge AI 能效量化研究</span>
-                    <span class="entry-time">2026.03 - 至今</span>
-                </div>
-                <div class="entry-org">TRELS 科研奖学金项目 | 独立研究员</div>
-                <ul class="desc">
-                    <li>研究 <strong>Llama-3</strong> 等大模型在 NVIDIA Jetson 边缘设备上的热节流效应。</li>
-                    <li>使用 Prometheus 系统性构建“效率-热量”模型，为 AI Agent 的硬件部署提供实证建议。</li>
-                </ul>
+            <h2>About Me</h2>
+            <div class="intro">
+                I am a Data Science and Mathematics-Computer Science student at <strong>UC San Diego</strong>. 
+                My focus lies at the intersection of <strong>Machine Learning and AI Agents</strong>, with a strong interest in building scalable AI products. 
+                From optimizing Edge AI inference on Jetson devices to developing LLM-driven autonomous agents, I am dedicated to bridging the gap between computational theory and real-world impact.
             </div>
         </section>
 
-        <section>
-            <h2>Data Science Research</h2>
+        <section id="ai-product">
+            <h2>AI & Product Engineering</h2>
             <div class="entry">
                 <div class="entry-header">
-                    <span class="entry-title">Steam 游戏商业成功预测模型</span>
-                    <span class="entry-time">2026.04 - 至今</span>
+                    <span class="entry-name">UCSD Course Planning Tutor</span>
+                    <span class="entry-date">2026.04 - PRESENT</span>
                 </div>
-                <div class="entry-org">COGS 108 | 首席数据分析</div>
-                <p class="desc">分析 14,000+ 游戏数据，通过边缘效应模型评估价格、标签对销量的量化贡献。</p>
+                <div class="entry-sub">Lead Developer | AI Agent Implementation</div>
+                <div class="tags">
+                    <span class="tag">Gemini Flash API</span><span class="tag">RAG Workflow</span><span class="tag">Streamlit</span><span class="tag">NetworkX Visualization</span>
+                </div>
+                <ul>
+                    <li>Developing an <strong>Autonomous AI Advisor</strong> for DSC students using Gemini Flash and RAG pipelines for high-accuracy course retrieval.</li>
+                    <li>Built an interactive <strong>Prerequisite Tree Visualization</strong> using network topology to map complex major requirements.</li>
+                </ul>
+                <a href="https://ucsd-course-planning-tutor.streamlit.app/" class="project-link" target="_blank">View Live Demo</a>
             </div>
 
             <div class="entry">
                 <div class="entry-header">
-                    <span class="entry-title">上海交通大学 (SJTU)</span>
-                    <span class="entry-time">2024.06 - 2025.09</span>
+                    <span class="entry-name">TRELS Research: Edge AI Efficiency</span>
+                    <span class="entry-date">2026.03 - PRESENT</span>
                 </div>
-                <div class="entry-org">研究助理 | 孙晓宁教授课题组</div>
-                <div class="badge-container">
-                    <span class="badge">Stata</span><span class="badge">数据自动化</span><span class="badge"><a href="https://scholar.google.com/citations?view_op=list_works&user=LmHih1QAAAAJ" style="color:inherit;text-decoration:none">Google Scholar ↗</a></span>
+                <div class="entry-sub">Independent Researcher | Scholar Project</div>
+                <ul>
+                    <li>Investigating <strong>Thermal Throttling</strong> effects on Llama-3 inference performance on NVIDIA Jetson devices.</li>
+                    <li>Constructing a quantitative "Efficiency-Heat" model based on real-time metrics (GPU Temp, TFLOPS, Throughput) via Prometheus.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="ds-research">
+            <h2>Data Science & Quantitative Research</h2>
+            <div class="entry">
+                <div class="entry-header">
+                    <span class="entry-name">Steam Game Success Prediction</span>
+                    <span class="entry-date">2026.04 - PRESENT</span>
                 </div>
-                <ul class="desc">
-                    <li>处理 500+ 小时核心行为数据，开发自动化流程完成 95 份标准化报告。</li>
+                <div class="entry-sub">Machine Learning Project (COGS 108)</div>
+                <p style="font-size: 0.95rem; color: var(--text-light);">Analyzed 14,000+ gaming records using regression models and marginal effect analysis to quantify how pre-release tags and pricing impact commercial success.</p>
+            </div>
+
+            <div class="entry">
+                <div class="entry-header">
+                    <span class="entry-name">Shanghai Jiao Tong University (SJTU)</span>
+                    <span class="entry-date">2024.06 - 2025.09</span>
+                </div>
+                <div class="entry-sub">Research Assistant | Lab of <a href="https://scholar.google.com/citations?view_op=list_works&user=LmHih1QAAAAJ" style="color: inherit;">Prof. Xiaoning Sun</a></div>
+                <ul>
+                    <li>Managed structured pipelines for 500+ hours of behavioral data; automated 95+ standardized research reports via Stata.</li>
+                    <li>Supported computational modeling for large-scale child development assessment datasets.</li>
                 </ul>
             </div>
 
             <div class="entry">
                 <div class="entry-header">
-                    <span class="entry-title">Sam Lau Lab: 数据工具评估</span>
-                    <span class="entry-time">2025.12 - 2026.03</span>
+                    <span class="entry-name">EPL Transfer Spending Analysis</span>
+                    <span class="entry-date">2025.10 - 2025.12</span>
                 </div>
-                <div class="entry-org">研究助理 @ HDSI</div>
-                <p class="desc">量化评估 <i>Pandas Tutor</i> 对学生编程工作流的提效作用。</p>
+                <div class="entry-sub">Independent Project</div>
+                <p style="font-size: 0.95rem; color: var(--text-light);">Utilized hypothesis testing and linear regression to model the correlation between 10-year transfer spending and on-field performance (Goal Diff) in the English Premier League.</p>
+            </div>
+
+            <div class="entry">
+                <div class="entry-header">
+                    <span class="entry-name">HDSI: Data Tool Evaluation</span>
+                    <span class="entry-date">2025.12 - 2026.03</span>
+                </div>
+                <div class="entry-sub">Research Assistant | Advisor: Prof. Sam Lau</div>
+                <p style="font-size: 0.95rem; color: var(--text-light);">Analyzed student interaction data to evaluate the impact of <i>Pandas Tutor</i> on computational learning efficiency.</p>
             </div>
         </section>
 
-        <section>
+        <section id="experience">
             <h2>Professional Experience</h2>
             <div class="entry">
                 <div class="entry-header">
-                    <span class="entry-title">ENC Mobile (迎客移动)</span>
-                    <span class="entry-time">2026.05 - 2026.09</span>
+                    <span class="entry-name">ENC Mobile</span>
+                    <span class="entry-date">2026.05 - 2026.09</span>
                 </div>
-                <div class="entry-org">校园增长与产品实习生</div>
-                <ul class="desc">
-                    <li>主导 UCSD 区域用户获取策略，利用社群运营与竞品分析实现产品市场份额提升。</li>
-                    <li>负责 <strong>Level-1 Support</strong>，通过即时反馈循环优化 AI 推广内容的精准度。</li>
+                <div class="entry-sub">Campus Growth & Product Intern</div>
+                <ul>
+                    <li>Driving user growth and brand awareness at UCSD through targeted community operations and competitive market analysis.</li>
+                    <li>Providing <strong>Level-1 Technical Support</strong> on social platforms, optimizing content based on real-time user feedback loops.</li>
                 </ul>
             </div>
         </section>
 
-        <section>
-            <h2>Leadership & Impact</h2>
+        <section id="impact">
+            <h2>Impact & Leadership</h2>
             <div class="entry">
                 <div class="entry-header">
-                    <span class="entry-title">Bilibili 知识区博主</span>
-                    <span class="entry-time">15.5万+ 累计播放</span>
+                    <span class="entry-name">Shanghai World Foreign Language Academy (WFLA)</span>
+                    <span class="entry-date">2023.09 - 2024.09</span>
                 </div>
-                <p class="desc">致力于 AI 工具与高效学习方法的通俗化传播，具备跨平台的科技内容创作与产品传播能力。</p>
+                <div class="entry-sub">Vice Minister | Student Union</div>
+                <p style="font-size: 0.95rem; color: var(--text-light);">Managed a <strong>108-member volunteer team</strong>; coordinated large-scale campus events and charity initiatives with complex resource scheduling.</p>
             </div>
+
             <div class="entry">
                 <div class="entry-header">
-                    <span class="entry-title">CGC & DS3 & 世外学生会 (WFLA)</span>
-                    <span class="entry-time">2023 - 至今</span>
+                    <span class="entry-name">Bilibili Knowledge Creator</span>
+                    <span class="entry-date">155K+ Total Views</span>
                 </div>
-                <ul class="desc">
-                    <li><strong>WFLA：</strong> 副部长，管理 108 人志愿者团队，具备大规模资源调度与团队管理能力。</li>
-                    <li><strong>CGC：</strong> 核心成员，管理 500+ 新生社群，主导多场大型校园活动落地。</li>
-                </ul>
+                <p style="font-size: 0.95rem; color: var(--text-light);">Creating educational content on AI tools and data science workflows, fostering a community of technology enthusiasts.</p>
+            </div>
+
+            <div class="entry">
+                <div class="entry-header">
+                    <span class="entry-name">CGC & DS3 Community Support</span>
+                    <span class="entry-date">2025.09 - PRESENT</span>
+                </div>
+                <p style="font-size: 0.95rem; color: var(--text-light);">Core organizer for UCSD Chinese Global Community (airport pickup, orientation) and active member in Data Science Student Society (reproducible analytical pipelines).</p>
             </div>
         </section>
 
-        <section>
-            <h2>Skills</h2>
-            <p style="color: var(--text-gray);">
-                <strong>AI/ML:</strong> RAG, AI Agents, Prompt Engineering, Scikit-learn, PyTorch<br>
-                <strong>Programming:</strong> C++, Python (Pandas/HPC), Java, MATLAB, Stata, SQL<br>
-                <strong>Tools:</strong> Prometheus, Streamlit, Git, Docker
-            </p>
+        <section id="skills">
+            <h2>Technical Skills</h2>
+            <ul>
+                <li><strong>Languages:</strong> C++, Python (Pandas/Scikit-learn), MATLAB, Java, Stata, SQL.</li>
+                <li><strong>Technologies:</strong> RAG, LLM Agent Frameworks, Prometheus, Streamlit, Git, LaTeX.</li>
+                <li><strong>Methods:</strong> High-Performance Computing, Hypothesis Testing, Qualitative Coding, Behavioral Experiments.</li>
+            </ul>
         </section>
     </main>
 
