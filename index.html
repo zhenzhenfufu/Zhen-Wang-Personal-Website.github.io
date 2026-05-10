@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zhen Wang - Personal Homepage</title>
+    <title>Zhen Wang - UCSD Portfolio</title>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -14,130 +14,144 @@
             display: flex;
             max-width: 1200px;
             margin: 0 auto;
+            background-color: #fff;
         }
         /* Sidebar */
         .sidebar {
-            width: 300px;
-            padding: 50px 30px;
+            width: 320px;
+            padding: 60px 30px;
             text-align: center;
-            border-right: 1px solid #eaeaea;
+            border-right: 1px solid #eee;
             height: 100vh;
             position: sticky;
             top: 0;
             box-sizing: border-box;
-            background-color: #fafafa;
+            background-color: #f9f9f9;
         }
         .profile-pic {
-            width: 160px;
-            height: 160px;
+            width: 180px;
+            height: 180px;
             border-radius: 50%;
             object-fit: cover;
-            margin-bottom: 20px;
-            border: 2px solid #f0f0f0;
+            margin-bottom: 25px;
+            border: 3px solid #fff;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
-        .sidebar h1 { font-weight: 500; font-size: 1.5em; margin-bottom: 5px; color: #2c3e50; }
-        .subtitle { color: #666; font-size: 0.95em; margin-bottom: 20px; }
-        .contact-links a { display: block; margin: 8px 0; color: #2980b9; text-decoration: none; font-size: 0.9em; }
-        .contact-links a:hover { text-decoration: underline; }
+        .sidebar h1 { font-weight: 600; font-size: 1.6em; margin-bottom: 5px; color: #2c3e50; }
+        .sidebar .location { font-size: 0.9em; color: #888; margin-bottom: 15px; }
+        .subtitle { color: #555; font-size: 1em; margin-bottom: 25px; line-height: 1.4; }
+        .contact-links a { display: block; margin: 10px 0; color: #2980b9; text-decoration: none; font-size: 0.95em; }
+        .contact-links a:hover { color: #1a5276; text-decoration: underline; }
 
         /* Main Content */
-        .content { flex: 1; padding: 50px 60px; box-sizing: border-box; }
-        .content h2 { font-weight: 400; color: #2980b9; border-bottom: 1px solid #eaeaea; padding-bottom: 8px; margin-top: 40px; text-transform: uppercase; letter-spacing: 1px; }
+        .content { flex: 1; padding: 60px 70px; box-sizing: border-box; }
+        .content h2 { font-weight: 600; color: #2c3e50; border-bottom: 2px solid #2980b9; display: inline-block; padding-bottom: 3px; margin-top: 45px; margin-bottom: 20px; }
         .content h2:first-child { margin-top: 0; }
         
-        .project-item { margin-bottom: 30px; }
-        .project-title { font-weight: 600; font-size: 1.1em; color: #34495e; }
-        .project-tag { display: inline-block; background: #ebf5fb; color: #2980b9; padding: 2px 8px; border-radius: 4px; font-size: 0.8em; margin-bottom: 8px; font-weight: bold; }
+        .item { margin-bottom: 30px; position: relative; }
+        .item-title { font-weight: 600; font-size: 1.15em; color: #2c3e50; display: block; }
+        .item-sub { color: #2980b9; font-weight: 500; font-size: 1em; margin: 4px 0; }
+        .item-tag { display: inline-block; background: #eef2f7; color: #546e7a; padding: 2px 10px; border-radius: 15px; font-size: 0.8em; margin-top: 8px; font-weight: bold; }
         
-        ul { padding-left: 20px; }
-        li { margin-bottom: 12px; }
-        .date { color: #7f8c8d; font-size: 0.9em; float: right; }
-        .highlight { font-weight: 600; color: #2c3e50; }
+        .date { color: #95a5a6; font-size: 0.9em; float: right; font-weight: 400; }
+        
+        ul { padding-left: 20px; margin-top: 10px; }
+        li { margin-bottom: 8px; }
+        p { margin: 10px 0; }
+        
+        .link-text { color: #2980b9; text-decoration: none; border-bottom: 1px dashed #2980b9; }
 
-        @media (max-width: 768px) {
+        @media (max-width: 850px) {
             body { flex-direction: column; }
-            .sidebar { width: 100%; height: auto; position: relative; border-right: none; border-bottom: 1px solid #eaeaea; }
-            .content { padding: 30px; }
-            .date { float: none; display: block; margin-top: 5px; }
+            .sidebar { width: 100%; height: auto; position: relative; border-right: none; padding: 40px 20px; }
+            .content { padding: 40px 30px; }
+            .date { float: none; display: block; margin-bottom: 5px; }
         }
     </style>
 </head>
 <body>
 
     <div class="sidebar">
-        <img src="https://via.placeholder.com/160" alt="Zhen Wang" class="profile-pic">
+        <img src="My Picture.JPG" alt="Zhen Wang" class="profile-pic">
         <h1>Zhen Wang</h1>
-        <p class="subtitle">Undergraduate Student<br>UC San Diego</p>
+        <div class="location">San Diego, CA / Shanghai, China</div>
+        <p class="subtitle">
+            <strong>UC San Diego</strong><br>
+            Data Science & Math-CS<br>
+            Class of 2029
+        </p>
         <div class="contact-links">
-            <a href="mailto:zhw124@ucsd.edu">Email: zhw124@ucsd.edu</a>
-            <a href="#">GitHub Profile</a>
-            <a href="#">LinkedIn</a>
+            <a href="mailto:zhw124@ucsd.edu">📧 zhw124@ucsd.edu</a>
+            <a href="https://github.com/你的用户名" target="_blank">💻 GitHub</a>
+            <a href="#" target="_blank">📄 Curriculum Vitae</a>
+            <a href="https://space.bilibili.com/你的UID" target="_blank">📺 Bilibili (155K+ Views)</a>
         </div>
     </div>
 
     <div class="content">
         <section id="about">
             <h2>About Me</h2>
-            <p>I am a Data Science and Math-Computer Science double major at UC San Diego with a 4.0 GPA. My work focuses on building interpretable machine learning models and high-performance computing pipelines to solve complex real-world problems.</p>
+            <p>I am a highly motivated undergraduate student at <strong>UC San Diego</strong> with a perfect <strong>GPA of 4.0/4.0</strong>. My academic interests lie at the intersection of <strong>High-Performance Computing (HPC)</strong>, <strong>Machine Learning</strong>, and <strong>Quantitative Data Analysis</strong>.</p>
+            <p>Currently, I am conducting independent research on Edge AI efficiency and have collaborated with labs at SJTU and UCSD on computational modeling and data tool evaluation.</p>
         </section>
 
         <section id="research">
             <h2>Research Experience</h2>
-            <ul>
-                <li>
-                    <span class="date">2026.03 - Present</span>
-                    <span class="highlight">TRELS Research Scholar | UC San Diego</span><br>
-                    Investigating thermal throttling and energy efficiency in Edge AI. Deploying Llama-3 models on Jetson devices to quantify performance-to-heat relationships.
-                </li>
-                <li>
-                    <span class="date">2024.06 - 2025.09</span>
-                    <span class="highlight">Research Assistant | Shanghai Jiao Tong University</span><br>
-                    Analyzed 500+ hours of behavioral data using Stata and Excel, streamlining automated pipelines for developmental psychology assessments.
-                </li>
-            </ul>
-        </section>
-
-        <section id="projects">
-            <h2>Data Science Projects</h2>
             
-            <div class="project-item">
-                <span class="date">Apr 2026 - Present</span>
-                <div class="project-title">Predicting Commercial Success of Steam Games</div>
-                <div class="project-tag">Python | Regression Analysis | Scikit-learn | Market Research</div>
-                <p>Developing a regression-based framework to estimate the <strong>marginal impact</strong> of pre-release factors (price, genre, developer reputation) on a game's commercial success.</p>
-                <ul>
-                    <li>Utilizing datasets of 10,000+ observations to bypass post-release bias and focus on decision-making variables available to developers before launch.</li>
-                    <li>Handling large-scale data wrangling and feature engineering for estimated owner counts and developer historical performance.</li>
-                </ul>
+            <div class="item">
+                <span class="date">Mar 2026 - Present</span>
+                <span class="item-title">Independent Researcher @ UC San Diego</span>
+                <div class="item-sub">TRELS Research Scholarship Project</div>
+                <p>Project: <em>Thermal Throttling & Energy Consumption in Edge AI Workloads.</em> Investigating performance decay in Llama-3 models on Jetson devices using Prometheus and nvidia-smi.</p>
             </div>
 
-            <div class="project-item">
-                <span class="date">Oct 2025 - Dec 2025</span>
-                <div class="project-title">EPL Transfer Spending & Performance Correlation</div>
-                <div class="project-tag">Data Cleaning | Statistical Testing | Pandas</div>
-                <p>Analyzed 10 years of Premier League data to quantify the relationship between transfer expenditures and goal differences using linear regression.</p>
+            <div class="item">
+                <span class="date">Jun 2024 - Sep 2025</span>
+                <span class="item-title">Research Assistant @ Shanghai Jiao Tong University</span>
+                <div class="item-sub">Dept. of Psychology | Advisor: <a href="https://scholar.google.com/citations?view_op=list_works&hl=zh-CN&hl=zh-CN&user=LmHih1QAAAAJ&sortby=pubdate" class="link-text" target="_blank">Prof. Xiaoning Sun</a></div>
+                <p>Processed 500+ hours of behavioral data; managed large-scale assessment datasets in Stata and Excel; collaborated on structural computational pipelines for developmental research.</p>
+            </div>
+
+            <div class="item">
+                <span class="date">Dec 2025 - Mar 2026</span>
+                <span class="item-title">Research Assistant @ Halıcıoğlu Data Science Institute</span>
+                <div class="item-sub">Advisor: Prof. Sam Lau</div>
+                <p>Analyzed student data to evaluate the impact of the <em>Pandas Tutor</em> tool on computational learning workflows.</p>
             </div>
         </section>
 
-        <section id="education">
-            <h2>Education</h2>
+        <section id="ds-projects">
+            <h2>Selected Projects</h2>
+            
+            <div class="item">
+                <span class="date">Apr 2026 - Present</span>
+                <span class="item-title">Steam Games Success Prediction (COGS 108)</span>
+                <div class="item-tag">Python | Scikit-learn | Marginal Effect Analysis</div>
+                <p>Building a regression framework to identify pre-release characteristics (genre, price, developer history) that drive commercial success, controlling for post-release signals.</p>
+            </div>
+
+            <div class="item">
+                <span class="date">Oct 2025 - Dec 2025</span>
+                <span class="item-title">EPL Transfer Spending vs. Performance</span>
+                <div class="item-tag">Pandas | Hypothesis Testing | Linear Regression</div>
+                <p>Quantified the correlation between transfer market investment and goal differences in the English Premier League over a 10-year span.</p>
+            </div>
+        </section>
+
+        <section id="activities">
+            <h2>Leadership & Campus Life</h2>
             <ul>
-                <li>
-                    <span class="date">2025 - 2029 (Expected)</span>
-                    <span class="highlight">University of California, San Diego</span><br>
-                    B.S. Data Science & B.S. Mathematics-Computer Science (Double Major)<br>
-                    <em>Honors: GPA 4.0/4.0</em>
-                </li>
+                <li><strong>CGC (Chinese Global Community):</strong> Core member managing HR and large-scale orientation events for international students.</li>
+                <li><strong>DS3 (Data Science Student Society):</strong> Applying analytical pipelines to extract behavioral patterns from YouTube datasets.</li>
+                <li><strong>UCSD Club Tennis:</strong> Competitive team member representing the university in regional matches.</li>
+                <li><strong>Student Union (WFLA):</strong> Previously served as Vice Minister, managing 100+ volunteers for cultural and charity events.</li>
             </ul>
         </section>
 
         <section id="skills">
             <h2>Technical Skills</h2>
-            <ul>
-                <li><strong>Languages:</strong> Python (Pandas, Scikit-learn), C++, Java, MATLAB, Stata.</li>
-                <li><strong>Methods:</strong> Regression Modeling, Hypothesis Testing, Performance Metrics, Qualitative Coding.</li>
-                <li><strong>Soft Skills:</strong> Technical Writing, Project Administration, Cross-functional Collaboration.</li>
-            </ul>
+            <p><strong>Programming:</strong> C++, Python (Pandas/Numpy), Java, MATLAB, Stata.</p>
+            <p><strong>Data Science:</strong> Regression Modeling, EDA, Hypothesis Testing, Qualitative Coding.</p>
         </section>
     </div>
 
