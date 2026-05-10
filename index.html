@@ -3,34 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zhen Wang | UCSD Data Science & AI Agent Explorer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Zhen Wang | UCSD Data Science & AI Product Explorer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #184073;    /* UCSD Deep Blue */
-            --secondary: #2980b9;  /* Bright Blue */
-            --accent: #f39c12;     /* Gold Accent */
-            --bg-body: #ffffff;
-            --bg-sidebar: #f4f7f9;
-            --text-main: #2c3e50;
-            --text-muted: #5d6d7e;
+            --secondary: #2c5282;  /* Professional Blue */
+            --accent: #3182ce;     /* Action Blue */
+            --text-main: #1a202c;
+            --text-muted: #4a5568;
+            --bg-sidebar: #f7fafc;
+            --white: #ffffff;
         }
 
         body {
             font-family: 'Inter', -apple-system, sans-serif;
-            line-height: 1.7;
+            line-height: 1.8;
             margin: 0;
             display: flex;
             color: var(--text-main);
-            background-color: var(--bg-body);
-            max-width: 1400px;
+            background-color: var(--white);
+            max-width: 1440px;
             margin: 0 auto;
         }
 
         /* Sidebar Design */
         .sidebar {
-            width: 350px;
-            padding: 60px 40px;
+            width: 360px;
+            padding: 60px 45px;
             background-color: var(--bg-sidebar);
             height: 100vh;
             position: sticky;
@@ -38,115 +38,126 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            border-right: 1px solid #e1e8ed;
+            border-right: 1px solid #e2e8f0;
+            box-sizing: border-box;
         }
 
         .profile-pic {
-            width: 200px;
-            height: 200px;
+            width: 210px;
+            height: 210px;
             border-radius: 50%;
             object-fit: cover;
-            border: 4px solid #fff;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            margin-bottom: 25px;
-        }
-
-        .sidebar h1 { 
-            font-size: 1.8em; 
-            margin: 10px 0; 
-            color: var(--primary);
-            letter-spacing: -0.5px;
-        }
-
-        .sidebar .tagline {
-            font-size: 0.95em;
-            color: var(--secondary);
-            font-weight: 600;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-        }
-
-        .contact-box {
-            width: 100%;
-            background: #fff;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
-            font-size: 0.9em;
-        }
-
-        .contact-link {
-            display: flex;
-            align-items: center;
-            margin: 10px 0;
-            color: var(--text-main);
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-        .contact-link:hover { color: var(--secondary); }
-
-        /* Main Content Design */
-        .main-content { flex: 1; padding: 60px 80px; }
-
-        h2 {
-            font-size: 1.5em;
-            color: var(--primary);
-            border-bottom: 2px solid var(--bg-sidebar);
-            padding-bottom: 10px;
-            margin-top: 50px;
-            display: flex;
-            align-items: center;
-        }
-
-        .intro-text {
-            font-size: 1.1em;
-            color: var(--text-muted);
+            border: 5px solid #fff;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
             margin-bottom: 30px;
         }
 
-        .card {
-            margin-bottom: 40px;
-            position: relative;
-        }
-
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-        }
-
-        .card-title { font-weight: 700; font-size: 1.25em; color: var(--text-main); }
-        .card-sub { color: var(--secondary); font-weight: 600; margin: 5px 0; }
-        .date { color: #99aab5; font-size: 0.9em; font-weight: 500; }
-
-        .tags { margin: 12px 0; }
-        .tag {
-            background: var(--bg-sidebar);
+        .sidebar h1 { 
+            font-size: 1.9em; 
+            margin: 0; 
             color: var(--primary);
-            padding: 4px 12px;
+            letter-spacing: -0.03em;
+        }
+
+        .tagline {
+            font-size: 0.9em;
+            color: var(--accent);
+            font-weight: 700;
+            margin: 10px 0 25px 0;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .info-card {
+            width: 100%;
+            background: #fff;
+            padding: 25px;
             border-radius: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        }
+
+        .info-item {
+            margin-bottom: 15px;
+            font-size: 0.95em;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-links a {
+            display: block;
+            margin: 12px 0;
+            color: var(--text-main);
+            text-decoration: none;
+            transition: color 0.2s;
+            font-size: 0.95em;
+        }
+        .contact-links a:hover { color: var(--accent); }
+
+        /* Main Content */
+        .main-content { flex: 1; padding: 60px 100px; box-sizing: border-box; }
+
+        section { margin-bottom: 60px; }
+
+        h2 {
+            font-size: 1.4em;
+            color: var(--primary);
+            border-bottom: 3px solid #ebf8ff;
+            padding-bottom: 12px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .intro-text {
+            font-size: 1.15em;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            border-left: 4px solid var(--accent);
+            padding-left: 25px;
+        }
+
+        .experience-item { margin-bottom: 45px; }
+        .header-row { display: flex; justify-content: space-between; align-items: baseline; }
+        .title { font-weight: 700; font-size: 1.3em; color: var(--text-main); }
+        .org { color: var(--accent); font-weight: 600; font-size: 1.1em; margin: 5px 0; }
+        .date { color: #a0aec0; font-size: 0.9em; font-weight: 600; }
+
+        .tags { margin: 15px 0; }
+        .tag {
+            background: #edf2f7;
+            color: #4a5568;
+            padding: 4px 14px;
+            border-radius: 8px;
             font-size: 0.8em;
             font-weight: 700;
-            margin-right: 8px;
+            margin-right: 10px;
+            display: inline-block;
         }
 
-        .link-btn {
-            display: inline-block;
+        .desc-list { padding-left: 20px; margin-top: 15px; }
+        .desc-list li { margin-bottom: 12px; color: var(--text-muted); }
+
+        .action-link {
+            display: inline-flex;
+            align-items: center;
             margin-top: 15px;
-            padding: 8px 20px;
+            padding: 10px 24px;
             background: var(--primary);
             color: #fff !important;
             text-decoration: none;
-            border-radius: 8px;
-            font-size: 0.9em;
+            border-radius: 12px;
+            font-size: 0.95em;
             font-weight: 600;
+            transition: transform 0.2s;
         }
+        .action-link:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(24,64,115,0.2); }
 
-        /* Responsive */
-        @media (max-width: 1000px) {
+        @media (max-width: 1100px) {
             body { flex-direction: column; }
             .sidebar { width: 100%; height: auto; position: relative; border-right: none; }
-            .main-content { padding: 40px 30px; }
+            .main-content { padding: 50px 40px; }
         }
     </style>
 </head>
@@ -157,14 +168,17 @@
         <h1>Zhen Wang</h1>
         <div class="tagline">ML & AI Agent Explorer</div>
         
-        <div class="contact-box">
-            <div style="font-weight: 700; margin-bottom: 10px; color: var(--primary);">UC San Diego</div>
-            <div>Data Science & Math-CS</div>
-            <div style="color: var(--accent); font-weight: 700;">GPA 4.0 / 4.0</div>
-            <hr style="border: 0; border-top: 1px solid #eee; margin: 15px 0;">
-            <a href="mailto:zhw124@ucsd.edu" class="contact-link">📧 zhw124@ucsd.edu</a>
-            <a href="https://github.com/YourGitHub" class="contact-link">🐙 GitHub</a>
-            <a href="https://ucsd-course-planning-tutor.streamlit.app/" class="contact-link">🚀 AI Advisor App</a>
+        <div class="info-card">
+            <div class="info-item">🎓 <strong>UC San Diego</strong></div>
+            <div class="info-item">Data Science & Math-CS</div>
+            <div class="info-item">📍 San Diego / Shanghai</div>
+            <hr style="border: 0; border-top: 1px solid #edf2f7; margin: 20px 0;">
+            <div class="contact-links">
+                <a href="mailto:zhw124@ucsd.edu">✉️ zhw124@ucsd.edu</a>
+                <a href="https://github.com/YourGitHub">🐙 GitHub Profile</a>
+                <a href="https://ucsd-course-planning-tutor.streamlit.app/">🚀 AI Agent Demo</a>
+                <a href="https://space.bilibili.com/YourUID">📽️ Bilibili (155K+ Views)</a>
+            </div>
         </div>
     </aside>
 
@@ -172,81 +186,111 @@
         <section id="about">
             <h2>About Me</h2>
             <div class="intro-text">
-                I am an undergraduate student at <strong>UC San Diego</strong> with a deep passion for <strong>Machine Learning and AI Agents</strong>. Currently, I am exploring the "AI Product" track, focusing on how large language models can be transformed into autonomous agents that solve complex real-world workflows. 
+                I am a Data Science and Math-CS student at <strong>UC San Diego</strong>, passionately exploring the <strong>ML & AI Agent track</strong>. 
+                Beyond theory, I focus on the "AI Product" lifecycle—from architecting autonomous workflows with LLMs to optimizing model inference on edge hardware.
                 <br><br>
-                From building intelligent academic advisors to researching thermal efficiency in Edge AI, I strive to bridge the gap between rigorous mathematical theory and impactful product engineering.
+                Currently, I am leveraging my technical background to build intelligent tools and drive user growth in the tech ecosystem.
             </div>
         </section>
 
         <section id="ai-product">
-            <h2>AI Products & ML Research</h2>
+            <h2>AI Product & Engineering</h2>
             
-            <div class="card">
-                <div class="card-header">
-                    <span class="card-title">UCSD Course Planning Tutor</span>
-                    <span class="date">2026 - Present</span>
+            <div class="experience-item">
+                <div class="header-row">
+                    <span class="title">UCSD Course Planning Tutor</span>
+                    <span class="date">2026.04 - PRESENT</span>
                 </div>
-                <div class="card-sub">Lead Developer | AI Agent Implementation</div>
+                <div class="org">Lead Developer & AI Architect</div>
                 <div class="tags">
-                    <span class="tag">Gemini API</span>
-                    <span class="tag">Streamlit</span>
-                    <span class="tag">RAG Workflow</span>
+                    <span class="tag">AI Agent</span> <span class="tag">Gemini API</span> <span class="tag">RAG</span> <span class="tag">Streamlit</span>
                 </div>
-                <p>Developing an autonomous academic agent that navigates complex UCSD course catalogs. It uses <strong>Retrieval-Augmented Generation (RAG)</strong> to provide accurate scheduling advice and visualizes prerequisite chains using interactive network graphs.</p>
-                <a href="https://ucsd-course-planning-tutor.streamlit.app/" class="link-btn" target="_blank">Try the Agent →</a>
+                <ul class="desc-list">
+                    <li>Designed an <strong>AI Agent</strong> that automates academic advising for 2000+ DSC students.</li>
+                    <li>Implemented <strong>Retrieval-Augmented Generation (RAG)</strong> to query real-time course catalogs accurately.</li>
+                    <li>Developed an interactive <strong>Prerequisite Tree Visualization</strong> using network-based modeling.</li>
+                </ul>
+                <a href="https://ucsd-course-planning-tutor.streamlit.app/" class="action-link" target="_blank">Launch AI Agent →</a>
             </div>
 
-            <div class="card">
-                <div class="card-header">
-                    <span class="card-title">Edge AI Thermal Throttling Research</span>
-                    <span class="date">Mar 2026 - Present</span>
+            <div class="experience-item">
+                <div class="header-row">
+                    <span class="title">Edge AI Thermal & Efficiency Research</span>
+                    <span class="date">2026.03 - PRESENT</span>
                 </div>
-                <div class="card-sub">Independent Researcher | TRELS Scholar</div>
-                <p>Analyzing the performance-to-heat ratio of <strong>LLM Agent inference</strong> on NVIDIA Jetson devices. Building a data-driven model to predict efficiency decay during long-running AI tasks.</p>
+                <div class="org">Independent Researcher | TRELS Scholar</div>
+                <ul class="desc-list">
+                    <li>Benchmarking LLM (Llama-3) performance on NVIDIA Jetson edge devices under thermal stress.</li>
+                    <li>Built automated monitoring pipelines using <strong>Prometheus</strong> and <strong>nvidia-smi</strong>.</li>
+                    <li>Constructing a "Efficiency-Thermal" model to optimize AI Agent uptime on hardware-constrained environments.</li>
+                </ul>
             </div>
         </section>
 
         <section id="experience">
             <h2>Professional Experience</h2>
             
-            <div class="card">
-                <div class="card-header">
-                    <span class="card-title">ENC Mobile</span>
-                    <span class="date">May 2026 - Sep 2026</span>
+            <div class="experience-item">
+                <div class="header-row">
+                    <span class="title">ENC Mobile (迎客移动)</span>
+                    <span class="date">2026.05 - 2026.09</span>
                 </div>
-                <div class="card-sub">Campus Growth & Product Intern</div>
-                <ul>
-                    <li>Leveraging data-driven insights to drive user growth within the UCSD international student community.</li>
-                    <li>Iterating on marketing materials and community operation workflows based on user feedback loops.</li>
+                <div class="org">Campus Growth & Marketing Intern</div>
+                <ul class="desc-list">
+                    <li>Leading brand growth strategies at UCSD, optimizing user acquisition for international students.</li>
+                    <li>Managing community operations and providing <strong>Level-1 Technical Support</strong> on WeChat/Social platforms.</li>
+                    <li>Executing market research and competitive analysis to iterate on AI-driven marketing materials.</li>
                 </ul>
             </div>
 
-            <div class="card">
-                <div class="card-header">
-                    <span class="card-title">Shanghai Jiao Tong University</span>
-                    <span class="date">2024 - 2025</span>
+            <div class="experience-item">
+                <div class="header-row">
+                    <span class="title">Shanghai Jiao Tong University (SJTU)</span>
+                    <span class="date">2024.06 - 2025.09</span>
                 </div>
-                <div class="card-sub">Research Assistant | Lab of <a href="https://scholar.google.com/citations?view_op=list_works&user=LmHih1QAAAAJ" style="color:inherit">Prof. Xiaoning Sun</a></div>
-                <p>Managed structured data pipelines for behavioral analysis, ensuring data integrity for 500+ hours of developmental research.</p>
+                <div class="org">Research Assistant | Lab of Prof. Xiaoning Sun</div>
+                <ul class="desc-list">
+                    <li>Processed 500+ hours of behavioral data; automated 95+ analysis reports via structural data pipelines.</li>
+                    <li>Collaborated on computational developmental modeling for psychology research.</li>
+                </ul>
             </div>
         </section>
 
-        <section id="impact">
-            <h2>Community & Impact</h2>
-            <div class="card">
-                <div class="card-title" style="font-size: 1.1em;">Educational Content Creator (Bilibili)</div>
-                <p>Translating complex data science and AI concepts into accessible video content for a community of <strong>155,000+ viewers</strong>. Focusing on the intersection of productivity and AI tools.</p>
+        <section id="leadership">
+            <h2>Leadership & Community Impact</h2>
+            
+            <div class="experience-item">
+                <div class="header-row">
+                    <span class="title">Educational Content Creator</span>
+                    <span class="date">Bilibili</span>
+                </div>
+                <p>Curating data science and tech content for <strong>155,000+ viewers</strong>, focusing on making AI Agent technology accessible to the masses.</p>
             </div>
-            <div class="card">
-                <div class="card-title" style="font-size: 1.1em;">UCSD Club Tennis & CGC</div>
-                <p>Active member of the competitive tennis team and core organizer for the Chinese Global Community, fostering a supportive environment for peers.</p>
+
+            <div class="experience-item">
+                <div class="header-row">
+                    <span class="title">UCSD DS3 & CGC Core Member</span>
+                    <span class="date">2025 - PRESENT</span>
+                </div>
+                <p>Optimizing community support for 500+ freshmen (CGC) and building reproducible analytical pipelines for YouTube datasets (DS3).</p>
+            </div>
+
+            <div class="experience-item">
+                <div class="header-row">
+                    <span class="title">Student Union (WFLA)</span>
+                    <span class="date">Vice Minister</span>
+                </div>
+                <p>Managed a 108-member volunteer team, coordinating large-scale cultural events and community service projects.</p>
             </div>
         </section>
 
         <section id="skills">
             <h2>Technical Stack</h2>
-            <p><strong>AI/ML:</strong> Python (PyTorch, Scikit-learn), Prompt Engineering, RAG, AI Agent Frameworks.</p>
-            <p><strong>Engineering:</strong> C++, Java, MATLAB, Streamlit, Git, Prometheus/Grafana.</p>
+            <div class="info-card" style="background: var(--bg-sidebar); border: none;">
+                <p><strong>ML/AI:</strong> Python (Pandas/Scikit-learn), AI Agent Frameworks, RAG, Prompt Engineering.</p>
+                <p><strong>Languages:</strong> C++ (High-perf design), Java (OOP), MATLAB, Stata.</p>
+                <p><strong>Tools:</strong> Prometheus, Streamlit, Git, LaTeX, SQL, nvidia-smi.</p>
+            </div>
         </section>
     </main>
 
