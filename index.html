@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zhen Wang - Personal Homepage</title>
+    <style>
+        /* 页面整体布局与截图风格保持一致 */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        /* 左侧边栏 */
+        .sidebar {
+            width: 300px;
+            padding: 50px 30px;
+            text-align: center;
+            border-right: 1px solid #eaeaea;
+            height: 100vh;
+            position: sticky;
+            top: 0;
+            box-sizing: border-box;
+        }
+        .profile-pic {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 2px solid #f0f0f0;
+        }
+        .sidebar h1 {
+            font-weight: 500;
+            font-size: 1.5em;
+            margin-bottom: 5px;
+            color: #2c3e50;
+        }
+        .subtitle {
+            color: #666;
+            font-size: 0.95em;
+            margin-bottom: 20px;
+        }
+        .contact-links a {
+            display: block;
+            margin: 8px 0;
+            color: #2980b9;
+            text-decoration: none;
+            font-size: 0.9em;
+        }
+        .contact-links a:hover {
+            text-decoration: underline;
+        }
+        /* 右侧主体内容 */
+        .content {
+            flex: 1;
+            padding: 50px 60px;
+            box-sizing: border-box;
+            overflow-y: auto;
+        }
+        .content h2 {
+            font-weight: 400;
+            color: #2980b9;
+            border-bottom: 1px solid #eaeaea;
+            padding-bottom: 8px;
+            margin-top: 40px;
+        }
+        .content h2:first-child {
+            margin-top: 0;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 12px;
+        }
+        .date {
+            color: #7f8c8d;
+            font-size: 0.9em;
+            float: right;
+        }
+        .highlight {
+            font-weight: 600;
+        }
+        /* 移动端适配 */
+        @media (max-width: 768px) {
+            body { flex-direction: column; }
+            .sidebar { width: 100%; height: auto; position: relative; border-right: none; border-bottom: 1px solid #eaeaea; }
+            .content { padding: 30px; }
+            .date { float: none; display: block; margin-top: 5px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <img src="https://via.placeholder.com/160" alt="Zhen Wang" class="profile-pic">
+        <h1>Zhen Wang [cite: 57]</h1>
+        <p class="subtitle">Undergraduate Student<br>UC San Diego [cite: 61]</p>
+        
+        <div class="contact-links">
+            <a href="mailto:zhw124@ucsd.edu">Email: zhw124@ucsd.edu [cite: 58]</a>
+            <a href="#">CV / Resume</a>
+            <a href="#">GitHub</a>
+            <a href="#">LinkedIn</a>
+        </div>
+    </div>
+
+    <div class="content">
+        <section id="hello">
+            <h2>hello!</h2>
+            <p>I am an undergraduate student at the University of California, San Diego (UCSD)[cite: 61], pursuing a double major in B.S. Data Science and B.S. Math-Computer Science[cite: 62]. My career interests focus on High Performance Computing, Machine Learning, and Data Analysis[cite: 59]. I currently maintain a GPA of 4.0/4.0[cite: 63].</p>
+        </section>
+
+        <section id="education">
+            <h2>Education [cite: 60]</h2>
+            <ul>
+                <li>
+                    <span class="highlight">University of California, San Diego (UCSD)</span> [cite: 61] <span class="date">2025.09 - Present [cite: 64]</span><br>
+                    Double major: B.S. Data Science & B.S. Math-Computer Science [cite: 62]
+                </li>
+            </ul>
+        </section>
+
+        <section id="research">
+            <h2>Research Experience [cite: 66]</h2>
+            <ul>
+                <li>
+                    <span class="highlight">TRELS Research Scholarship | Independent Researcher</span> [cite: 67] <span class="date">2026.03 - Present [cite: 68]</span><br>
+                    Awarded TRELS funding to independently lead a project on Thermal Throttling and Energy Consumption in Edge AI Workloads[cite: 69]. Deployed standard inference tasks (e.g., Llama-3) on a local GPU/edge device [cite: 70] and built a quantitative "efficiency-to-heat" model[cite: 73].
+                </li>
+                <li>
+                    <span class="highlight">Shanghai Jiao Tong University | Dept. of Psychology | Research Assistant</span> [cite: 74] <span class="date">2024.06 - 2025.09 [cite: 76]</span><br>
+                    Processed and analyzed large-scale behavioral datasets (500+ hours) using structured computational pipelines[cite: 77]. Managed high-volume developmental assessment data in Stata and Excel[cite: 78].
+                </li>
+                <li>
+                    <span class="highlight">UC San Diego | Halıcıoğlu Data Science Institute | Research Assistant</span> [cite: 82] <span class="date">2025.12 - 2026.03 [cite: 83]</span><br>
+                    Assisted in collecting and processing pre/post-instruction data and evaluated the Pandas Tutor tool for computational workflow optimization potential[cite: 84, 85].
+                </li>
+            </ul>
+        </section>
+
+        <section id="projects">
+            <h2>Projects</h2>
+            <ul>
+                <li>
+                    <span class="highlight">EPL Transfer Spending vs. Goal Difference Analysis</span> [cite: 86] <span class="date">2025.10 - 2025.12 [cite: 87]</span><br>
+                    Wrote Python (Pandas) scripts to collect and clean 10-year annual transfer expenditure and goal difference data[cite: 88]. Applied linear regression modeling and statistical hypothesis testing to assess correlations[cite: 89].
+                </li>
+                <li>
+                    <span class="highlight">Why do student go to college? | Sociological Research Project</span> [cite: 91] <span class="date">2025.09 - 2025.12 [cite: 92]</span><br>
+                    Led a 5-member team through a full research data pipeline, including structured data collection and end-to-end multi-dimensional processing[cite: 93].
+                </li>
+            </ul>
+        </section>
+        
+        <section id="leadership">
+            <h2>Leadership & Campus Experience [cite: 95]</h2>
+            <ul>
+                <li><span class="highlight">Chinese Global Community (CGC) | Core Member:</span> Designed and delivered support services for international freshmen[cite: 96, 98].</li>
+                <li><span class="highlight">UC San Diego DS3 Data Science Club | Member:</span> Applied data processing to extract behavioral patterns from YouTube user datasets[cite: 100, 102].</li>
+            </ul>
+        </section>
+
+        <section id="skills">
+            <h2>Technical Skills & Strengths [cite: 111]</h2>
+            <ul>
+                <li><strong>Programming:</strong> C++ & MATLAB, Python / Pandas, Java, Stata[cite: 112, 113, 114].</li>
+                <li><strong>Statistical Analysis:</strong> Hypothesis testing, linear regression, EDA, data cleaning[cite: 116].</li>
+                <li><strong>Media & Communication:</strong> Social media content creation (Bilibili channel, 155K+ total views)[cite: 115, 116].</li>
+            </ul>
+        </section>
+    </div>
+
+</body>
+</html>
