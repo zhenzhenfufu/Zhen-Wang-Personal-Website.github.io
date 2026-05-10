@@ -4,102 +4,76 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zhen Wang | Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700&family=Roboto+Mono&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --ucsd-navy: #182B49;
-            --ucsd-gold: #C69214;
-            --accent-blue: #006A96;
-            --text-dark: #1A202C;
-            --text-light: #4A5568;
-            --bg-gray: #F7FAFC;
-        }
-
         body {
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            font-family: 'Segoe UI', Arial, sans-serif;
             margin: 0;
             display: flex;
-            color: var(--text-dark);
+            color: #1a1a1a;
+            line-height: 1.6;
             background: #fff;
         }
 
-        /* Sidebar */
+        /* Sidebar - No Background Color */
         .sidebar {
-            width: 320px;
+            width: 300px;
             height: 100vh;
             position: sticky;
             top: 0;
-            padding: 50px 35px;
-            background: var(--ucsd-navy);
-            color: white;
+            padding: 60px 40px;
+            border-right: 1px solid #eeeeee;
             display: flex;
             flex-direction: column;
             box-sizing: border-box;
         }
 
         .profile-img {
-            width: 150px;
-            height: 150px;
-            border-radius: 8px; /* Formal professional look */
+            width: 140px;
+            height: 140px;
+            border-radius: 4px;
             object-fit: cover;
             margin-bottom: 25px;
-            border: 2px solid rgba(255,255,255,0.2);
+            filter: grayscale(10%); /* More formal */
         }
 
-        .sidebar h1 { font-size: 1.6rem; margin: 0; font-weight: 700; letter-spacing: -0.5px; }
-        .sidebar .title { font-size: 0.9rem; color: #A0AEC0; margin-top: 8px; font-weight: 400; }
+        .sidebar h1 { font-size: 1.5rem; margin: 0; font-weight: 700; color: #000; }
+        .sidebar .sub { font-size: 0.9rem; color: #666; margin: 10px 0 30px 0; }
         
-        .contact-section { margin-top: auto; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); }
-        .contact-item { font-size: 0.85rem; margin-bottom: 12px; color: #CBD5E0; text-decoration: none; display: block; }
-        .contact-item:hover { color: white; }
+        .sidebar-link { font-size: 0.85rem; margin-bottom: 12px; color: #444; text-decoration: none; display: block; }
+        .sidebar-link:hover { text-decoration: underline; }
 
         /* Main Content */
-        .main { flex: 1; padding: 60px 80px; max-width: 1000px; }
+        .main { flex: 1; padding: 60px 80px; max-width: 900px; }
         
-        section { margin-bottom: 50px; }
+        section { margin-bottom: 45px; }
         
         h2 { 
-            font-size: 1.25rem; 
-            color: var(--ucsd-navy); 
-            border-bottom: 2px solid #E2E8F0; 
-            padding-bottom: 8px; 
+            font-size: 1.1rem; 
+            color: #000; 
+            border-bottom: 1px solid #000; 
+            padding-bottom: 5px; 
             margin-bottom: 25px;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            font-weight: 700;
+            letter-spacing: 1px;
         }
 
-        .intro { font-size: 1.1rem; line-height: 1.7; color: var(--text-light); margin-bottom: 40px; }
+        .intro { font-size: 1rem; color: #333; margin-bottom: 35px; }
 
-        /* Entry Style */
-        .entry { margin-bottom: 35px; }
+        .entry { margin-bottom: 30px; }
         .entry-header { display: flex; justify-content: space-between; align-items: baseline; }
-        .entry-name { font-size: 1.15rem; font-weight: 700; color: var(--text-dark); }
-        .entry-date { font-family: 'Roboto Mono', monospace; font-size: 0.85rem; color: #718096; }
-        .entry-sub { color: var(--accent-blue); font-weight: 600; font-size: 0.95rem; margin: 4px 0; }
+        .entry-title { font-size: 1.05rem; font-weight: 700; color: #000; }
+        .entry-date { font-size: 0.85rem; color: #888; }
+        .entry-org { color: #005A85; font-weight: 600; font-size: 0.9rem; margin: 2px 0; }
         
-        .tags { margin: 10px 0; display: flex; gap: 8px; flex-wrap: wrap; }
-        .tag { background: #EDF2F7; color: #4A5568; padding: 2px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; }
+        ul { padding-left: 18px; margin-top: 8px; }
+        li { margin-bottom: 6px; color: #444; font-size: 0.9rem; }
 
-        ul { padding-left: 20px; margin-top: 10px; }
-        li { margin-bottom: 8px; color: var(--text-light); font-size: 0.95rem; }
+        .skills-grid { display: grid; grid-template-columns: 100px 1fr; gap: 10px; font-size: 0.9rem; }
+        .skills-label { font-weight: 700; color: #666; }
 
-        .project-link {
-            display: inline-block;
-            margin-top: 10px;
-            color: var(--accent-blue);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            border: 1px solid var(--accent-blue);
-            padding: 4px 12px;
-            border-radius: 4px;
-        }
-        .project-link:hover { background: var(--accent-blue); color: white; }
-
-        @media (max-width: 850px) {
+        @media (max-width: 800px) {
             body { flex-direction: column; }
-            .sidebar { width: 100%; height: auto; position: relative; padding: 40px 20px; }
+            .sidebar { width: 100%; height: auto; position: relative; border-right: none; border-bottom: 1px solid #eee; }
             .main { padding: 40px 25px; }
         }
     </style>
@@ -109,14 +83,13 @@
     <aside class="sidebar">
         <img src="My Picture.JPG" alt="Zhen Wang" class="profile-img">
         <h1>Zhen Wang</h1>
-        <div class="title">UC San Diego<br>Data Science & Math-CS</div>
+        <div class="sub">UC San Diego<br>Data Science & Math-CS</div>
         
-        <div class="contact-section">
-            <a href="mailto:zhw124@ucsd.edu" class="contact-item">✉ zhw124@ucsd.edu</a>
-            <a href="https://github.com/YourGitHub" class="contact-item">💻 GitHub Portfolio</a>
-            <a href="https://ucsd-course-planning-tutor.streamlit.app/" class="contact-item">🚀 AI Course Tutor</a>
-            <a href="https://space.bilibili.com/YourUID" class="contact-item">📺 Bilibili (155K+ Views)</a>
-            <p style="font-size: 0.75rem; color: #718096; margin-top: 20px;">📍 San Diego / Shanghai</p>
+        <div style="margin-top: 20px;">
+            <a href="mailto:zhw124@ucsd.edu" class="sidebar-link">zhw124@ucsd.edu</a>
+            <a href="https://github.com/YourGitHub" class="sidebar-link">GitHub Profile</a>
+            <a href="https://ucsd-course-planning-tutor.streamlit.app/" class="sidebar-link">AI Advisor Project</a>
+            <a href="https://space.bilibili.com/YourUID" class="sidebar-link">Bilibili (155K+ Views)</a>
         </div>
     </aside>
 
@@ -124,52 +97,46 @@
         <section>
             <h2>About Me</h2>
             <div class="intro">
-                I am a Data Science and Mathematics-Computer Science student at <strong>UC San Diego</strong>. 
-                My focus lies at the intersection of <strong>Machine Learning and AI Agents</strong>, with a strong interest in building scalable AI products. 
-                From optimizing Edge AI inference on Jetson devices to developing LLM-driven autonomous agents, I am dedicated to bridging the gap between computational theory and real-world impact.
+                Undergraduate student at <strong>UC San Diego</strong> pursuing a dual major in Data Science and Mathematics-Computer Science. Focused on <strong>ML & AI Agents</strong>, with extensive experience in data modeling, high-performance computing, and AI product exploration.
             </div>
         </section>
 
-        <section id="ai-product">
-            <h2>AI & Product Engineering</h2>
+        <section>
+            <h2>AI Products & Research</h2>
             <div class="entry">
                 <div class="entry-header">
-                    <span class="entry-name">UCSD Course Planning Tutor</span>
-                    <span class="entry-date">2026.04 - PRESENT</span>
+                    <span class="entry-title">UCSD Course Planning Tutor</span>
+                    <span class="entry-date">2026.04 - Present</span>
                 </div>
-                <div class="entry-sub">Lead Developer | AI Agent Implementation</div>
-                <div class="tags">
-                    <span class="tag">Gemini Flash API</span><span class="tag">RAG Workflow</span><span class="tag">Streamlit</span><span class="tag">NetworkX Visualization</span>
-                </div>
+                <div class="entry-org">AI Architect & Developer</div>
                 <ul>
-                    <li>Developing an <strong>Autonomous AI Advisor</strong> for DSC students using Gemini Flash and RAG pipelines for high-accuracy course retrieval.</li>
-                    <li>Built an interactive <strong>Prerequisite Tree Visualization</strong> using network topology to map complex major requirements.</li>
+                    <li>Developed an autonomous AI agent for UCSD DSC students using <strong>Gemini Flash API</strong> and <strong>RAG</strong> pipelines.</li>
+                    <li>Integrated network topology algorithms (NetworkX/Pyvis) to visualize complex course prerequisite trees.</li>
                 </ul>
-                <a href="https://ucsd-course-planning-tutor.streamlit.app/" class="project-link" target="_blank">View Live Demo</a>
             </div>
 
             <div class="entry">
                 <div class="entry-header">
-                    <span class="entry-name">TRELS Research: Edge AI Efficiency</span>
-                    <span class="entry-date">2026.03 - PRESENT</span>
+                    <span class="entry-title">TRELS Scholar: Edge AI Efficiency</span>
+                    <span class="entry-date">2026.03 - Present</span>
                 </div>
-                <div class="entry-sub">Independent Researcher | Scholar Project</div>
+                <div class="entry-org">Independent Researcher | Advisor: Peter Chi</div>
                 <ul>
-                    <li>Investigating <strong>Thermal Throttling</strong> effects on Llama-3 inference performance on NVIDIA Jetson devices.</li>
-                    <li>Constructing a quantitative "Efficiency-Heat" model based on real-time metrics (GPU Temp, TFLOPS, Throughput) via Prometheus.</li>
+                    <li>Benchmarking thermal throttling effects on Llama-3 inference across NVIDIA Jetson edge devices.</li>
+                    <li>Built real-time monitoring via Prometheus to model performance decay relative to GPU temperature.</li>
                 </ul>
             </div>
         </section>
 
-        <section id="ds-research">
-            <h2>Data Science & Quantitative Research</h2>
+        <section>
+            <h2>Data Science & Quantitative Analysis</h2>
             <div class="entry">
                 <div class="entry-header">
-                    <span class="entry-name">Steam Game Success Prediction</span>
-                    <span class="entry-date">2026.04 - PRESENT</span>
+                    <span class="entry-title">Steam Success Prediction Model</span>
+                    <span class="entry-date">2026.04 - Present</span>
                 </div>
-                <div class="entry-sub">Machine Learning Project (COGS 108)</div>
-                <p style="font-size: 0.95rem; color: var(--text-light);">Analyzed 14,000+ gaming records using regression models and marginal effect analysis to quantify how pre-release tags and pricing impact commercial success.</p>
+                <div class="entry-org">Lead Analyst | COGS 108</div>
+                <li>Quantitative analysis of 14k+ game entries to identify marginal effects of pricing and tags on commercial success.</li>
             </div>
 
             <div class="entry">
@@ -177,82 +144,69 @@
                     <span class="entry-name">Shanghai Jiao Tong University (SJTU)</span>
                     <span class="entry-date">2024.06 - 2025.09</span>
                 </div>
-                <div class="entry-sub">Research Assistant | Lab of <a href="https://scholar.google.com/citations?view_op=list_works&user=LmHih1QAAAAJ" style="color: inherit;">Prof. Xiaoning Sun</a></div>
-                <ul>
-                    <li>Managed structured pipelines for 500+ hours of behavioral data; automated 95+ standardized research reports via Stata.</li>
-                    <li>Supported computational modeling for large-scale child development assessment datasets.</li>
-                </ul>
+                <div class="entry-org">Research Assistant | Prof. Xiaoning Sun's Lab</div>
+                <li>Managed pipelines for 500+ hours of behavioral data; automated 95+ reports using Stata and structural data cleaning.</li>
             </div>
 
             <div class="entry">
                 <div class="entry-header">
-                    <span class="entry-name">EPL Transfer Spending Analysis</span>
+                    <span class="entry-title">EPL Transfer & Performance Modeling</span>
                     <span class="entry-date">2025.10 - 2025.12</span>
                 </div>
-                <div class="entry-sub">Independent Project</div>
-                <p style="font-size: 0.95rem; color: var(--text-light);">Utilized hypothesis testing and linear regression to model the correlation between 10-year transfer spending and on-field performance (Goal Diff) in the English Premier League.</p>
-            </div>
-
-            <div class="entry">
-                <div class="entry-header">
-                    <span class="entry-name">HDSI: Data Tool Evaluation</span>
-                    <span class="entry-date">2025.12 - 2026.03</span>
-                </div>
-                <div class="entry-sub">Research Assistant | Advisor: Prof. Sam Lau</div>
-                <p style="font-size: 0.95rem; color: var(--text-light);">Analyzed student interaction data to evaluate the impact of <i>Pandas Tutor</i> on computational learning efficiency.</p>
+                <li>Linear regression analysis modeling the ROI of 10-year transfer expenditures in the English Premier League.</li>
             </div>
         </section>
 
-        <section id="experience">
+        <section>
             <h2>Professional Experience</h2>
             <div class="entry">
                 <div class="entry-header">
-                    <span class="entry-name">ENC Mobile</span>
+                    <span class="entry-title">ENC Mobile</span>
                     <span class="entry-date">2026.05 - 2026.09</span>
                 </div>
-                <div class="entry-sub">Campus Growth & Product Intern</div>
+                <div class="entry-org">Campus Growth & Product Intern</div>
                 <ul>
-                    <li>Driving user growth and brand awareness at UCSD through targeted community operations and competitive market analysis.</li>
-                    <li>Providing <strong>Level-1 Technical Support</strong> on social platforms, optimizing content based on real-time user feedback loops.</li>
+                    <li>Directing brand growth at UCSD through community operations and student organization partnerships (CGC, etc.).</li>
+                    <li>Providing <strong>Level-1 technical support</strong> and performing competitive market analysis to optimize AI content.</li>
                 </ul>
             </div>
         </section>
 
-        <section id="impact">
-            <h2>Impact & Leadership</h2>
+        <section>
+            <h2>Leadership & Community Impact</h2>
             <div class="entry">
                 <div class="entry-header">
-                    <span class="entry-name">Shanghai World Foreign Language Academy (WFLA)</span>
-                    <span class="entry-date">2023.09 - 2024.09</span>
+                    <span class="entry-title">WFLA Student Union</span>
+                    <span class="entry-date">Vice Minister</span>
                 </div>
-                <div class="entry-sub">Vice Minister | Student Union</div>
-                <p style="font-size: 0.95rem; color: var(--text-light);">Managed a <strong>108-member volunteer team</strong>; coordinated large-scale campus events and charity initiatives with complex resource scheduling.</p>
+                <li>Managed a <strong>108-member volunteer team</strong>, coordinating large-scale campus cultural and sports events.</li>
             </div>
 
             <div class="entry">
                 <div class="entry-header">
-                    <span class="entry-name">Bilibili Knowledge Creator</span>
+                    <span class="entry-title">Educational Content Creator (Bilibili)</span>
                     <span class="entry-date">155K+ Total Views</span>
                 </div>
-                <p style="font-size: 0.95rem; color: var(--text-light);">Creating educational content on AI tools and data science workflows, fostering a community of technology enthusiasts.</p>
+                <li>Translating DS/AI concepts into accessible digital content for a large tech-focused audience.</li>
             </div>
 
             <div class="entry">
                 <div class="entry-header">
-                    <span class="entry-name">CGC & DS3 Community Support</span>
-                    <span class="entry-date">2025.09 - PRESENT</span>
+                    <span class="entry-title">UCSD Club Tennis & CGC</span>
+                    <span class="entry-date">Competitive Team Member</span>
                 </div>
-                <p style="font-size: 0.95rem; color: var(--text-light);">Core organizer for UCSD Chinese Global Community (airport pickup, orientation) and active member in Data Science Student Society (reproducible analytical pipelines).</p>
+                <li>Regular athletic training and competitive play; core organizer for freshmen support and orientation programs.</li>
             </div>
         </section>
 
-        <section id="skills">
+        <section>
             <h2>Technical Skills</h2>
-            <ul>
-                <li><strong>Languages:</strong> C++, Python (Pandas/Scikit-learn), MATLAB, Java, Stata, SQL.</li>
-                <li><strong>Technologies:</strong> RAG, LLM Agent Frameworks, Prometheus, Streamlit, Git, LaTeX.</li>
-                <li><strong>Methods:</strong> High-Performance Computing, Hypothesis Testing, Qualitative Coding, Behavioral Experiments.</li>
-            </ul>
+            <div class="skills-grid">
+                <div class="skills-label">Languages</div>
+                <div>C++, Python (Pandas/ML), MATLAB, Java, Stata, SQL</div>
+                <div class="skills-label">Dev/AI</div>
+                <div>RAG, AI Agents, Prometheus, Streamlit, Git, LaTeX, High-Performance Computing</div>
+            </div>
         </section>
     </main>
 
