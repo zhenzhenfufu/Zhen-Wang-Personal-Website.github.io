@@ -3,14 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zhen Wang | UCSD Mathematics-Computer Science</title>
+    <title>Zhen Wang | UCSD Data Science & Mathematics-Computer Science</title>
+    <meta name="description" content="Zhen Wang — UC San Diego undergraduate in Data Science and Mathematics-Computer Science. AI Agent development at Pfizer China R&D, edge-AI energy research, and applied machine learning.">
+    <meta name="author" content="Zhen Wang">
+    <meta property="og:title" content="Zhen Wang | AI Agents · Machine Learning · Data Science">
+    <meta property="og:description" content="UCSD undergraduate building AI agents for regulated clinical workflows and studying inference efficiency on edge hardware.">
+    <meta property="og:type" content="profile">
     <style>
         :root {
             --primary-black: #1a1a1a;
             --secondary-gray: #555555;
             --light-border: #eeeeee;
             --ucsd-link: #005A85;
+            --page-bg: #ffffff;
+            --muted: #999999;
+            --accent-bg: #f6f9fa;
+            --card-bg: #fbfbfb;
+            --card-accent: #dcdcdc;
         }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --primary-black: #ececec;
+                --secondary-gray: #a8a8a8;
+                --light-border: #2c2c2c;
+                --ucsd-link: #4fb3d9;
+                --page-bg: #141414;
+                --muted: #777777;
+                --accent-bg: #1c2226;
+                --card-bg: #1a1a1a;
+                --card-accent: #343434;
+            }
+        }
+
+        * { box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
@@ -18,7 +46,7 @@
             display: flex;
             color: var(--primary-black);
             line-height: 1.6;
-            background: #ffffff;
+            background: var(--page-bg);
         }
 
         /* Sidebar - Clean & Refined */
@@ -32,6 +60,7 @@
             display: flex;
             flex-direction: column;
             box-sizing: border-box;
+            overflow-y: auto;
         }
 
         .profile-img {
@@ -64,7 +93,16 @@
             display: flex;
             align-items: center;
         }
-        .sidebar-link:hover { color: var(--ucsd-link); text-decoration: underline; }
+        .sidebar-link:hover, .sidebar-link:focus-visible { color: var(--ucsd-link); text-decoration: underline; }
+
+        .sidebar-focus {
+            margin-top: 22px;
+            padding-top: 18px;
+            border-top: 1px solid var(--light-border);
+            font-size: 0.8rem;
+            color: var(--muted);
+            line-height: 1.5;
+        }
 
         /* Main Content */
         .main { flex: 1; padding: 60px 80px; max-width: 950px; }
@@ -81,43 +119,79 @@
             letter-spacing: 1.2px;
         }
 
-        .intro { font-size: 1.05rem; color: var(--secondary-gray); margin-bottom: 40px; }
+        .intro { font-size: 1.05rem; color: var(--secondary-gray); margin-bottom: 20px; }
+        .intro-aside { font-size: 0.9rem; color: var(--muted); margin-bottom: 40px; }
 
-        .entry { margin-bottom: 35px; }
-        .entry-header { display: flex; justify-content: space-between; align-items: baseline; }
+        .entry {
+            margin-bottom: 20px;
+            background: var(--card-bg);
+            border: 1px solid var(--light-border);
+            border-left: 3px solid var(--card-accent);
+            border-radius: 4px;
+            padding: 20px 24px;
+            transition: border-left-color 0.18s ease;
+        }
+        .entry:hover { border-left-color: var(--ucsd-link); }
+        .entry-header { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; }
         .entry-title { font-size: 1.1rem; font-weight: 700; }
-        .entry-date { font-size: 0.85rem; color: #999; }
+        .entry-date { font-size: 0.85rem; color: var(--muted); white-space: nowrap; }
         .entry-org { color: var(--ucsd-link); font-weight: 600; font-size: 0.95rem; margin: 3px 0; }
 
-        ul { padding-left: 20px; margin-top: 10px; }
+        .entry-featured {
+            background: var(--accent-bg);
+            border-left-width: 4px;
+            border-left-color: var(--ucsd-link);
+            padding: 26px 28px;
+        }
+
+        .stack-line {
+            font-size: 0.82rem;
+            color: var(--muted);
+            margin-top: 12px;
+            font-style: italic;
+        }
+
+        ul { padding-left: 20px; margin-top: 10px; margin-bottom: 0; }
+        .entry > ul > li:last-child { margin-bottom: 0; }
         li { margin-bottom: 8px; color: var(--secondary-gray); font-size: 0.92rem; }
 
-        .skills-grid { display: grid; grid-template-columns: 120px 1fr; gap: 12px; font-size: 0.9rem; }
+        a { color: var(--ucsd-link); }
+
+        .skills-grid { display: grid; grid-template-columns: 140px 1fr; gap: 12px; font-size: 0.9rem; }
         .skills-label { font-weight: 700; color: var(--secondary-gray); }
+        .skills-grid > div:not(.skills-label) { color: var(--secondary-gray); }
 
         @media (max-width: 900px) {
             body { flex-direction: column; }
-            .sidebar { width: 100%; height: auto; position: relative; border-right: none; border-bottom: 1px solid var(--light-border); }
-            .main { padding: 40px 30px; }
+            .sidebar { width: 100%; height: auto; position: relative; border-right: none; border-bottom: 1px solid var(--light-border); padding: 40px 30px; }
+            .main { padding: 40px 30px; max-width: 100%; }
+            .entry { padding: 16px 18px; }
+            .entry-featured { padding: 20px 20px; }
+            .skills-grid { grid-template-columns: 1fr; gap: 4px; }
+            .skills-label { margin-top: 12px; }
         }
     </style>
 </head>
 <body>
 
     <aside class="sidebar">
-        <img src="个人主页照片.jpg" alt="Zhen Wang" class="profile-img">
+        <img src="个人主页照片.jpg" alt="Portrait of Zhen Wang" class="profile-img">
         <h1>Zhen Wang</h1>
         <div class="sidebar-info">
             UC San Diego | Class of 2029
-            <span class="major-highlight">Mathematics-Computer Science</span>
+            <span class="major-highlight">Data Science &amp; Mathematics-Computer Science</span>
         </div>
 
-        <div class="sidebar-links">
+        <nav class="sidebar-links">
             <a href="mailto:zhw124@ucsd.edu" class="sidebar-link">✉ zhw124@ucsd.edu</a>
-            <a href="https://github.com/YourGitHub" class="sidebar-link">GitHub Profile</a>
+            <a href="https://github.com/zhenzhenfufu" class="sidebar-link">GitHub Profile</a>
             <a href="https://ucsd-course-planning-tutor.streamlit.app/" class="sidebar-link">AI Course Advisor Demo</a>
-            <a href="https://space.bilibili.com/YourUID" class="sidebar-link">Bilibili (155K+ Views)</a>
-            <div style="font-size: 0.75rem; color: #ccc; margin-top: 30px;">Member since Fall 2025</div>
+            <a href="https://space.bilibili.com/3493110992603365" class="sidebar-link">Bilibili (155K+ Views)</a>
+        </nav>
+
+        <div class="sidebar-focus">
+            Currently focused on AI agent systems for regulated, high-stakes workflows —
+            where a wrong answer has to be caught, not just avoided.
         </div>
     </aside>
 
@@ -125,48 +199,103 @@
         <section>
             <h2>About Me</h2>
             <div class="intro">
-                Hi, I am an <strong>undergraduate</strong> student at <strong>University of California, San Diego</strong>.
-                Passionate about <strong>ML and AI Agents</strong>, I combine my background in Data Science, Mathematics and Computer Science to build intelligent products that solve real-world complexities. I am currently working on a AI Agent project, aiming to help our UCSD students planning and choosing personal courses. I also like playing video games such as Genshin Impact.
+                Hi — I am an <strong>undergraduate</strong> at <strong>UC San Diego</strong>, double-majoring in
+                Data Science and Mathematics-Computer Science. I build <strong>AI agents and machine learning systems</strong>,
+                and I care most about the part everyone skips: proving the output is actually correct.
+                Most recently I spent a summer at <strong>Pfizer China R&amp;D</strong> shipping an agent-assisted pipeline
+                that turns clinical trial data into regulator-ready filings — where an unverified answer is not an option.
+            </div>
+            <div class="intro-aside">
+                Off the clock: tennis, Premier League data rabbit holes, and video games (Genshin Impact, mostly).
+            </div>
+        </section>
+
+        <section id="experience">
+            <h2>Professional Experience</h2>
+
+            <div class="entry entry-featured">
+                <div class="entry-header">
+                    <span class="entry-title">Pfizer (China) R&amp;D Center</span>
+                    <span class="entry-date">Jul 2026 - Sep 2026</span>
+                </div>
+                <div class="entry-org">AI Agent Development Intern · Biomedical Informatics &amp; Data</div>
+                <ul>
+                    <li>Independently designed and shipped a <strong>regulatory-filing automation system</strong> (R + Shiny, 61 source files / 10,000+ lines) spanning Excel application-form parsing, control-file generation, China-subject classification, and compliant RTF/PDF output — replacing a per-study manual process. One end-to-end run classified <strong>10,184 records</strong> from 25 SDTM datasets into 3 reports totaling <strong>3,792 pages</strong> in 20 minutes.</li>
+                    <li>Engineered <strong>per-record cascading date resolution</strong>, fixing three systematic misclassifications — including a per-dataset column choice that misrouted all 1,800+ records in one domain, and a randomization lookup that left 40+ screen-failure subjects unclassifiable.</li>
+                    <li>Validated correctness two independent ways: reconciled 13 datasets and 1,197 records line-by-line against a colleague's independently written engine with <strong>zero discrepancies</strong>, and reproduced identical counts on a rerun two days later. Every record carries a provenance column so a non-programmer can audit the result.</li>
+                    <li>Built <strong>three AI agents</strong> (dataset reconciliation, classification review, open-item triage) switchable between Gemini and a local Ollama <code>qwen2.5</code> backend. Isolated a misclassification through <strong>ablation testing</strong> — the model was keying on date frequency and position rather than the stated rule — then hardened the prompt into a directive and returned arithmetic to deterministic code, lifting agent-to-code agreement from <strong>97% to 100%</strong> across 90+ samples.</li>
+                    <li>Benchmarked four agent architectures (automation / ReAct / Plan / seven-role council) against 12 criteria derived from the regulatory spec: multi-agent <strong>0.925</strong> vs. automation baseline <strong>0.719</strong>.</li>
+                </ul>
+                <div class="stack-line">R · Shiny · haven (SAS sas7bdat) · officer / flextable / pagedown · dplyr · Gemini API · Ollama · multi-agent orchestration · SDTM clinical data</div>
+            </div>
+
+            <div class="entry">
+                <div class="entry-header">
+                    <span class="entry-title">miHoYo &amp; Lilith Games</span>
+                    <span class="entry-date">Jul 2026 - Present</span>
+                </div>
+                <div class="entry-org">Campus Ambassador · UCSD</div>
+                <ul>
+                    <li>Bridge current students and both companies' alumni and recruiting networks; run campus social campaigns and operate a WeChat community for role and hiring information.</li>
+                </ul>
+            </div>
+
+            <div class="entry">
+                <div class="entry-header">
+                    <span class="entry-title">ENC Mobile</span>
+                    <span class="entry-date">May 2026 - Sep 2026</span>
+                </div>
+                <div class="entry-org">Campus Growth &amp; Technical Marketing Intern</div>
+                <ul>
+                    <li>Led UCSD channel expansion through data-driven user acquisition; cleaned and analyzed user and channel data in Python and Pandas, and benchmarked competitor pricing to identify high-conversion segments.</li>
+                    <li>Built an FAQ and troubleshooting playbook and handled <strong>Level-1 technical support</strong> across social platforms.</li>
+                </ul>
             </div>
         </section>
 
         <section id="ai-research">
-            <h2>AI & Product Realization</h2>
-            <div class="entry">
-                <div class="entry-header">
-                    <span class="entry-title">UCSD Course Planning Tutor</span>
-                    <span class="entry-date">Apr 2026 - Present</span>
-                </div>
-                <div class="entry-org">AI Lead Developer</div>
-                <ul>
-                    <li>Architected an autonomous agent using <strong>Gemini Flash API</strong> and <strong>RAG</strong> to provide precise academic counseling for DSC students.</li>
-                    <li>Developed an interactive visualization for course prerequisite trees using NetworkX and Pyvis.</li>
-                </ul>
-            </div>
+            <h2>AI Research &amp; Product</h2>
 
             <div class="entry">
                 <div class="entry-header">
                     <span class="entry-title">TRELS Research: Edge AI Efficiency</span>
                     <span class="entry-date">Mar 2026 - Present</span>
                 </div>
-                <div class="entry-org">Scholar</div>
+                <div class="entry-org">Independent Researcher · Advisor: Prof. Peter Chi</div>
                 <ul>
-                    <li>Conducting independent research on the correlation between thermal throttling and LLM (Llama-3) inference on NVIDIA Jetson devices.</li>
-                    <li>Analyzing real-time performance metrics via Prometheus to optimize AI Agent deployment in hardware-constrained environments, and wrote a 1500 words research report of the whole process..</li>
+                    <li>Proposed and independently lead a competitively funded study on <strong>thermal throttling and energy consumption in edge AI inference</strong>, deploying Llama-3 workloads on NVIDIA Jetson with automated benchmarking across power modes.</li>
+                    <li>Instrumented GPU temperature, clock frequency, power draw, and throughput (tokens/sec) via <code>nvidia-smi</code> and Prometheus to build an efficiency-versus-heat model characterizing the throttling knee point and per-token energy curve.</li>
+                </ul>
+                <div class="stack-line">NVIDIA Jetson · Llama-3 · Prometheus · nvidia-smi · Python · time-series analysis</div>
+            </div>
+
+            <div class="entry">
+                <div class="entry-header">
+                    <span class="entry-title">UCSD Course Planning Tutor</span>
+                    <span class="entry-date">Apr 2026 - Present</span>
+                </div>
+                <div class="entry-org">Solo Developer (AI Lead) · <a href="https://ucsd-course-planning-tutor.streamlit.app/">Live Demo ↗</a></div>
+                <ul>
+                    <li>Architected an autonomous agent on <strong>Gemini API + RAG</strong> that generates personalized course plans and degree paths for Data Science majors.</li>
+                    <li>Structured prerequisite and term-offering constraints into a retrieval corpus to suppress hallucination on program-specific rules; modeled the prerequisite graph in NetworkX with an interactive Pyvis visualization, deployed on Streamlit Cloud.</li>
+                </ul>
+                <div class="stack-line">Gemini API · RAG · NetworkX · Pyvis · Streamlit Cloud · Python</div>
+            </div>
+
+            <div class="entry">
+                <div class="entry-header">
+                    <span class="entry-title">Halıcıoğlu Data Science Institute (HDSI)</span>
+                    <span class="entry-date">Jan 2026 - Present</span>
+                </div>
+                <div class="entry-org">Research Assistant · Advisor: Prof. Sam Lau</div>
+                <ul>
+                    <li>Contribute to an efficacy study of <a href="https://pandastutor.com/">Pandas Tutor ↗</a>: processing pre/post-instruction assessment data and building a statistical evaluation pipeline that measures gains in students' data-wrangling comprehension.</li>
                 </ul>
             </div>
         </section>
 
         <section id="data-science">
-            <h2>Data Science & Modeling</h2>
-            <div class="entry">
-                <div class="entry-header">
-                    <span class="entry-title">Steam Commercial Success Prediction</span>
-                    <span class="entry-date">Spring 2026</span>
-                </div>
-                <div class="entry-org">Project Collaborator</div>
-                <p style="font-size: 0.92rem; color: var(--secondary-gray);">Analyzing 27,000+ data samples using regression and EDA to quantify the impact of pricing and pre-release tags on game revenue.</p>
-            </div>
+            <h2>Data Science &amp; Modeling</h2>
 
             <div class="entry">
                 <div class="entry-header">
@@ -174,7 +303,7 @@
                     <span class="entry-date">Spring 2026</span>
                 </div>
                 <div class="entry-org">
-                    Mathematical Modeling Project | <a href="https://github.com/zhenzhenfufu/vibe-coding" style="color:var(--ucsd-link);">GitHub ↗</a>
+                    Mathematical Modeling Project | <a href="https://github.com/zhenzhenfufu/vibe-coding">GitHub ↗</a>
                 </div>
                 <ul>
                     <li>Built a biologically-inspired simulation modeling wound closure dynamics across three geometric dimensions (width, length, depth) using <strong>explicit Euler integration</strong>.</li>
@@ -185,47 +314,50 @@
 
             <div class="entry">
                 <div class="entry-header">
-                    <span class="entry-title">Shanghai Jiao Tong University (SJTU)</span>
-                    <span class="entry-date">2024.06 - 2025.09</span>
+                    <span class="entry-title">Steam Commercial Success Prediction</span>
+                    <span class="entry-date">Spring 2026</span>
                 </div>
-                <div class="entry-org">Research Assistant | <a href="https://scholar.google.com/citations?view_op=list_works&user=LmHih1QAAAAJ" style="color:var(--ucsd-link);">Prof. Xiaoning Sun↗</a></div>
+                <div class="entry-org">Project Lead · COGS 108</div>
                 <ul>
-                    <li>Automated the processing of 500+ hours of behavior data into 95+ standardized technical reports using Stata and structural data pipelines.</li>
+                    <li>Led a team through cleaning, EDA, and regression modeling on <strong>27,000+ Steam titles</strong> to quantify how pricing strategy and pre-release tags drive revenue.</li>
                 </ul>
             </div>
 
             <div class="entry">
                 <div class="entry-header">
-                    <span class="entry-title">EPL Performance Analysis</span>
-                    <span class="entry-date">Fall 2025</span>
+                    <span class="entry-title">Shanghai Jiao Tong University (SJTU)</span>
+                    <span class="entry-date">Jun 2024 - Sep 2025</span>
                 </div>
-                <p style="font-size: 0.92rem; color: var(--secondary-gray);">Mathematical modeling of English Premier League transfer efficiency using hypothesis testing and linear regression.</p>
+                <div class="entry-org">Research Assistant | <a href="https://scholar.google.com/citations?view_op=list_works&amp;user=LmHih1QAAAAJ">Prof. Xiaoning Sun ↗</a></div>
+                <ul>
+                    <li>Automated the processing of <strong>500+ hours</strong> of child behavioral data into <strong>95 standardized reports</strong> using Stata and structured data pipelines.</li>
+                    <li>Designed survey instruments covering 60 socioeconomic and family-environment variables; independently administered assessments for 28 children (Wechsler Scales, TEC).</li>
+                </ul>
             </div>
-        </section>
 
-        <section id="experience">
-            <h2>Professional Experience</h2>
             <div class="entry">
                 <div class="entry-header">
-                    <span class="entry-title">ENC Mobile</span>
-                    <span class="entry-date">May 2026 - Sep 2026</span>
+                    <span class="entry-title">EPL Transfer Efficiency Analysis</span>
+                    <span class="entry-date">Jan 2026 - Mar 2026</span>
                 </div>
-                <div class="entry-org">Campus Growth & Technical Marketing Intern</div>
+                <div class="entry-org">Data Science Project</div>
                 <ul>
-                    <li>Spearheading brand expansion at UCSD through data-driven user acquisition and community engagement.</li>
-                    <li>Performing market research and competitive analysis while providing <strong>Level-1 technical support</strong> for social platforms.</li>
+                    <li>Scraped 10 years of transfer spending and goal-difference data for all 20 Premier League clubs, then applied linear regression and hypothesis testing to the "higher spend implies better results" assumption.</li>
                 </ul>
             </div>
         </section>
 
         <section id="leadership">
-            <h2>Leadership & Community</h2>
+            <h2>Leadership &amp; Community</h2>
+
             <div class="entry">
                 <div class="entry-header">
-                    <span class="entry-title">WFLA Student Union</span>
-                    <span class="entry-date">Vice Minister</span>
+                    <span class="entry-title">Bilibili Tech Creator</span>
+                    <span class="entry-date">155K+ Views</span>
                 </div>
-                <li>Directly managed a <strong>108-member volunteer team</strong>, handling complex resource scheduling for major campus initiatives.</li>
+                <ul>
+                    <li>Produce data science and AI educational content, translating technical complexity for a general audience.</li>
+                </ul>
             </div>
 
             <div class="entry">
@@ -233,7 +365,19 @@
                     <span class="entry-title">UCSD CGC (Chinese Global Community)</span>
                     <span class="entry-date">Core Member</span>
                 </div>
-                <li>Organizing orientation programs and airport pickups for international students; coordinating social communities for 500+ freshmen.</li>
+                <ul>
+                    <li>Coordinate orientation programming and airport pickups for <strong>500+ international freshmen</strong>.</li>
+                </ul>
+            </div>
+
+            <div class="entry">
+                <div class="entry-header">
+                    <span class="entry-title">WFLA Student Union</span>
+                    <span class="entry-date">Vice Minister</span>
+                </div>
+                <ul>
+                    <li>Directly managed a <strong>108-member volunteer team</strong>, handling resource scheduling for major campus initiatives.</li>
+                </ul>
             </div>
 
             <div class="entry">
@@ -241,25 +385,23 @@
                     <span class="entry-title">Club Tennis Competitive Team</span>
                     <span class="entry-date">UCSD Athlete</span>
                 </div>
-                <li>Actively participating in regular high-intensity training and intercollegiate competitive play, demonstrating discipline and team synergy.</li>
-            </div>
-
-            <div class="entry">
-                <div class="entry-header">
-                    <span class="entry-title">Bilibili Tech Creator</span>
-                    <span class="entry-date">155K+ Views</span>
-                </div>
-                <li>Producing data science and AI-related educational content to bridge the gap between technical complexity and public understanding.</li>
+                <ul>
+                    <li>Regular high-intensity training and intercollegiate competitive play.</li>
+                </ul>
             </div>
         </section>
 
         <section id="skills">
             <h2>Technical Stack</h2>
             <div class="skills-grid">
+                <div class="skills-label">AI &amp; ML</div>
+                <div>Multi-agent orchestration, LLM agent design, prompt ablation debugging, agent evaluation harnesses, RAG, Gemini API, Ollama (qwen2.5), Llama-3 edge deployment, supervised learning, regression modeling</div>
+
                 <div class="skills-label">Languages</div>
-                <div>C++, Python (Pandas/ML), MATLAB, Java, Stata, SQL</div>
-                <div class="skills-label">Infrastructure</div>
-                <div>RAG, AI Agent Frameworks, Prometheus, Streamlit, Git, LaTeX, HPC</div>
+                <div>R (Shiny / dplyr / haven / officer / pagedown), Python (Pandas / NumPy / Matplotlib), Java, SQL, C++, MATLAB, Stata</div>
+
+                <div class="skills-label">Data &amp; Tools</div>
+                <div>SDTM clinical data, regulatory compliance automation, data pipeline design, EDA, hypothesis testing, time-series analysis, Prometheus, Streamlit, Git, LaTeX</div>
             </div>
         </section>
     </main>
