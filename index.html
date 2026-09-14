@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zhen Wang | UCSD Data Science & Mathematics-Computer Science</title>
-    <meta name="description" content="Zhen Wang — UC San Diego undergraduate in Data Science and Mathematics-Computer Science. AI Agent development at Pfizer China R&D, edge-AI energy research, and applied machine learning.">
+    <title>Zhen Wang | UCSD Mathematics-Computer Science</title>
+    <meta name="description" content="Zhen Wang — UC San Diego undergraduate in Mathematics-Computer Science. AI Agent development at Pfizer China R&D, edge-AI energy research, and applied machine learning.">
     <meta name="author" content="Zhen Wang">
     <meta property="og:title" content="Zhen Wang | AI Agents · Machine Learning · Data Science">
     <meta property="og:description" content="UCSD undergraduate building AI agents for regulated clinical workflows and studying inference efficiency on edge hardware.">
@@ -17,7 +17,6 @@
             --ucsd-link: #005A85;
             --page-bg: #ffffff;
             --muted: #999999;
-            --accent-bg: #f6f9fa;
             --card-bg: #fbfbfb;
             --card-accent: #dcdcdc;
         }
@@ -30,7 +29,6 @@
                 --ucsd-link: #4fb3d9;
                 --page-bg: #141414;
                 --muted: #777777;
-                --accent-bg: #1c2226;
                 --card-bg: #1a1a1a;
                 --card-accent: #343434;
             }
@@ -137,13 +135,6 @@
         .entry-date { font-size: 0.85rem; color: var(--muted); white-space: nowrap; }
         .entry-org { color: var(--ucsd-link); font-weight: 600; font-size: 0.95rem; margin: 3px 0; }
 
-        .entry-featured {
-            background: var(--accent-bg);
-            border-left-width: 4px;
-            border-left-color: var(--ucsd-link);
-            padding: 26px 28px;
-        }
-
         .stack-line {
             font-size: 0.82rem;
             color: var(--muted);
@@ -166,7 +157,6 @@
             .sidebar { width: 100%; height: auto; position: relative; border-right: none; border-bottom: 1px solid var(--light-border); padding: 40px 30px; }
             .main { padding: 40px 30px; max-width: 100%; }
             .entry { padding: 16px 18px; }
-            .entry-featured { padding: 20px 20px; }
             .skills-grid { grid-template-columns: 1fr; gap: 4px; }
             .skills-label { margin-top: 12px; }
         }
@@ -179,7 +169,8 @@
         <h1>Zhen Wang</h1>
         <div class="sidebar-info">
             UC San Diego | Class of 2029
-            <span class="major-highlight">Data Science &amp; Mathematics-Computer Science</span>
+            <span class="major-highlight">Mathematics-Computer Science</span>
+            <span style="display:block;margin-top:4px;font-weight:400;font-size:0.82rem;">Applying to transfer into Data Science</span>
         </div>
 
         <nav class="sidebar-links">
@@ -199,8 +190,8 @@
         <section>
             <h2>About Me</h2>
             <div class="intro">
-                Hi — I am an <strong>undergraduate</strong> at <strong>UC San Diego</strong>, double-majoring in
-                Data Science and Mathematics-Computer Science. I build <strong>AI agents and machine learning systems</strong>,
+                Hi — I am an <strong>undergraduate</strong> at <strong>UC San Diego</strong>, majoring in
+                Mathematics-Computer Science. I build <strong>AI agents and machine learning systems</strong>,
                 and I care most about the part everyone skips: proving the output is actually correct.
                 Most recently I spent a summer at <strong>Pfizer China R&amp;D</strong> shipping an agent-assisted pipeline
                 that turns clinical trial data into regulator-ready filings — where an unverified answer is not an option.
@@ -213,14 +204,14 @@
         <section id="experience">
             <h2>Professional Experience</h2>
 
-            <div class="entry entry-featured">
+            <div class="entry">
                 <div class="entry-header">
                     <span class="entry-title">Pfizer (China) R&amp;D Center</span>
                     <span class="entry-date">Jul 2026 - Sep 2026</span>
                 </div>
                 <div class="entry-org">AI Agent Development Intern · Biomedical Informatics &amp; Data</div>
                 <ul>
-                    <li>Independently designed and shipped a <strong>regulatory-filing automation system</strong> (R + Shiny, 61 source files / 10,000+ lines) spanning Excel application-form parsing, control-file generation, China-subject classification, and compliant RTF/PDF output — replacing a per-study manual process. One end-to-end run classified <strong>10,184 records</strong> from 25 SDTM datasets into 3 reports totaling <strong>3,792 pages</strong> in 20 minutes.</li>
+                    <li>Independently designed and shipped a <strong>regulatory-filing automation system</strong> (R + Shiny, 61 source files / 10,000+ lines) spanning Excel application-form parsing, control-file generation, China-subject classification, and compliant RTF/PDF output — replacing a per-study manual process. One end-to-end run classified <strong>10,184 records</strong> from 25 SDTM datasets into 3 reports totaling <strong>3,792 pages</strong> in 20 minutes, and was handed over for use across a <strong>200-person</strong> department.</li>
                     <li>Engineered <strong>per-record cascading date resolution</strong>, fixing three systematic misclassifications — including a per-dataset column choice that misrouted all 1,800+ records in one domain, and a randomization lookup that left 40+ screen-failure subjects unclassifiable.</li>
                     <li>Validated correctness two independent ways: reconciled 13 datasets and 1,197 records line-by-line against a colleague's independently written engine with <strong>zero discrepancies</strong>, and reproduced identical counts on a rerun two days later. Every record carries a provenance column so a non-programmer can audit the result.</li>
                     <li>Built <strong>three AI agents</strong> (dataset reconciliation, classification review, open-item triage) switchable between Gemini and a local Ollama <code>qwen2.5</code> backend. Isolated a misclassification through <strong>ablation testing</strong> — the model was keying on date frequency and position rather than the stated rule — then hardened the prompt into a directive and returned arithmetic to deterministic code, lifting agent-to-code agreement from <strong>97% to 100%</strong> across 90+ samples.</li>
@@ -236,7 +227,7 @@
                 </div>
                 <div class="entry-org">Campus Ambassador · UCSD</div>
                 <ul>
-                    <li>Bridge current students and both companies' alumni and recruiting networks; run campus social campaigns and operate a WeChat community for role and hiring information.</li>
+                    <li>Bridge current students and both companies' alumni and recruiting networks; run campus social campaigns and operate a <strong>100+ member</strong> WeChat community.</li>
                 </ul>
             </div>
 
@@ -247,7 +238,7 @@
                 </div>
                 <div class="entry-org">Campus Growth &amp; Technical Marketing Intern</div>
                 <ul>
-                    <li>Led UCSD channel expansion through data-driven user acquisition; cleaned and analyzed user and channel data in Python and Pandas, and benchmarked competitor pricing to identify high-conversion segments.</li>
+                    <li>Led UCSD channel expansion through data-driven user acquisition; analyzed user and channel data in Python and Pandas, benchmarked competitor pricing to target high-conversion segments, converting to <strong>60 SIM sales</strong>.</li>
                     <li>Built an FAQ and troubleshooting playbook and handled <strong>Level-1 technical support</strong> across social platforms.</li>
                 </ul>
             </div>
@@ -258,44 +249,50 @@
 
             <div class="entry">
                 <div class="entry-header">
-                    <span class="entry-title">TRELS Research: Edge AI Efficiency</span>
+                    <span class="entry-title">UCSD Course Planning Tutor</span>
+                    <span class="entry-date">Apr 2026 - Present</span>
+                </div>
+                <div class="entry-org">Solo Developer (AI Lead) ·
+                    <a href="https://ucsd-course-planning-tutor.streamlit.app/">Live Demo ↗</a> ·
+                    <a href="https://github.com/zhenzhenfufu/ucsd-course-planning-tutor">GitHub ↗</a>
+                </div>
+                <ul>
+                    <li>Parsed prerequisites out of free-text course descriptions into a <strong>68-node / 74-edge DAG</strong> (AND-of-OR groups, 7 substitution rules, abstract requirements like "a probability course"), with direction-aware parsing that separates <em>"Prerequisite: X"</em> from the opposite-meaning <em>"Prerequisite for X"</em>. Replacing the app's hand-maintained edge list closed a <strong>25-edge drift</strong> between two sources of truth.</li>
+                    <li>Swapped 31&nbsp;KB of whole-catalog prompt stuffing for vector retrieval plus one-hop expansion along the DAG — <strong>8–13% of the catalog per query</strong>, and a retrieved course's prerequisites are always in context. Similarity search alone drops structurally relevant prerequisites that simply do not read like the question.</li>
+                    <li>The model never decides whether a plan is valid. A deterministic checker verifies ordering, unit caps, duplicates, concurrency exceptions and OR-groups; generation then moved from one-shot to per-quarter against a recomputed eligible set. <strong>First-pass plan legality: 40% → 100%</strong> across 20 planning tasks.</li>
+                </ul>
+                <div class="stack-line">Python · Gemini API (generation + embeddings) · RAG · NetworkX · Streamlit Cloud · pytest</div>
+            </div>
+
+            <div class="entry">
+                <div class="entry-header">
+                    <span class="entry-title">Edge AI: Thermal Throttling &amp; Energy Cost</span>
                     <span class="entry-date">Mar 2026 - Present</span>
                 </div>
-                <div class="entry-org">Independent Researcher · Advisor: Prof. Peter Chi</div>
+                <div class="entry-org">Independent Research · Faculty Advisor: Prof. Peter Chi</div>
                 <ul>
-                    <li>Proposed and independently lead a competitively funded study on <strong>thermal throttling and energy consumption in edge AI inference</strong>, deploying Llama-3 workloads on NVIDIA Jetson with automated benchmarking across power modes.</li>
-                    <li>Instrumented GPU temperature, clock frequency, power draw, and throughput (tokens/sec) via <code>nvidia-smi</code> and Prometheus to build an efficiency-versus-heat model characterizing the throttling knee point and per-token energy curve.</li>
+                    <li>Proposed and independently lead a study on <strong>thermal throttling and energy consumption in edge AI inference</strong>, deploying Llama-3 workloads on NVIDIA Jetson with automated benchmarking across power modes.</li>
+                    <li>Instrumented GPU temperature, clock frequency, power draw, and throughput (tokens/sec) via <code>nvidia-smi</code> and Prometheus to observe how thermal throttling affects inference efficiency. This work is still early.</li>
                 </ul>
                 <div class="stack-line">NVIDIA Jetson · Llama-3 · Prometheus · nvidia-smi · Python · time-series analysis</div>
             </div>
 
-            <div class="entry">
-                <div class="entry-header">
-                    <span class="entry-title">UCSD Course Planning Tutor</span>
-                    <span class="entry-date">Apr 2026 - Present</span>
-                </div>
-                <div class="entry-org">Solo Developer (AI Lead) · <a href="https://ucsd-course-planning-tutor.streamlit.app/">Live Demo ↗</a></div>
-                <ul>
-                    <li>Architected an autonomous agent on <strong>Gemini API + RAG</strong> that generates personalized course plans and degree paths for Data Science majors.</li>
-                    <li>Structured prerequisite and term-offering constraints into a retrieval corpus to suppress hallucination on program-specific rules; modeled the prerequisite graph in NetworkX with an interactive Pyvis visualization, deployed on Streamlit Cloud.</li>
-                </ul>
-                <div class="stack-line">Gemini API · RAG · NetworkX · Pyvis · Streamlit Cloud · Python</div>
-            </div>
-
-            <div class="entry">
-                <div class="entry-header">
-                    <span class="entry-title">Halıcıoğlu Data Science Institute (HDSI)</span>
-                    <span class="entry-date">Jan 2026 - Present</span>
-                </div>
-                <div class="entry-org">Research Assistant · Advisor: Prof. Sam Lau</div>
-                <ul>
-                    <li>Contribute to an efficacy study of <a href="https://pandastutor.com/">Pandas Tutor ↗</a>: processing pre/post-instruction assessment data and building a statistical evaluation pipeline that measures gains in students' data-wrangling comprehension.</li>
-                </ul>
-            </div>
-        </section>
+                    </section>
 
         <section id="data-science">
             <h2>Data Science &amp; Modeling</h2>
+
+            <div class="entry">
+                <div class="entry-header">
+                    <span class="entry-title">Shanghai Jiao Tong University (SJTU)</span>
+                    <span class="entry-date">Jun 2024 - Sep 2025</span>
+                </div>
+                <div class="entry-org">Research Assistant | <a href="https://scholar.google.com/citations?view_op=list_works&amp;user=LmHih1QAAAAJ">Prof. Xiaoning Sun ↗</a></div>
+                <ul>
+                    <li>Automated the processing of <strong>500+ hours</strong> of child behavioral data into <strong>95 standardized reports</strong> using Stata and structured data pipelines.</li>
+                    <li>Designed survey instruments covering 60 socioeconomic and family-environment variables; independently administered assessments for 28 children (Wechsler Scales, TEC).</li>
+                </ul>
+            </div>
 
             <div class="entry">
                 <div class="entry-header">
@@ -320,18 +317,6 @@
                 <div class="entry-org">Project Lead · COGS 108</div>
                 <ul>
                     <li>Led a team through cleaning, EDA, and regression modeling on <strong>27,000+ Steam titles</strong> to quantify how pricing strategy and pre-release tags drive revenue.</li>
-                </ul>
-            </div>
-
-            <div class="entry">
-                <div class="entry-header">
-                    <span class="entry-title">Shanghai Jiao Tong University (SJTU)</span>
-                    <span class="entry-date">Jun 2024 - Sep 2025</span>
-                </div>
-                <div class="entry-org">Research Assistant | <a href="https://scholar.google.com/citations?view_op=list_works&amp;user=LmHih1QAAAAJ">Prof. Xiaoning Sun ↗</a></div>
-                <ul>
-                    <li>Automated the processing of <strong>500+ hours</strong> of child behavioral data into <strong>95 standardized reports</strong> using Stata and structured data pipelines.</li>
-                    <li>Designed survey instruments covering 60 socioeconomic and family-environment variables; independently administered assessments for 28 children (Wechsler Scales, TEC).</li>
                 </ul>
             </div>
 
@@ -408,4 +393,5 @@
 
 </body>
 </html>
+
 
