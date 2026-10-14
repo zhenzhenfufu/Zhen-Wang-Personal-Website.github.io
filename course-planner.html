@@ -87,6 +87,53 @@
         </p>
     </section>
 
+    <section id="validator">
+        <h2>The checker, runnable</h2>
+        <p>
+            Below is a 12-course slice of the same graph, running the app's own rules. Press
+            <em>one-shot</em> to see the whole plan proposed at once and checked edge by edge; press
+            <em>per-quarter</em> to watch the eligible set get recomputed before each term. Click any
+            course to see its prerequisites resolved. Every error string here is what
+            <code>validator.py</code> actually prints.
+        </p>
+        <div class="pv" id="pv">
+                <p class="pv-eyebrow">Deterministic checker &mdash; runnable</p>
+                <h3 class="pv-title">Build a four-quarter plan. Watch the checker reject it.</h3>
+                <p class="pv-sub">A 12-course slice of the planner's 68-node / 74-edge prerequisite DAG, running the app's own rule set: ordering, AND-of-OR groups, abstract requirements, duplicates, and the 12-unit full-time floor / 19-unit heavy flag / 22-unit cap. Errors reject a plan; warnings do not. The model never gets a vote on legality.</p>
+
+                <div class="pv-ctl">
+                    <button type="button" class="pv-btn" data-pv="oneshot">One-shot plan</button>
+                    <button type="button" class="pv-btn" data-pv="perq">Per-quarter plan</button>
+                </div>
+
+                <ol class="pv-grid">
+                    <li class="pv-term ok" data-pv-term="0">
+                        <p class="pv-th"><span class="pv-q">Q1</span> Fall<span class="pv-u" data-pv-u>12u</span></p>
+                        <div class="pv-slot" data-pv-slot><span class="pv-c">DSC 10<i>4</i></span><span class="pv-c">MATH 20A<i>4</i></span><span class="pv-c">MATH 18<i>4</i></span></div>
+                    </li>
+                    <li class="pv-term ok" data-pv-term="1">
+                        <p class="pv-th"><span class="pv-q">Q2</span> Winter<span class="pv-u" data-pv-u>12u</span></p>
+                        <div class="pv-slot" data-pv-slot><span class="pv-c">DSC 20<i>4</i></span><span class="pv-c">MATH 20B<i>4</i></span><span class="pv-c">DSC 80<i>4</i></span></div>
+                    </li>
+                    <li class="pv-term ok" data-pv-term="2">
+                        <p class="pv-th"><span class="pv-q">Q3</span> Spring<span class="pv-u" data-pv-u>12u</span></p>
+                        <div class="pv-slot" data-pv-slot><span class="pv-c">MATH 20C<i>4</i></span><span class="pv-c">DSC 30<i>4</i></span><span class="pv-c">MATH 183<i>4</i></span></div>
+                    </li>
+                    <li class="pv-term ok" data-pv-term="3">
+                        <p class="pv-th"><span class="pv-q">Q4</span> Fall<span class="pv-u" data-pv-u>12u</span></p>
+                        <div class="pv-slot" data-pv-slot><span class="pv-c">DSC 40A<i>4</i></span><span class="pv-c">DSC 140A<i>4</i></span><span class="pv-c">CSE 11<i>4</i></span></div>
+                    </li>
+                </ol>
+
+                <div class="pv-out">
+                    <p class="pv-verdict pv-pass" data-pv-verdict aria-live="polite">Accepted &middot; 12 of 12 courses legal &middot; 0 errors</p>
+                    <ul class="pv-log" data-pv-log><li>This is the plan the per-quarter generator produces. <b>DSC 140A</b> needs <b>DSC 80</b> and a probability course; <b>MATH 183</b> satisfies the abstract <i>probability</i> group, one of four courses the catalog names. Press a button, or click any course to see its prerequisites resolved.</li></ul>
+                </div>
+
+                <p class="pv-foot">Measured in the live app: one-shot generation produced a plan the checker accepted <b>40%</b> of the time. Regenerating quarter by quarter against a recomputed eligible set reached <b>100%</b>, across 20 planning tasks.</p>
+            </div>
+    </section>
+
     <section id="eval">
         <h2>What the evaluation actually says</h2>
         <p>
