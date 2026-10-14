@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thermal Throttling &amp; Energy Cost on NVIDIA Jetson | Zhen Wang</title>
+<meta name="description" content="An early independent study on how thermal throttling affects LLM inference efficiency on NVIDIA Jetson, advised by Prof. Peter Chi.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="detail">
+
+<header class="topbar">
+    <a class="home-link" href="index.html"><span aria-hidden="true">←</span> Zhen Wang</a>
+    <nav class="topnav" aria-label="Project pages">
+        <a href="pfizer.html">Pfizer</a>
+        <a href="course-planner.html">Course Agent</a>
+        <a href="aobo-lab.html">Rare AI Lab</a>
+        <a href="edge-ai.html" aria-current="page">Edge AI</a>
+        <a href="data-projects.html">Data Projects</a>
+        <a href="beyond-code.html">Beyond Code</a>
+    </nav>
+</header>
+
+<main class="page">
+<article>
+
+    <p class="eyebrow">Independent study · Mar 2026 – present</p>
+    <h1>Thermal Throttling &amp; the Energy Cost of Inference</h1>
+    <!-- TODO (Zhen): add Prof. Chi's department and institution. An advisor claim a professor cannot
+     verify in one search costs more than no advisor claim. If the relationship is informal, say
+     "advised informally by". -->
+    <p class="role">Independent research · Advised by Prof. Peter Chi</p>
+
+    <p class="lede">
+        Benchmarks for edge inference are usually reported on a cold device. The question I wanted to
+        answer is what happens on the tenth minute: how much throughput a Jetson actually keeps once it
+        is hot, and what that costs in energy per token.
+    </p>
+
+    <section>
+        <h2>Setup</h2>
+        <ul>
+            <!-- TODO (Zhen): fill in the model size and the board — "Llama-3 8B on a Jetson Orin Nano" reads as a
+     real experiment; "Llama-3 on NVIDIA Jetson" does not, and anyone who knows the hardware notices. -->
+            <li>Llama-3 workloads on NVIDIA Jetson, benchmarked automatically across the board's power modes.</li>
+            <li>GPU temperature, clock frequency, power draw and throughput (tokens/sec) logged through <code>nvidia-smi</code> and Prometheus, so throttling shows up as a time series rather than a single average.</li>
+        </ul>
+    </section>
+
+    <section class="limits">
+        <h2>Honest status</h2>
+        <p>
+            This work is still early. The instrumentation runs and the data is accumulating; I have no
+            published result, and the design is my first self-authored experiment rather than a settled
+            methodology. It is on this site because it is the project where I am learning how to ask a
+            measurable question, not because it has an answer yet.
+        </p>
+    </section>
+
+    <p class="stack-line">NVIDIA Jetson · Llama-3 · Prometheus · nvidia-smi · Python · time-series analysis</p>
+
+</article>
+
+<nav class="pager" aria-label="More pages">
+    <a class="pager-prev" href="aobo-lab.html"><span aria-hidden="true">←</span> Previous: Aobo Li Group</a>
+    <a class="pager-next" href="data-projects.html">Next: Data Projects <span aria-hidden="true">→</span></a>
+</nav>
+</main>
+
+<footer class="sitefoot">
+    <a href="index.html">Overview</a> ·
+    <a href="mailto:zhw124@ucsd.edu">zhw124@ucsd.edu</a> ·
+    <a href="https://github.com/zhenzhenfufu">GitHub</a>
+</footer>
+
+<script src="app.js" defer></script>
+</body>
+</html>

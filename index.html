@@ -1,397 +1,242 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zhen Wang | UCSD Data Science</title>
-    <meta name="description" content="Zhen Wang — UC San Diego undergraduate major in Data Science. AI Agent development at Pfizer China R&D and applied machine learning.">
-    <meta name="author" content="Zhen Wang">
-    <meta property="og:title" content="Zhen Wang | AI Agents · Machine Learning · Data Science">
-    <meta property="og:description" content="UCSD undergraduate building AI agents for regulated clinical workflows and studying inference efficiency on edge hardware.">
-    <meta property="og:type" content="profile">
-    <style>
-        :root {
-            --primary-black: #1a1a1a;
-            --secondary-gray: #555555;
-            --light-border: #eeeeee;
-            --ucsd-link: #005A85;
-            --page-bg: #ffffff;
-            --muted: #999999;
-            --card-bg: #fbfbfb;
-            --card-accent: #dcdcdc;
-        }
-
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --primary-black: #ececec;
-                --secondary-gray: #a8a8a8;
-                --light-border: #2c2c2c;
-                --ucsd-link: #4fb3d9;
-                --page-bg: #141414;
-                --muted: #777777;
-                --card-bg: #1a1a1a;
-                --card-accent: #343434;
-            }
-        }
-
-        * { box-sizing: border-box; }
-
-        html { scroll-behavior: smooth; }
-
-        body {
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            margin: 0;
-            display: flex;
-            color: var(--primary-black);
-            line-height: 1.6;
-            background: var(--page-bg);
-        }
-
-        /* Sidebar - Clean & Refined */
-        .sidebar {
-            width: 320px;
-            height: 100vh;
-            position: sticky;
-            top: 0;
-            padding: 60px 40px;
-            border-right: 1px solid var(--light-border);
-            display: flex;
-            flex-direction: column;
-            box-sizing: border-box;
-            overflow-y: auto;
-        }
-
-        .profile-img {
-            width: 150px;
-            height: 150px;
-            border-radius: 8px;
-            object-fit: cover;
-            margin-bottom: 25px;
-            border: 1px solid var(--light-border);
-        }
-
-        .sidebar h1 { font-size: 1.6rem; margin: 0; font-weight: 700; }
-
-        .sidebar-info {
-            margin-top: 15px;
-            font-size: 0.9rem;
-            color: var(--secondary-gray);
-            border-bottom: 1px solid var(--light-border);
-            padding-bottom: 20px;
-        }
-
-        .major-highlight { color: var(--primary-black); font-weight: 700; display: block; margin-top: 5px; }
-
-        .sidebar-links { margin-top: 25px; }
-        .sidebar-link {
-            font-size: 0.88rem;
-            margin-bottom: 15px;
-            color: var(--secondary-gray);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-        }
-        .sidebar-link:hover, .sidebar-link:focus-visible { color: var(--ucsd-link); text-decoration: underline; }
-
-        .sidebar-focus {
-            margin-top: 22px;
-            padding-top: 18px;
-            border-top: 1px solid var(--light-border);
-            font-size: 0.8rem;
-            color: var(--muted);
-            line-height: 1.5;
-        }
-
-        /* Main Content */
-        .main { flex: 1; padding: 60px 80px; max-width: 950px; }
-
-        section { margin-bottom: 50px; }
-
-        h2 {
-            font-size: 1.1rem;
-            color: var(--primary-black);
-            border-bottom: 1px solid var(--primary-black);
-            padding-bottom: 6px;
-            margin-bottom: 30px;
-            text-transform: uppercase;
-            letter-spacing: 1.2px;
-        }
-
-        .intro { font-size: 1.05rem; color: var(--secondary-gray); margin-bottom: 20px; }
-        .intro-aside { font-size: 0.9rem; color: var(--muted); margin-bottom: 40px; }
-
-        .entry {
-            margin-bottom: 20px;
-            background: var(--card-bg);
-            border: 1px solid var(--light-border);
-            border-left: 3px solid var(--card-accent);
-            border-radius: 4px;
-            padding: 20px 24px;
-            transition: border-left-color 0.18s ease;
-        }
-        .entry:hover { border-left-color: var(--ucsd-link); }
-        .entry-header { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; }
-        .entry-title { font-size: 1.1rem; font-weight: 700; }
-        .entry-date { font-size: 0.85rem; color: var(--muted); white-space: nowrap; }
-        .entry-org { color: var(--ucsd-link); font-weight: 600; font-size: 0.95rem; margin: 3px 0; }
-
-        .stack-line {
-            font-size: 0.82rem;
-            color: var(--muted);
-            margin-top: 12px;
-            font-style: italic;
-        }
-
-        ul { padding-left: 20px; margin-top: 10px; margin-bottom: 0; }
-        .entry > ul > li:last-child { margin-bottom: 0; }
-        li { margin-bottom: 8px; color: var(--secondary-gray); font-size: 0.92rem; }
-
-        a { color: var(--ucsd-link); }
-
-        .skills-grid { display: grid; grid-template-columns: 140px 1fr; gap: 12px; font-size: 0.9rem; }
-        .skills-label { font-weight: 700; color: var(--secondary-gray); }
-        .skills-grid > div:not(.skills-label) { color: var(--secondary-gray); }
-
-        @media (max-width: 900px) {
-            body { flex-direction: column; }
-            .sidebar { width: 100%; height: auto; position: relative; border-right: none; border-bottom: 1px solid var(--light-border); padding: 40px 30px; }
-            .main { padding: 40px 30px; max-width: 100%; }
-            .entry { padding: 16px 18px; }
-            .skills-grid { grid-template-columns: 1fr; gap: 4px; }
-            .skills-label { margin-top: 12px; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zhen Wang | UCSD Data Science</title>
+<meta name="description" content="Zhen Wang — UC San Diego undergraduate in Data Science. AI agents for high-stakes workflows: a clinical filing system at Pfizer China R&D, a course planner with a deterministic validator, and ML for physics time series in Prof. Aobo Li's group.">
+<meta name="author" content="Zhen Wang">
+<meta property="og:title" content="Zhen Wang | AI Agents · Machine Learning · Data Science">
+<meta property="og:description" content="UCSD undergraduate building AI agents whose answers can be checked — clinical filings at Pfizer, a validated course planner, and ML for physics time series.">
+<meta property="og:type" content="profile">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <aside class="sidebar">
-        <img src="个人主页照片.jpg" alt="Portrait of Zhen Wang" class="profile-img">
-        <h1>Zhen Wang</h1>
-        <div class="sidebar-info">
-            UC San Diego | Class of 2029
-            <span class="major-highlight">Data Science</span>
-            <span style="display:block;margin-top:4px;font-weight:400;font-size:0.82rem;">Applying to transfer into Data Science</span>
+<aside class="sidebar">
+    <img src="portrait.jpg" alt="Portrait of Zhen Wang" class="profile-img" width="148" height="148">
+    <h1>Zhen Wang</h1>
+    <div class="sidebar-info">
+        UC San Diego · Class of 2029
+        <span class="major-highlight">B.S. Data Science</span>
+    </div>
+
+    <nav class="sidebar-links" aria-label="Contact and profiles">
+        <a href="mailto:zhw124@ucsd.edu" class="sidebar-link"><span aria-hidden="true">✉</span> zhw124@ucsd.edu</a>
+        <a href="https://github.com/zhenzhenfufu" class="sidebar-link">GitHub</a>
+        <a href="https://ucsd-course-planning-tutor.streamlit.app/" class="sidebar-link">Course Planning Agent — demo</a>
+        <!-- Upload one canonical CV next to index.html as cv.pdf, then uncomment:
+        <a href="cv.pdf" class="sidebar-link">CV (PDF)</a> -->
+        <a href="https://aobol.github.io/AoboLi/" class="sidebar-link">Rare AI Lab · Prof. Aobo Li</a>
+        <a href="https://space.bilibili.com/3493110992603365" class="sidebar-link">Bilibili · 155K+ views</a>
+    </nav>
+
+    <nav class="sidebar-sections" aria-label="On this page">
+        <a href="#about">About</a>
+        <a href="#now">Now</a>
+        <a href="#work">Work &amp; Research</a>
+        <a href="#projects">Projects &amp; Beyond</a>
+        <a href="#skills">Stack</a>
+    </nav>
+
+    <div class="sidebar-focus">
+        Building AI agents for work where a wrong answer has to be caught, not just avoided —
+        and, on the side, agents that turn flat references into 3D game assets.
+    </div>
+</aside>
+
+<main class="main">
+
+    <section id="about">
+        <h2>About</h2>
+        <p class="intro">
+            I am a second-year undergraduate at <strong>UC San Diego</strong> in <strong>Data Science</strong>.
+            I build <strong>AI agents and machine learning systems</strong>, and I care most about the part
+            that usually gets skipped: showing that the output is actually correct. This summer I spent
+            three months at <strong>Pfizer China R&amp;D</strong> shipping an agent-assisted pipeline that
+            turns clinical trial data into regulator-ready filings — a place where an unverified answer is
+            not an answer.
+        </p>
+        <p class="intro-aside">
+            I work in the <a href="https://aobol.github.io/AoboLi/">Rare AI Lab</a> (Prof. Aobo Li, HDSI
+            &amp; Physics) on machine learning for physics time series, and I am always glad to talk about
+            agent evaluation — <a href="mailto:zhw124@ucsd.edu">zhw124@ucsd.edu</a>.
+        </p>
+    </section>
+
+    <section id="now">
+        <h2>Now</h2>
+        <ul class="now-list">
+            <li><span class="now-when">Since Oct 2026</span> Undergraduate researcher in the <a href="aobo-lab.html">Rare AI Lab</a> — Prof. Aobo Li, HDSI &amp; Physics — on machine learning for physics time series.</li>
+            <li><span class="now-when">This quarter</span> DSC 291 with Prof. Li; CSE 12, COGS 109, COGS 188, ECON 120A alongside it.</li>
+            <li><span class="now-when">On the side</span> Reading and prototyping toward agents that generate 3D game assets from 2D references. Nothing shipped yet.</li>
+        </ul>
+    </section>
+
+    <section id="graph">
+        <h2>What the course agent actually sees</h2>
+        <p class="graph-intro">
+            This is the real prerequisite graph my course-planning agent runs on — 27 of its 68 courses,
+            parsed out of catalog sentences written for humans. Hover or tab to a course to light up
+            everything it depends on. That closure is what the model is not allowed to get wrong: asked
+            for a whole multi-quarter plan in one shot it was legal <strong>40%</strong> of the time;
+            generating one quarter at a time against a recomputed eligible set,
+            <strong>100%</strong> across 20 tasks.
+        </p>
+        <figure class="dag-wrap">
+            <div class="dag-scroll">
+<svg id="dag" viewBox="0 0 1060 400" role="img" aria-labelledby="dag-title dag-desc" xmlns="http://www.w3.org/2000/svg">
+            <title id="dag-title">Prerequisite graph parsed from the UC San Diego Data Science catalog</title>
+            <desc id="dag-desc">Twenty-seven courses and thirty-two prerequisite edges. Arrows point from a prerequisite to the course that requires it. Hover or focus a course to highlight everything it depends on.</desc>
+            <g class="dag-edges"><path class="dag-edge" data-from="MATH 20C" data-to="DSC 120" d="M89 352 C174 352 174 82 259 82" /><path class="dag-edge" data-from="MATH 20C" data-to="DSC 123A" d="M89 352 C110 352 110 64 131 64" /><path class="dag-edge" data-from="MATH 20C" data-to="DSC 40A" d="M89 352 C110 352 110 280 131 280" /><path class="dag-edge" data-from="MATH 18" data-to="DSC 120" d="M89 136 C174 136 174 82 259 82" /><path class="dag-edge" data-from="MATH 18" data-to="DSC 123A" d="M89 136 C110 136 110 64 131 64" /><path class="dag-edge" data-from="MATH 18" data-to="DSC 40A" d="M89 136 C110 136 110 280 131 280" /><path class="dag-edge" data-from="MATH 18" data-to="DSC 155" d="M89 136 C110 136 110 136 131 136" /><path class="dag-edge" data-from="MATH 180A" data-to="DSC 155" d="M89 208 C110 208 110 136 131 136" /><path class="dag-edge" data-from="MATH 189" data-to="DSC 180A" d="M89 280 C430 280 430 208 771 208" /><path class="dag-edge" data-from="DSC 10" data-to="DSC 40A" d="M89 64 C110 64 110 280 131 280" /><path class="dag-edge" data-from="DSC 10" data-to="DSC 20" d="M89 64 C110 64 110 208 131 208" /><path class="dag-edge" data-from="DSC 10" data-to="DSC 80" d="M89 64 C110 64 110 352 131 352" /><path class="dag-edge" data-from="DSC 20" data-to="DSC 30" d="M217 208 C238 208 238 370 259 370" /><path class="dag-edge" data-from="DSC 30" data-to="DSC 40B" d="M345 370 C366 370 366 208 387 208" /><path class="dag-edge" data-from="DSC 40A" data-to="DSC 40B" d="M217 280 C302 280 302 208 387 208" /><path class="dag-edge" data-from="DSC 40B" data-to="DSC 148" d="M473 208 C494 208 494 298 515 298" /><path class="dag-edge" data-from="DSC 40B" data-to="DSC 100" d="M473 208 C494 208 494 118 515 118" /><path class="dag-edge" data-from="DSC 80" data-to="DSC 120" d="M217 352 C238 352 238 82 259 82" /><path class="dag-edge" data-from="DSC 80" data-to="DSC 160" d="M217 352 C238 352 238 226 259 226" /><path class="dag-edge" data-from="DSC 80" data-to="DSC 167" d="M217 352 C238 352 238 298 259 298" /><path class="dag-edge" data-from="DSC 80" data-to="DSC 148" d="M217 352 C366 352 366 298 515 298" /><path class="dag-edge" data-from="DSC 80" data-to="DSC 140B" d="M217 352 C238 352 238 190 259 190" /><path class="dag-edge" data-from="DSC 80" data-to="DSC 106" d="M217 352 C238 352 238 46 259 46" /><path class="dag-edge" data-from="DSC 80" data-to="DSC 170" d="M217 352 C238 352 238 334 259 334" /><path class="dag-edge" data-from="DSC 80" data-to="DSC 100" d="M217 352 C366 352 366 118 515 118" /><path class="dag-edge" data-from="DSC 80" data-to="DSC 161" d="M217 352 C238 352 238 262 259 262" /><path class="dag-edge" data-from="DSC 80" data-to="DSC 140A" d="M217 352 C238 352 238 154 259 154" /><path class="dag-edge" data-from="DSC 100" data-to="DSC 102" d="M601 118 C622 118 622 118 643 118" /><path class="dag-edge" data-from="DSC 100" data-to="DSC 104" d="M601 118 C622 118 622 298 643 298" /><path class="dag-edge" data-from="DSC 102" data-to="DSC 180A" d="M729 118 C750 118 750 208 771 208" /><path class="dag-edge" data-from="DSC 123A" data-to="DSC 123B" d="M217 64 C238 64 238 118 259 118" /><path class="dag-edge" data-from="DSC 180A" data-to="DSC 180B" d="M857 208 C878 208 878 208 899 208" /></g>
+            <g class="dag-nodes"><g class="dag-node" data-id="DSC 10" tabindex="0" role="button" aria-label="DSC 10. No prerequisites in this map."><rect x="46" y="52" rx="5" width="86" height="25"/><text x="89" y="68" text-anchor="middle">DSC 10</text></g><g class="dag-node" data-id="MATH 18" tabindex="0" role="button" aria-label="MATH 18. No prerequisites in this map."><rect x="46" y="124" rx="5" width="86" height="25"/><text x="89" y="140" text-anchor="middle">MATH 18</text></g><g class="dag-node" data-id="MATH 180A" tabindex="0" role="button" aria-label="MATH 180A. No prerequisites in this map."><rect x="46" y="196" rx="5" width="86" height="25"/><text x="89" y="212" text-anchor="middle">MATH 180A</text></g><g class="dag-node" data-id="MATH 189" tabindex="0" role="button" aria-label="MATH 189. No prerequisites in this map."><rect x="46" y="268" rx="5" width="86" height="25"/><text x="89" y="284" text-anchor="middle">MATH 189</text></g><g class="dag-node" data-id="MATH 20C" tabindex="0" role="button" aria-label="MATH 20C. No prerequisites in this map."><rect x="46" y="340" rx="5" width="86" height="25"/><text x="89" y="356" text-anchor="middle">MATH 20C</text></g><g class="dag-node" data-id="DSC 123A" tabindex="0" role="button" aria-label="DSC 123A. Prerequisites: MATH 18, MATH 20C."><rect x="174" y="52" rx="5" width="86" height="25"/><text x="217" y="68" text-anchor="middle">DSC 123A</text></g><g class="dag-node" data-id="DSC 155" tabindex="0" role="button" aria-label="DSC 155. Prerequisites: MATH 18, MATH 180A."><rect x="174" y="124" rx="5" width="86" height="25"/><text x="217" y="140" text-anchor="middle">DSC 155</text></g><g class="dag-node" data-id="DSC 20" tabindex="0" role="button" aria-label="DSC 20. Prerequisites: DSC 10."><rect x="174" y="196" rx="5" width="86" height="25"/><text x="217" y="212" text-anchor="middle">DSC 20</text></g><g class="dag-node" data-id="DSC 40A" tabindex="0" role="button" aria-label="DSC 40A. Prerequisites: DSC 10, MATH 18, MATH 20C."><rect x="174" y="268" rx="5" width="86" height="25"/><text x="217" y="284" text-anchor="middle">DSC 40A</text></g><g class="dag-node" data-id="DSC 80" tabindex="0" role="button" aria-label="DSC 80. Prerequisites: DSC 10."><rect x="174" y="340" rx="5" width="86" height="25"/><text x="217" y="356" text-anchor="middle">DSC 80</text></g><g class="dag-node" data-id="DSC 106" tabindex="0" role="button" aria-label="DSC 106. Prerequisites: DSC 80."><rect x="302" y="34" rx="5" width="86" height="25"/><text x="345" y="50" text-anchor="middle">DSC 106</text></g><g class="dag-node" data-id="DSC 120" tabindex="0" role="button" aria-label="DSC 120. Prerequisites: DSC 80, MATH 18, MATH 20C."><rect x="302" y="70" rx="5" width="86" height="25"/><text x="345" y="86" text-anchor="middle">DSC 120</text></g><g class="dag-node" data-id="DSC 123B" tabindex="0" role="button" aria-label="DSC 123B. Prerequisites: DSC 123A."><rect x="302" y="106" rx="5" width="86" height="25"/><text x="345" y="122" text-anchor="middle">DSC 123B</text></g><g class="dag-node" data-id="DSC 140A" tabindex="0" role="button" aria-label="DSC 140A. Prerequisites: DSC 80."><rect x="302" y="142" rx="5" width="86" height="25"/><text x="345" y="158" text-anchor="middle">DSC 140A</text></g><g class="dag-node" data-id="DSC 140B" tabindex="0" role="button" aria-label="DSC 140B. Prerequisites: DSC 80."><rect x="302" y="178" rx="5" width="86" height="25"/><text x="345" y="194" text-anchor="middle">DSC 140B</text></g><g class="dag-node" data-id="DSC 160" tabindex="0" role="button" aria-label="DSC 160. Prerequisites: DSC 80."><rect x="302" y="214" rx="5" width="86" height="25"/><text x="345" y="230" text-anchor="middle">DSC 160</text></g><g class="dag-node" data-id="DSC 161" tabindex="0" role="button" aria-label="DSC 161. Prerequisites: DSC 80."><rect x="302" y="250" rx="5" width="86" height="25"/><text x="345" y="266" text-anchor="middle">DSC 161</text></g><g class="dag-node" data-id="DSC 167" tabindex="0" role="button" aria-label="DSC 167. Prerequisites: DSC 80."><rect x="302" y="286" rx="5" width="86" height="25"/><text x="345" y="302" text-anchor="middle">DSC 167</text></g><g class="dag-node" data-id="DSC 170" tabindex="0" role="button" aria-label="DSC 170. Prerequisites: DSC 80."><rect x="302" y="322" rx="5" width="86" height="25"/><text x="345" y="338" text-anchor="middle">DSC 170</text></g><g class="dag-node" data-id="DSC 30" tabindex="0" role="button" aria-label="DSC 30. Prerequisites: DSC 20."><rect x="302" y="358" rx="5" width="86" height="25"/><text x="345" y="374" text-anchor="middle">DSC 30</text></g><g class="dag-node" data-id="DSC 40B" tabindex="0" role="button" aria-label="DSC 40B. Prerequisites: DSC 30, DSC 40A."><rect x="430" y="196" rx="5" width="86" height="25"/><text x="473" y="212" text-anchor="middle">DSC 40B</text></g><g class="dag-node" data-id="DSC 100" tabindex="0" role="button" aria-label="DSC 100. Prerequisites: DSC 40B, DSC 80."><rect x="558" y="106" rx="5" width="86" height="25"/><text x="601" y="122" text-anchor="middle">DSC 100</text></g><g class="dag-node" data-id="DSC 148" tabindex="0" role="button" aria-label="DSC 148. Prerequisites: DSC 40B, DSC 80."><rect x="558" y="286" rx="5" width="86" height="25"/><text x="601" y="302" text-anchor="middle">DSC 148</text></g><g class="dag-node" data-id="DSC 102" tabindex="0" role="button" aria-label="DSC 102. Prerequisites: DSC 100."><rect x="686" y="106" rx="5" width="86" height="25"/><text x="729" y="122" text-anchor="middle">DSC 102</text></g><g class="dag-node" data-id="DSC 104" tabindex="0" role="button" aria-label="DSC 104. Prerequisites: DSC 100."><rect x="686" y="286" rx="5" width="86" height="25"/><text x="729" y="302" text-anchor="middle">DSC 104</text></g><g class="dag-node" data-id="DSC 180A" tabindex="0" role="button" aria-label="DSC 180A. Prerequisites: DSC 102, MATH 189."><rect x="814" y="196" rx="5" width="86" height="25"/><text x="857" y="212" text-anchor="middle">DSC 180A</text></g><g class="dag-node" data-id="DSC 180B" tabindex="0" role="button" aria-label="DSC 180B. Prerequisites: DSC 180A."><rect x="942" y="196" rx="5" width="86" height="25"/><text x="985" y="212" text-anchor="middle">DSC 180B</text></g></g>
+          </svg>
+            </div>
+            <figcaption>
+                <span class="dag-readout" data-default="Arrows point from a prerequisite to the course that needs it.">Arrows point from a prerequisite to the course that needs it.</span>
+                <a class="dag-link" href="course-planner.html">How it is built <span aria-hidden="true">→</span></a>
+            </figcaption>
+        </figure>
+    </section>
+
+
+    <section id="work">
+        <h2>Work &amp; Research</h2>
+        <div class="card-grid">
+
+            <a class="card card-lead" href="pfizer.html">
+                <div class="card-head">
+                    <span class="card-title">HGRAC Filing Assistant</span>
+                    <span class="card-date">Jul – Sep 2026</span>
+                </div>
+                <span class="card-org">AI Agent Development Intern · Pfizer (China) R&amp;D Center</span>
+                <p class="card-line">
+                    Built the system that turns clinical trial data into a regulatory filing:
+                    <strong>10,184 records</strong> and <strong>3,792 pages</strong> per run, reconciled
+                    against a colleague's independent engine with <strong>zero discrepancies</strong>.
+                    Three agents on top of it, one of which I caught keying on date frequency rather than
+                    the rule it was given.
+                </p>
+                <span class="card-more">Read the write-up <span aria-hidden="true">→</span></span>
+            </a>
+
+            <a class="card" href="course-planner.html">
+                <div class="card-head">
+                    <span class="card-title">UCSD Course Planning Agent</span>
+                    <span class="card-date">Apr 2026 – now</span>
+                </div>
+                <span class="card-org">Solo project · live demo &amp; source</span>
+                <p class="card-line">
+                    A 68-node prerequisite graph parsed out of catalog prose, and a deterministic checker
+                    the model is not allowed to overrule. First-pass plan legality
+                    <strong>40% <span aria-hidden="true">→</span> 100%</strong>.
+                </p>
+                <span class="card-more">Read the write-up <span aria-hidden="true">→</span></span>
+            </a>
+
+            <a class="card" href="aobo-lab.html">
+                <div class="card-head">
+                    <span class="card-title">AI for Neutrino &amp; Dark Matter</span>
+                    <span class="card-date">Oct 2026 – now</span>
+                </div>
+                <span class="card-org">Rare AI Lab · Prof. Aobo Li · HDSI &amp; Physics, UC San Diego</span>
+                <p class="card-line">
+                    Machine learning for physics time series — rare-event searches for neutrinos and dark
+                    matter, where a model that games its own metric gets caught by the physics. Joined this
+                    October; no results of my own yet.
+                </p>
+                <span class="card-more">Read more <span aria-hidden="true">→</span></span>
+            </a>
+
+            <a class="card" href="edge-ai.html">
+                <div class="card-head">
+                    <span class="card-title">Thermal Throttling &amp; Energy Cost</span>
+                    <span class="card-date">Mar 2026 – now</span>
+                </div>
+                <span class="card-org">Independent study · advised by Prof. Peter Chi</span>
+                <p class="card-line">
+                    How much inference throughput an NVIDIA Jetson keeps once it is hot, instrumented as a
+                    time series rather than a cold-start average. Still early.
+                </p>
+                <span class="card-more">Read more <span aria-hidden="true">→</span></span>
+            </a>
+
         </div>
+    </section>
 
-        <nav class="sidebar-links">
-            <a href="mailto:zhw124@ucsd.edu" class="sidebar-link">✉ zhw124@ucsd.edu</a>
-            <a href="https://github.com/zhenzhenfufu" class="sidebar-link">GitHub Profile</a>
-            <a href="https://ucsd-course-planning-tutor.streamlit.app/" class="sidebar-link">AI Course Advisor Demo</a>
-            <a href="https://space.bilibili.com/3493110992603365" class="sidebar-link">Bilibili (155K+ Views)</a>
-        </nav>
+    <section id="projects">
+        <h2>Projects &amp; Beyond</h2>
+        <div class="card-grid">
 
-        <div class="sidebar-focus">
-            Currently focused on AI agent systems for regulated, 3D game design agent, high-stakes workflows —
-            where a wrong answer has to be caught, not just avoided.
+            <a class="card" href="data-projects.html">
+                <div class="card-head">
+                    <span class="card-title">Data Science &amp; Modeling</span>
+                    <span class="card-date">2024 – 2026</span>
+                </div>
+                <span class="card-org">SJTU research assistantship · wound-healing model · Steam · Premier League</span>
+                <p class="card-line">
+                    <strong>500+ hours</strong> of child behavioural data into 95 standardised reports, a
+                    wound-closure simulation derived rather than fitted, and <strong>27,000+</strong> Steam
+                    titles cleaned until the joins stopped lying.
+                </p>
+                <span class="card-more">Four projects <span aria-hidden="true">→</span></span>
+            </a>
+
+            <!-- TODO (Zhen): expand once you send me the brief — what 夜水书院 is, your role on the
+                 team, the tech (three.js / puppeteer trailer pipeline?), and the round dates. Right now
+                 this card says only what can be checked. -->
+            <a class="card" href="beyond-code.html#competition">
+                <div class="card-head">
+                    <span class="card-title">《夜水书院》</span>
+                    <span class="card-date">Oct 2026 · in review</span>
+                </div>
+                <span class="card-org">Tsinghua School of Architecture × miHoYo — "Digital Interactive Environment" design competition</span>
+                <p class="card-line">
+                    Entry submitted for the first round of the competition the two of them launched in
+                    September. Judging is still under way.
+                </p>
+                <span class="card-more">More <span aria-hidden="true">→</span></span>
+            </a>
+
+            <a class="card" href="beyond-code.html">
+                <div class="card-head">
+                    <span class="card-title">Beyond Code</span>
+                    <span class="card-date">2025 – now</span>
+                </div>
+                <span class="card-org">miHoYo &amp; Lilith campus ambassador · ENC Mobile · Bilibili · CGC · WFLA</span>
+                <p class="card-line">
+                    <strong>155K+</strong> views explaining technical things to people who did not ask for
+                    jargon, <strong>500+</strong> international freshmen through orientation, and a
+                    <strong>108-member</strong> volunteer team.
+                </p>
+                <span class="card-more">Read more <span aria-hidden="true">→</span></span>
+            </a>
+
         </div>
-    </aside>
+    </section>
 
-    <main class="main">
-        <section>
-            <h2>About Me</h2>
-            <div class="intro">
-                Hi — I am an <strong>undergraduate</strong> at <strong>UC San Diego</strong>, majoring in
-                Mathematics-Computer Science. I build <strong>AI agents and machine learning systems</strong>,
-                and I care most about the part everyone skips: proving the output is actually correct.
-                Most recently I spent a summer at <strong>Pfizer China R&amp;D</strong> shipping an agent-assisted pipeline
-                that turns clinical trial data into regulator-ready filings — where an unverified answer is not an option.
-            </div>
-            <div class="intro-aside">
-                Off the clock: tennis, Premier League data rabbit holes, and video games (Genshin Impact, mostly).
-            </div>
-        </section>
+    <section id="skills">
+        <h2>Technical Stack</h2>
+        <!-- TODO (Zhen): if you have actually used scikit-learn or PyTorch, add them. A physics ML group
+             reads a stack with no training framework as "has not trained a model". If you have not used
+             them, leave this as is — do not list what you cannot discuss. -->
+        <div class="skills-grid">
+            <div class="skills-label">Agents &amp; ML</div>
+            <div>Multi-agent orchestration, LLM agent design, prompt ablation debugging, agent evaluation harnesses, RAG, Gemini API, Ollama (qwen2.5), Llama-3 on edge hardware</div>
 
-        <section id="experience">
-            <h2>Professional Experience</h2>
+            <div class="skills-label">Modelling &amp; stats</div>
+            <div>Regression modelling, hypothesis testing, time-series analysis, ODE simulation, experiment design</div>
 
-            <div class="entry">
-                <div class="entry-header">
-                    <span class="entry-title">Pfizer R&amp;D Center</span>
-                    <span class="entry-date">Jul 2026 - Sep 2026</span>
-                </div>
-                <div class="entry-org">AI Agent Development Intern · Biomedical Informatics &amp; Data</div>
-                <ul>
-                    <li>Independently designed and shipped a <strong>regulatory-filing automation system</strong> (R + Shiny, 61 source files / 10,000+ lines) spanning Excel application-form parsing, control-file generation, China-subject classification, and compliant RTF/PDF output — replacing a per-study manual process. One end-to-end run classified <strong>10,184 records</strong> from 25 SDTM datasets into 3 reports totaling <strong>3,792 pages</strong> in 20 minutes, and was handed over for use across a <strong>200-person</strong> department.</li>
-                    <li>Engineered <strong>per-record cascading date resolution</strong>, fixing three systematic misclassifications — including a per-dataset column choice that misrouted all 1,800+ records in one domain, and a randomization lookup that left 40+ screen-failure subjects unclassifiable.</li>
-                    <li>Validated correctness two independent ways: reconciled 13 datasets and 1,197 records line-by-line against a colleague's independently written engine with <strong>zero discrepancies</strong>, and reproduced identical counts on a rerun two days later. Every record carries a provenance column so a non-programmer can audit the result.</li>
-                    <li>Built <strong>three AI agents</strong> (dataset reconciliation, classification review, open-item triage) switchable between Gemini and a local Ollama <code>qwen2.5</code> backend. Isolated a misclassification through <strong>ablation testing</strong> — the model was keying on date frequency and position rather than the stated rule — then hardened the prompt into a directive and returned arithmetic to deterministic code, lifting agent-to-code agreement from <strong>97% to 100%</strong> across 90+ samples.</li>
-                    <li>Benchmarked four agent architectures (automation / ReAct / Plan / seven-role council) against 12 criteria derived from the regulatory spec: multi-agent <strong>0.925</strong> vs. automation baseline <strong>0.719</strong>.</li>
-                </ul>
-                <div class="stack-line">R · Shiny · haven (SAS sas7bdat) · officer / flextable / pagedown · dplyr · Gemini API · Ollama · multi-agent orchestration · SDTM clinical data</div>
-            </div>
+            <div class="skills-label">Languages</div>
+            <div>Python (pandas / NumPy / Matplotlib), R (Shiny / dplyr / haven / officer / pagedown), SQL, Java, C++, MATLAB, Stata</div>
 
-            <div class="entry">
-                <div class="entry-header">
-                    <span class="entry-title">miHoYo &amp; Lilith Games</span>
-                    <span class="entry-date">Jul 2026 - Present</span>
-                </div>
-                <div class="entry-org">Campus Ambassador · UCSD</div>
-                <ul>
-                    <li>Bridge current students and both companies' alumni and recruiting networks; run campus social campaigns and operate a <strong>100+ member</strong> WeChat community.</li>
-                </ul>
-            </div>
+            <div class="skills-label">Data &amp; tools</div>
+            <div>SDTM clinical data, regulatory output automation, data pipeline design, NetworkX, Streamlit, Prometheus, pytest, Git, LaTeX</div>
+        </div>
+    </section>
 
-            <div class="entry">
-                <div class="entry-header">
-                    <span class="entry-title">ENC Mobile</span>
-                    <span class="entry-date">May 2026 - Sep 2026</span>
-                </div>
-                <div class="entry-org">Campus Growth &amp; Technical Marketing Intern</div>
-                <ul>
-                    <li>Led UCSD channel expansion through data-driven user acquisition; analyzed user and channel data in Python and Pandas, benchmarked competitor pricing to target high-conversion segments, converting to <strong>60 SIM sales</strong>.</li>
-                    <li>Built an FAQ and troubleshooting playbook and handled <strong>Level-1 technical support</strong> across social platforms.</li>
-                </ul>
-            </div>
-        </section>
+</main>
 
-        <section id="ai-research">
-            <h2>AI Research &amp; Product</h2>
-
-            <div class="entry">
-                <div class="entry-header">
-                    <span class="entry-title">UCSD Course Planning Tutor</span>
-                    <span class="entry-date">Apr 2026 - Present</span>
-                </div>
-                <div class="entry-org">Solo Developer (AI Lead) ·
-                    <a href="https://ucsd-course-planning-tutor.streamlit.app/">Live Demo ↗</a> ·
-                    <a href="https://github.com/zhenzhenfufu/ucsd-course-planning-tutor">GitHub ↗</a>
-                </div>
-                <ul>
-                    <li>Parsed prerequisites out of free-text course descriptions into a <strong>68-node / 74-edge DAG</strong> (AND-of-OR groups, 7 substitution rules, abstract requirements like "a probability course"), with direction-aware parsing that separates <em>"Prerequisite: X"</em> from the opposite-meaning <em>"Prerequisite for X"</em>. Replacing the app's hand-maintained edge list closed a <strong>25-edge drift</strong> between two sources of truth.</li>
-                    <li>Swapped 31&nbsp;KB of whole-catalog prompt stuffing for vector retrieval plus one-hop expansion along the DAG — <strong>8–13% of the catalog per query</strong>, and a retrieved course's prerequisites are always in context. Similarity search alone drops structurally relevant prerequisites that simply do not read like the question.</li>
-                    <li>The model never decides whether a plan is valid. A deterministic checker verifies ordering, unit caps, duplicates, concurrency exceptions and OR-groups; generation then moved from one-shot to per-quarter against a recomputed eligible set. <strong>First-pass plan legality: 40% → 100%</strong> across 20 planning tasks.</li>
-                </ul>
-                <div class="stack-line">Python · Gemini API (generation + embeddings) · RAG · NetworkX · Streamlit Cloud · pytest</div>
-            </div>
-
-            <div class="entry">
-                <div class="entry-header">
-                    <span class="entry-title">Edge AI: Thermal Throttling &amp; Energy Cost</span>
-                    <span class="entry-date">Mar 2026 - Present</span>
-                </div>
-                <div class="entry-org">Independent Research · Faculty Advisor: Prof. Peter Chi</div>
-                <ul>
-                    <li>Proposed and independently lead a study on <strong>thermal throttling and energy consumption in edge AI inference</strong>, deploying Llama-3 workloads on NVIDIA Jetson with automated benchmarking across power modes.</li>
-                    <li>Instrumented GPU temperature, clock frequency, power draw, and throughput (tokens/sec) via <code>nvidia-smi</code> and Prometheus to observe how thermal throttling affects inference efficiency. This work is still early.</li>
-                </ul>
-                <div class="stack-line">NVIDIA Jetson · Llama-3 · Prometheus · nvidia-smi · Python · time-series analysis</div>
-            </div>
-
-                    </section>
-
-        <section id="data-science">
-            <h2>Data Science &amp; Modeling</h2>
-
-            <div class="entry">
-                <div class="entry-header">
-                    <span class="entry-title">Shanghai Jiao Tong University (SJTU)</span>
-                    <span class="entry-date">Jun 2024 - Sep 2025</span>
-                </div>
-                <div class="entry-org">Research Assistant | <a href="https://scholar.google.com/citations?view_op=list_works&amp;user=LmHih1QAAAAJ">Prof. Xiaoning Sun ↗</a></div>
-                <ul>
-                    <li>Automated the processing of <strong>500+ hours</strong> of child behavioral data into <strong>95 standardized reports</strong> using Stata and structured data pipelines.</li>
-                    <li>Designed survey instruments covering 60 socioeconomic and family-environment variables; independently administered assessments for 28 children (Wechsler Scales, TEC).</li>
-                </ul>
-            </div>
-
-            <div class="entry">
-                <div class="entry-header">
-                    <span class="entry-title">Wound Healing Geometry Simulator</span>
-                    <span class="entry-date">Spring 2026</span>
-                </div>
-                <div class="entry-org">
-                    Mathematical Modeling Project | <a href="https://github.com/zhenzhenfufu/vibe-coding">GitHub ↗</a>
-                </div>
-                <ul>
-                    <li>Built a biologically-inspired simulation modeling wound closure dynamics across three geometric dimensions (width, length, depth) using <strong>explicit Euler integration</strong>.</li>
-                    <li>Encoded hidden biological variables (fibrin clot, macrophage activity, TGF-β signal, fibroblast activity, collagen maturity) as latent state driving visible wound metrics.</li>
-                    <li>Produced dual-panel animations (top-view ellipse shrinkage + side-view depth reduction) and CSV time-series exports using NumPy, Matplotlib, and Pandas.</li>
-                </ul>
-            </div>
-
-            <div class="entry">
-                <div class="entry-header">
-                    <span class="entry-title">Steam Commercial Success Prediction</span>
-                    <span class="entry-date">Spring 2026</span>
-                </div>
-                <div class="entry-org">Project Lead · COGS 108</div>
-                <ul>
-                    <li>Led a team through cleaning, EDA, and regression modeling on <strong>27,000+ Steam titles</strong> to quantify how pricing strategy and pre-release tags drive revenue.</li>
-                </ul>
-            </div>
-
-            <div class="entry">
-                <div class="entry-header">
-                    <span class="entry-title">EPL Transfer Efficiency Analysis</span>
-                    <span class="entry-date">Jan 2026 - Mar 2026</span>
-                </div>
-                <div class="entry-org">Data Science Project</div>
-                <ul>
-                    <li>Scraped 10 years of transfer spending and goal-difference data for all 20 Premier League clubs, then applied linear regression and hypothesis testing to the "higher spend implies better results" assumption.</li>
-                </ul>
-            </div>
-        </section>
-
-        <section id="leadership">
-            <h2>Leadership &amp; Community</h2>
-
-            <div class="entry">
-                <div class="entry-header">
-                    <span class="entry-title">Bilibili Tech Creator</span>
-                    <span class="entry-date">155K+ Views</span>
-                </div>
-                <ul>
-                    <li>Produce data science and AI educational content, translating technical complexity for a general audience.</li>
-                </ul>
-            </div>
-
-            <div class="entry">
-                <div class="entry-header">
-                    <span class="entry-title">UCSD CGC (Chinese Global Community)</span>
-                    <span class="entry-date">Core Member</span>
-                </div>
-                <ul>
-                    <li>Coordinate orientation programming and airport pickups for <strong>500+ international freshmen</strong>.</li>
-                </ul>
-            </div>
-
-            <div class="entry">
-                <div class="entry-header">
-                    <span class="entry-title">WFLA Student Union</span>
-                    <span class="entry-date">Vice Minister</span>
-                </div>
-                <ul>
-                    <li>Directly managed a <strong>108-member volunteer team</strong>, handling resource scheduling for major campus initiatives.</li>
-                </ul>
-            </div>
-
-            <div class="entry">
-                <div class="entry-header">
-                    <span class="entry-title">Club Tennis Competitive Team</span>
-                    <span class="entry-date">UCSD Athlete</span>
-                </div>
-                <ul>
-                    <li>Regular high-intensity training and intercollegiate competitive play.</li>
-                </ul>
-            </div>
-        </section>
-
-        <section id="skills">
-            <h2>Technical Stack</h2>
-            <div class="skills-grid">
-                <div class="skills-label">AI &amp; ML</div>
-                <div>Multi-agent orchestration, LLM agent design, prompt ablation debugging, agent evaluation harnesses, RAG, Gemini API, Ollama (qwen2.5), Llama-3 edge deployment, supervised learning, regression modeling</div>
-
-                <div class="skills-label">Languages</div>
-                <div>R (Shiny / dplyr / haven / officer / pagedown), Python (Pandas / NumPy / Matplotlib), Java, SQL, C++, MATLAB, Stata</div>
-
-                <div class="skills-label">Data &amp; Tools</div>
-                <div>SDTM clinical data, regulatory compliance automation, data pipeline design, EDA, hypothesis testing, time-series analysis, Prometheus, Streamlit, Git, LaTeX</div>
-            </div>
-        </section>
-    </main>
-
+<script src="app.js" defer></script>
 </body>
 </html>
-
-

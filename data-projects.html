@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Science &amp; Modeling Projects | Zhen Wang</title>
+<meta name="description" content="Research assistantship at Shanghai Jiao Tong University, a wound-healing geometry simulator, 27,000+ Steam titles, and ten years of Premier League transfer spending.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="detail">
+
+<header class="topbar">
+    <a class="home-link" href="index.html"><span aria-hidden="true">←</span> Zhen Wang</a>
+    <nav class="topnav" aria-label="Project pages">
+        <a href="pfizer.html">Pfizer</a>
+        <a href="course-planner.html">Course Agent</a>
+        <a href="aobo-lab.html">Rare AI Lab</a>
+        <a href="edge-ai.html">Edge AI</a>
+        <a href="data-projects.html" aria-current="page">Data Projects</a>
+        <a href="beyond-code.html">Beyond Code</a>
+    </nav>
+</header>
+
+<main class="page">
+<article>
+
+    <p class="eyebrow">Research &amp; coursework · 2024 – 2026</p>
+    <h1>Data Science &amp; Modeling</h1>
+    <p class="lede">
+        Four projects, in the order they taught me something: a year of real research data, a model I
+        had to derive rather than fit, a dataset large enough to be dishonest with, and a question I
+        wanted the answer to for its own sake.
+    </p>
+
+    <section id="sjtu">
+        <h2>Shanghai Jiao Tong University — Research Assistant</h2>
+        <p class="role">Jun 2024 – Sep 2025 · pre-college, remote · <a href="https://scholar.google.com/citations?view_op=list_works&amp;user=LmHih1QAAAAJ">Prof. Xiaoning Sun <span aria-hidden="true">↗</span></a></p>
+        <ul>
+            <li>Automated the processing of <strong>500+ hours</strong> of child behavioural recordings into <strong>95 standardised reports</strong> with Stata and a structured pipeline, replacing per-session manual work.</li>
+            <li>Designed survey instruments covering 60 socioeconomic and family-environment variables, and independently administered assessments for 28 children (Wechsler Scales, TEC).</li>
+        </ul>
+    </section>
+
+    <section id="wound">
+        <h2>Wound Healing Geometry Simulator</h2>
+        <!-- TODO (Zhen): rename the repo from "vibe-coding" to something like wound-healing-geometry and update
+     this href. GitHub redirects the old URL, so nothing breaks. A professor clicking the only code link
+     on a modelling project should not land on a repo name that disclaims the work. -->
+        <p class="role">Spring 2026 · Mathematical modelling · <a href="https://github.com/zhenzhenfufu/vibe-coding">GitHub <span aria-hidden="true">↗</span></a></p>
+        <ul>
+            <li>Simulated wound closure across three geometric dimensions — width, length, depth — by explicit Euler integration of a coupled system.</li>
+            <li>Encoded the biology as latent state driving visible metrics: fibrin clot, macrophage activity, TGF-β signalling, fibroblast activity, collagen maturity.</li>
+            <li>Produced dual-panel animations (top-view ellipse shrinkage, side-view depth reduction) and CSV time-series exports with NumPy, Matplotlib and Pandas.</li>
+        </ul>
+    </section>
+
+    <section id="steam">
+        <h2>Steam Commercial Success Prediction</h2>
+        <p class="role">Spring 2026 · Project lead · COGS 108</p>
+        <ul>
+            <li>Led a team through cleaning, exploratory analysis and regression on <strong>27,000+ Steam titles</strong> to quantify how pricing strategy and pre-release tags relate to revenue.</li>
+            <!-- TODO (Zhen): one sentence with the actual finding — which variable explained more revenue variance,
+     and the direction. An entry that states the question and withholds the answer reads worse than no entry. -->
+            <li>Most of the work was in the cleaning: at this size, the convenient join and the correct join give different answers.</li>
+        </ul>
+    </section>
+
+    <section id="epl">
+        <h2>Premier League Transfer Efficiency</h2>
+        <p class="role">Jan – Mar 2026 · Personal project</p>
+        <ul>
+            <!-- TODO (Zhen): state the answer, with r² or p-value and the direction. The whole appeal of this project
+     is that it asks a question people argue about. -->
+            <li>Scraped ten years of transfer spending and goal difference for all 20 clubs, then tested whether spend predicts results, with linear regression and hypothesis testing.</li>
+        </ul>
+    </section>
+
+</article>
+
+<nav class="pager" aria-label="More pages">
+    <a class="pager-prev" href="edge-ai.html"><span aria-hidden="true">←</span> Previous: Edge AI</a>
+    <a class="pager-next" href="beyond-code.html">Next: Beyond Code <span aria-hidden="true">→</span></a>
+</nav>
+</main>
+
+<footer class="sitefoot">
+    <a href="index.html">Overview</a> ·
+    <a href="mailto:zhw124@ucsd.edu">zhw124@ucsd.edu</a> ·
+    <a href="https://github.com/zhenzhenfufu">GitHub</a>
+</footer>
+
+<script src="app.js" defer></script>
+</body>
+</html>
