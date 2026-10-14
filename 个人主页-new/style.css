@@ -1,0 +1,618 @@
+/* ---------------------------------------------------------------------------
+   Zhen Wang — personal site
+   One stylesheet for the overview page and every detail page.
+
+   Palette: "Doujin Ink" — warm press paper, blue-black ink, a periwinkle /
+   sakura accent pair. The ACG register lives in exactly two places: the hue
+   pair and the warmth of the paper. The warm half is rationed — identity line,
+   section-rule segment, eyebrow, selection — and never touches body text, so
+   the page reads as print-sober to a physics PI and still looks like it was
+   made by someone with taste rather than a Bootstrap default.
+   Every text pair below is >= 4.5:1 in both themes.
+--------------------------------------------------------------------------- */
+
+:root {
+    color-scheme: light dark;
+
+    /* paper & ink */
+    --page-bg:      #faf8f4;   /* warm press paper — 2.4% warm shift, not sepia */
+    --card-bg:      #fffdf9;   /* cards lift OFF the paper instead of sinking into gray */
+    --card-bg-alt:  #f1f2fe;   /* cool tint: lead card, hovered card */
+    --ink:          #16181f;   /* blue-black: headings, titles, strong (16.7:1) */
+    --ink-soft:     #4a5060;   /* body copy (7.6:1) */
+    --muted:        #646a7b;   /* dates, captions, stack lines (5.1:1) */
+    --line:         #dfd8ca;   /* warm hairline, decorative only */
+    --bar:          #898da6;   /* resting card bar */
+
+    /* signature cool — links, orgs, structure */
+    --iris:         #454ecb;   /* 6.2:1 on paper, 6.5:1 on card */
+    --iris-deep:    #3b43b8;   /* hover / text on a cool tint */
+    --iris-hi:      #5b6cf0;   /* NON-TEXT only: rings, strokes, glow */
+    --iris-line:    #dce0fa;
+
+    /* signature warm — rationed */
+    --sakura:       #c0295a;   /* 5.3:1 on paper: eyebrow, identity line, rule segment */
+    --sakura-soft:  #fbe3e9;
+
+    /* support — one hue, one job */
+    --brass:        #8a6a24;
+    --brass-line:   #ad8134;
+
+    --code-bg:      #f1eee6;
+    --fx-cool-rgb:  69, 78, 203;
+    --fx-warm-rgb:  192, 41, 90;
+
+    --radius: 10px;
+    --sidebar-w: 320px;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --page-bg:      #121521;   /* blue-violet night, not neutral black */
+        --card-bg:      #1a1e2c;
+        --card-bg-alt:  #1e2440;
+        --ink:          #edeff7;
+        --ink-soft:     #a9b2c8;
+        --muted:        #8a93aa;
+        --line:         #2c3242;
+        --bar:          #636c8c;
+
+        --iris:         #9fb1ff;
+        --iris-deep:    #b8c4ff;
+        --iris-hi:      #b8c4ff;
+        --iris-line:    #2a3356;
+
+        --sakura:       #e98ea8;   /* chroma pulled, hue kept — full sakura on navy reads as stream overlay */
+        --sakura-soft:  #2e1e29;
+
+        --brass:        #e2b974;
+        --brass-line:   #c9a05c;
+
+        --code-bg:      #1f2433;
+        --fx-cool-rgb:  159, 177, 255;
+        --fx-warm-rgb:  233, 142, 168;
+    }
+}
+
+* { box-sizing: border-box; }
+
+html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    margin: 0;
+    display: flex;
+    font-family: 'Hiragino Sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    background-color: var(--page-bg);
+    /* two static low-alpha washes: paint only, no image, no request */
+    background-image:
+        radial-gradient(1100px 620px at 10% -12%, rgba(var(--fx-cool-rgb), 0.055), transparent 62%),
+        radial-gradient(820px 520px at 100% 2%, rgba(var(--fx-warm-rgb), 0.038), transparent 64%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+::selection { background: var(--iris-line); color: var(--ink); }
+
+a { color: var(--iris); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+a:hover { color: var(--sakura); }
+
+:focus-visible { outline: 2px solid var(--iris); outline-offset: 3px; border-radius: 3px; }
+
+/* --- sidebar (overview page) -------------------------------------------- */
+
+.sidebar {
+    width: var(--sidebar-w);
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    flex: none;
+    padding: 56px 38px;
+    border-right: 1px solid var(--line);
+    overflow-y: auto;
+}
+
+.profile-img {
+    width: 148px;
+    height: 148px;
+    border-radius: 12px;
+    object-fit: cover;
+    margin-bottom: 22px;
+    border: 1px solid var(--iris-line);
+    box-shadow: 0 6px 22px -14px rgba(var(--fx-cool-rgb), 0.55);
+}
+
+.sidebar h1 {
+    margin: 0;
+    font-size: 1.65rem;
+    line-height: 1.15;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+}
+
+.sidebar-info {
+    margin-top: 14px;
+    padding-bottom: 18px;
+    font-size: 0.88rem;
+    color: var(--muted);
+    border-bottom: 1px solid var(--line);
+}
+
+.major-highlight {
+    display: block;
+    margin-top: 5px;
+    font-weight: 700;
+    font-size: 0.98rem;
+    color: var(--sakura);   /* the one identity line gets the warm accent */
+}
+
+.sidebar-links { margin-top: 22px; display: flex; flex-direction: column; gap: 13px; }
+
+.sidebar-link {
+    width: fit-content;
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: color 0.16s ease, border-color 0.16s ease;
+}
+.sidebar-link:hover, .sidebar-link:focus-visible { color: var(--iris); border-bottom-color: var(--iris-line); }
+
+.sidebar-focus {
+    margin-top: 26px;
+    padding: 2px 0 2px 12px;
+    border-left: 2px solid var(--brass-line);
+    font-size: 0.84rem;
+    line-height: 1.55;
+    color: var(--ink-soft);
+}
+
+/* --- main column -------------------------------------------------------- */
+
+.main { flex: 1; min-width: 0; padding: 56px 72px 90px; max-width: 980px; }
+
+section { margin-bottom: 46px; }
+
+h2 {
+    position: relative;
+    margin: 0 0 24px;
+    padding-bottom: 9px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink);
+}
+/* a colophon bar, not a gradient wash: hard stops, cool then warm then hairline */
+h2::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+        var(--iris) 0, var(--iris) 2.25rem,
+        var(--sakura) 2.25rem, var(--sakura) 3.25rem,
+        var(--line) 3.25rem, var(--line) 100%);
+}
+
+.intro { font-size: 1.04rem; margin: 0 0 16px; }
+.intro strong { color: var(--ink); }
+.intro-aside { font-size: 0.92rem; color: var(--muted); margin: 0; }
+
+/* --- "Now" list --------------------------------------------------------- */
+
+.now-list { list-style: none; margin: 0; padding: 0; }
+.now-list li { position: relative; padding-left: 18px; margin-bottom: 11px; font-size: 0.95rem; }
+.now-list li::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0.66em;
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--sakura);
+}
+.now-when {
+    display: inline-block;
+    min-width: 108px;
+    margin-right: 6px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+/* --- overview cards ----------------------------------------------------- */
+
+.card-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+
+.card {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    padding: 20px 22px;
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--bar);
+    border-radius: var(--radius);
+    background: var(--card-bg);
+    color: inherit;
+    text-decoration: none;
+    transition: border-left-color 0.18s ease, border-color 0.18s ease,
+                background-color 0.18s ease, transform 0.18s ease;
+}
+.card:hover, .card:focus-visible {
+    transform: translateY(-2px);
+    border-left-color: var(--iris);
+    border-color: var(--iris-line);
+    background-color: var(--card-bg-alt);
+}
+.card-lead { grid-column: 1 / -1; border-left-color: var(--iris); }
+
+.card-head { display: flex; justify-content: space-between; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+.card-title { font-size: 1.08rem; font-weight: 700; color: var(--ink); }
+.card-date { font-size: 0.8rem; color: var(--muted); white-space: nowrap; }
+.card-org { display: block; margin: 3px 0 0; font-size: 0.88rem; font-weight: 600; color: var(--iris); }
+.card-line { margin: 10px 0 0; font-size: 0.92rem; }
+.card-line strong { color: var(--ink); }
+.card-more { display: inline-block; margin-top: 12px; font-size: 0.82rem; font-weight: 700; color: var(--iris); }
+.card:hover .card-more, .card:focus-visible .card-more { color: var(--iris-deep); }
+
+/* --- skills ------------------------------------------------------------- */
+
+.skills-grid { display: grid; grid-template-columns: 136px 1fr; gap: 12px 16px; font-size: 0.9rem; }
+.skills-label { font-weight: 700; color: var(--ink); }
+
+/* --- detail pages ------------------------------------------------------- */
+
+body.detail { display: block; }
+
+.topbar {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    flex-wrap: wrap;
+    padding: 14px 32px;
+    border-bottom: 1px solid var(--line);
+    background: var(--page-bg);
+}
+
+.home-link { font-weight: 700; font-size: 0.92rem; color: var(--ink); text-decoration: none; }
+.home-link:hover { color: var(--iris); }
+
+.topnav { display: flex; gap: 16px; flex-wrap: wrap; font-size: 0.84rem; }
+.topnav a { color: var(--muted); text-decoration: none; padding-bottom: 2px; border-bottom: 1px solid transparent; }
+.topnav a:hover { color: var(--iris); border-bottom-color: var(--iris-line); }
+.topnav a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--sakura); font-weight: 600; }
+
+.page { max-width: 760px; margin: 0 auto; padding: 48px 28px 80px; }
+
+.eyebrow {
+    margin: 0 0 8px;
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--sakura);
+}
+
+.page h1 { margin: 0 0 10px; font-size: 2.1rem; line-height: 1.18; letter-spacing: -0.02em; color: var(--ink); }
+
+.role { margin: 0 0 22px; font-size: 0.95rem; font-weight: 600; color: var(--iris); }
+
+.lede {
+    margin: 0 0 28px;
+    padding-left: 16px;
+    border-left: 2px solid var(--sakura);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--ink);
+}
+
+.factbar {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1px;
+    margin: 0 0 34px;
+    padding: 0;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+}
+.factbar > div { background: var(--card-bg); padding: 13px 16px; }
+.factbar dt {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+.factbar dd { margin: 3px 0 0; font-size: 0.9rem; font-weight: 600; color: var(--ink); }
+
+.page section { margin-bottom: 34px; }
+.page h2 {
+    margin-bottom: 14px;
+    padding: 0 0 0 12px;
+    border-left: 3px solid var(--iris);
+    font-size: 1.12rem;
+    letter-spacing: 0;
+    text-transform: none;
+}
+.page h2::after { display: none; }
+.page p { margin: 0 0 14px; }
+.page ul { margin: 0; padding-left: 20px; }
+.page li { margin-bottom: 10px; }
+.page li strong, .page p strong { color: var(--ink); }
+
+code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.88em;
+    padding: 1px 5px;
+    border-radius: 4px;
+    background: var(--code-bg);
+    color: var(--ink);
+}
+
+.limits {
+    padding: 18px 22px;
+    border: 1px dashed var(--bar);
+    border-radius: var(--radius);
+}
+.limits h2 { border-left-color: var(--muted); }
+
+.stack-line {
+    margin-top: 26px;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+    font-size: 0.82rem;
+    font-style: italic;
+    color: var(--muted);
+}
+
+.pager {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 44px;
+    padding-top: 22px;
+    border-top: 1px solid var(--line);
+    font-size: 0.88rem;
+    font-weight: 600;
+}
+.pager a { text-decoration: none; }
+.pager a:hover { text-decoration: underline; }
+.pager-next { margin-left: auto; text-align: right; }
+
+.sitefoot {
+    padding: 22px 32px 40px;
+    border-top: 1px solid var(--line);
+    text-align: center;
+    font-size: 0.82rem;
+    color: var(--muted);
+}
+
+/* --- progressive enhancement (app.js) ----------------------------------- */
+
+.reveal { opacity: 0; transform: translateY(10px); }
+.reveal.is-in { opacity: 1; transform: none; transition: opacity 0.45s ease, transform 0.45s ease; }
+
+/* --- responsive --------------------------------------------------------- */
+
+@media (max-width: 900px) {
+    body { flex-direction: column; background-attachment: scroll; }
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: static;
+        padding: 34px 24px 26px;
+        border-right: none;
+        border-bottom: 1px solid var(--line);
+    }
+    .profile-img { width: 104px; height: 104px; }
+    .main { padding: 34px 24px 70px; max-width: 100%; }
+    .card-grid { grid-template-columns: 1fr; }
+    .skills-grid { grid-template-columns: 1fr; gap: 2px 0; }
+    .skills-label { margin-top: 12px; }
+    .page { padding: 32px 20px 64px; }
+    .page h1 { font-size: 1.7rem; }
+    .lede { font-size: 1.02rem; }
+    .topbar { padding: 12px 20px; gap: 12px; }
+    .now-when { display: block; min-width: 0; margin-bottom: 1px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+    }
+    .reveal { opacity: 1; transform: none; }
+}
+
+/* --- in-page section nav (overview sidebar) ------------------------------ */
+
+.sidebar-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin-top: 24px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+    font-size: 0.82rem;
+}
+.sidebar-sections a {
+    width: fit-content;
+    padding-left: 10px;
+    border-left: 2px solid transparent;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.16s ease, border-color 0.16s ease;
+}
+.sidebar-sections a:hover { color: var(--iris); }
+.sidebar-sections a.is-current {
+    color: var(--ink);
+    font-weight: 600;
+    border-left-color: var(--sakura);
+}
+
+@media (max-width: 900px) {
+    .sidebar-sections { flex-direction: row; flex-wrap: wrap; gap: 10px 16px; }
+    .sidebar-sections a { padding-left: 0; border-left: none; }
+    .sidebar-sections a.is-current { border-bottom: 2px solid var(--sakura); }
+}
+
+/* --- prerequisite graph widget ------------------------------------------ */
+
+.graph-intro { font-size: 0.95rem; margin: 0 0 16px; }
+.graph-intro strong { color: var(--ink); }
+
+.dag-wrap { margin: 0; }
+
+.dag-scroll {
+    overflow-x: auto;
+    padding: 10px 12px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--card-bg);
+}
+
+#dag { display: block; width: 100%; min-width: 720px; height: auto; }
+
+.dag-edge {
+    fill: none;
+    stroke: var(--bar);
+    stroke-width: 1.1;
+    opacity: 0.55;
+    transition: stroke 0.15s ease, opacity 0.15s ease, stroke-width 0.15s ease;
+}
+.dag-edge.is-on { stroke: var(--iris); stroke-width: 1.9; opacity: 1; }
+
+.dag-node { cursor: pointer; transition: opacity 0.15s ease; }
+.dag-node rect {
+    fill: var(--card-bg);
+    stroke: var(--bar);
+    stroke-width: 1;
+    transition: fill 0.15s ease, stroke 0.15s ease;
+}
+.dag-node text {
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    fill: var(--ink-soft);
+    pointer-events: none;
+}
+.dag-node:focus-visible { outline: none; }
+.dag-node:focus-visible rect { stroke: var(--iris); stroke-width: 2.2; }
+
+#dag.is-active .dag-node { opacity: 0.3; }
+#dag.is-active .dag-edge { opacity: 0.12; }
+#dag.is-active .dag-edge.is-on { opacity: 1; }
+#dag .dag-node.is-anc, #dag .dag-node.is-target { opacity: 1; }
+
+.dag-node.is-anc rect { fill: var(--card-bg-alt); stroke: var(--iris); }
+.dag-node.is-anc text { fill: var(--ink); }
+.dag-node.is-target rect { fill: var(--iris); stroke: var(--iris); }
+.dag-node.is-target text { fill: var(--page-bg); }
+
+.dag-wrap figcaption {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    font-size: 0.84rem;
+    color: var(--muted);
+}
+.dag-readout strong { color: var(--ink); font-weight: 600; }
+.dag-link { font-weight: 600; text-decoration: none; white-space: nowrap; }
+.dag-link:hover { text-decoration: underline; }
+
+@media (max-width: 900px) {
+    .dag-scroll { padding: 8px; }
+    .dag-wrap figcaption { font-size: 0.8rem; }
+}
+
+/* --- evaluation table (course planner page) ----------------------------- */
+
+.table-wrap { overflow-x: auto; margin: 0 0 16px; }
+
+.evaltable {
+    width: 100%;
+    min-width: 520px;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+}
+.evaltable caption {
+    caption-side: bottom;
+    margin-top: 10px;
+    font-size: 0.8rem;
+    line-height: 1.5;
+    color: var(--muted);
+    text-align: left;
+}
+.evaltable th, .evaltable td {
+    padding: 9px 12px;
+    border-bottom: 1px solid var(--line);
+    text-align: left;
+    vertical-align: top;
+}
+.evaltable thead th {
+    font-size: 0.76rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-bottom-color: var(--bar);
+}
+.evaltable tbody th { font-weight: 600; color: var(--ink-soft); }
+.evaltable td { color: var(--ink-soft); }
+.evaltable td strong { color: var(--ink); }
+.evaltable tbody tr:last-child th, .evaltable tbody tr:last-child td { border-bottom: none; }
+
+/* --- motion details ------------------------------------------------------ */
+
+/* the colophon bar under each heading draws itself in as the section arrives */
+.reveal h2::after { transform: scaleX(0); transform-origin: left center; }
+.reveal.is-in h2::after { transform: scaleX(1); transition: transform 0.5s ease 0.06s; }
+
+/* links read as links at rest, and commit on hover */
+a { text-decoration-color: var(--iris-line); }
+a:hover { text-decoration-color: currentColor; }
+
+/* below 900px the sidebar scrolls away, so there is no other way back up */
+.to-top {
+    position: fixed;
+    right: 16px;
+    bottom: 16px;
+    z-index: 10;
+    display: none;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    background: var(--card-bg);
+    color: var(--iris);
+    font-size: 1rem;
+    line-height: 1;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.to-top.is-shown { opacity: 1; transform: none; }
+
+@media (max-width: 900px) {
+    .to-top { display: block; }
+}
