@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>UCSD Course Planning Agent | Zhen Wang</title>
 <meta name="description" content="A course planner that will not hand you a schedule you are not allowed to take: a prerequisite DAG parsed from catalog prose, a deterministic validator, and first-pass plan legality from 40% to 100%.">
-<link rel="stylesheet" href="style.css?v=da8eb48f">
+<link rel="stylesheet" href="style.css?v=df0a6195">
 </head>
 <body class="detail" data-ink="grid">
 
@@ -41,7 +41,7 @@
     </p>
 
     <dl class="factbar">
-        <div><dt>Graph</dt><dd>69 nodes · 95 edges, parsed from prose</dd></div>
+        <div><dt>Graph</dt><dd>69 nodes · 142 edges, parsed from prose</dd></div>
         <div><dt>Context per query</dt><dd>8–13% of the catalog, not 100%</dd></div>
         <div><dt>First-pass legality</dt><dd>40% <span aria-hidden="true">→</span> 100%</dd></div>
         <div><dt>Tests</dt><dd>27 unit tests · 9 validator fixtures</dd></div>
@@ -64,13 +64,17 @@
         </p>
 
         <p>
-            In October 2026 I checked every parsed prerequisite against the official UC San Diego
-            catalog line by line and found six courses whose stored description was simply wrong —
-            DSC 80 was recorded as needing DSC 10 when it needs DSC 30 and DSC 40A, DSC 161's real
-            prerequisites are not DSC courses at all, and the "probability course" group was missing
-            half its options. Fixing the source text, not the parser, took the graph from 74 edges to
-            <strong>95</strong>. Alternatives the dataset does not contain — MATH 31AH, ECON 120A,
-            MAE 108 — are now reported as out-of-catalog requirements rather than dropped.
+            In October 2026 I rebuilt the whole dataset against the official UC San Diego catalog —
+            every department the graph touches, not just DSC. The stored prerequisite sentences had been
+            hand-written, and a lot of them were wrong: DSC 80 was recorded as needing DSC 10 when it needs
+            DSC 30 and DSC 40A, DSC 161's real prerequisites are not DSC courses at all, MATH 183 waits on
+            MATH 20C rather than 20B, and the "probability course" group was missing half its options.
+            Three parser habits of the catalog had to be handled before the rest fell out: a department
+            carried over rather than repeated (<em>"DSC 20/R and 40A/R"</em>), a subject code written in
+            mixed case (<em>"Math 20C"</em>), and a dash meaning a whole sequence
+            (<em>"MATH 20A-B-C"</em>). Fixing the source text rather than the parser took the graph from 74
+            edges to <strong>142</strong>, and a requirement a placement exam can satisfy is now recorded
+            as exactly that instead of becoming a false edge.
         </p>
     </section>
 
@@ -208,6 +212,6 @@
     <a href="https://github.com/zhenzhenfufu">GitHub</a>
 </footer>
 
-<script src="app.js?v=da8eb48f" defer></script>
+<script src="app.js?v=df0a6195" defer></script>
 </body>
 </html>
