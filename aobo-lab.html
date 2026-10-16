@@ -36,14 +36,30 @@
     </p>
 
     <section>
-        <h2>What the lab works on</h2>
+        <h2>What I am working on</h2>
         <p>
-            Machine learning for physics time series — the kind of data that carries evidence for dark
-            matter, neutrinos and gravitational waves, buried in complex noise. Part of the group's
-            current work is an evaluation protocol for long-horizon agentic ML development, motivated by
-            a failure mode I had already run into from the industry side: when an agent optimises one or
-            two numerical scores, it can take shortcuts, collapse to a degenerate solution, or game the
-            evaluation procedure, and still produce a high-scoring model that is scientifically invalid.
+            The lab's open-source system is <a href="https://github.com/yuema137/SIDERIUS">SIDERIUS</a>, a
+            long-horizon auto-ML agent built by <strong>Yue Ma</strong> with Prof. Li and the group: you give
+            it a dataset and a research question, and it proposes models, implements them, trains and
+            evaluates them, and uses what came back to choose the next attempt — declaring validity checks
+            alongside the metric rather than optimising the metric alone. The write-up is
+            <a href="https://zenodo.org/records/23071121">here</a>.
+        </p>
+        <p>
+            My work starts from that system and pushes on the training side of the loop. I am not rebuilding
+            it; I am working inside it. There is nothing of my own to show yet — I joined in October.
+        </p>
+    </section>
+
+    <section>
+        <h2>Why the problem is shaped this way</h2>
+        <p>
+            Physics time series — the data that carries evidence for dark matter, neutrinos and gravitational
+            waves — hide a weak signal inside complex noise. An agent that optimises one or two numerical
+            scores on data like that can take a shortcut, collapse to a degenerate solution, or fit the
+            evaluation procedure itself, and still report a number that looks like progress. The reason I
+            wanted into this group is narrow: physics is where a model that games its own metric eventually
+            gets caught, because the thing it is supposed to find is real.
         </p>
     </section>
 
@@ -103,7 +119,7 @@
     </figure>
 
     <section>
-        <h2>Why it lines up with what I have done</h2>
+        <h2>What I bring to it</h2>
         <p>
             At Pfizer I traced a review agent that was keying on how often a date appeared rather than on
             the rule it had been given — it would have scored well on anything but the right test. In my
@@ -116,9 +132,9 @@
     <section class="limits">
         <h2>Where I am right now</h2>
         <p>
-            Early. I am reading the group's current work and getting up to speed on the data; I have no
-            results of my own here yet, and I would rather say so than dress up a month of reading. I
-            am also taking DSC 291 with Prof. Li this quarter.
+            Early. I am working through SIDERIUS and the group's results, and running training on top of
+            it; I have no findings of my own yet, and I would rather say so than dress up a month of
+            reading. I am also taking Prof. Li's DSC 291 this quarter.
         </p>
     </section>
 

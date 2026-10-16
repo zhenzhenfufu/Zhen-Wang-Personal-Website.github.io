@@ -33,9 +33,10 @@
 
     <nav class="sidebar-sections" aria-label="On this page">
         <a href="#about">About</a>
+        <a href="#internships">Internships</a>
+        <a href="#research">Research &amp; Projects</a>
+        <a href="#community">Community</a>
         <a href="#timeline">Timeline</a>
-        <a href="#work">Work &amp; Research</a>
-        <a href="#projects">Projects &amp; Beyond</a>
         <a href="#skills">Stack</a>
     </nav>
 
@@ -53,7 +54,7 @@
             I am a second-year undergraduate at <strong>UC San Diego</strong> in <strong>Data Science</strong>.
             I build <strong>AI agents and machine learning systems</strong>, and I care most about the part
             that usually gets skipped: showing that the output is actually correct. This summer I spent
-            three months at <strong>Pfizer China R&amp;D</strong> shipping an agent-assisted pipeline that
+            three months at <strong>Pfizer China R&amp;D</strong> building an agent-assisted pipeline that
             turns clinical trial data into regulator-ready filings — a place where an unverified answer is
             not an answer.
         </p>
@@ -62,6 +63,176 @@
             &amp; Physics) on machine learning for physics time series, and I am always glad to talk about
             agent evaluation — <a href="mailto:zhw124@ucsd.edu">zhw124@ucsd.edu</a>.
         </p>
+    </section>
+
+    <section id="graph">
+        <h2>What the course agent actually sees</h2>
+        <p class="graph-intro">
+            Every course the Data Science major requires, and what each one waits on — parsed by my planning
+            agent out of catalog sentences written for humans, not for parsers. Hover or tab to a course to
+            light up everything it depends on. That closure is the part the model is not allowed to get
+            wrong: asked for a whole multi-quarter plan in one shot it was legal <strong>40%</strong> of the
+            time; generating one quarter at a time against a recomputed eligible set,
+            <strong>100%</strong> across 20 tasks.
+        </p>
+        <figure class="dag-wrap">
+            <div class="dag-scroll">
+<svg id="dag" viewBox="0 0 1174 260" role="img" aria-labelledby="dag-title dag-desc" xmlns="http://www.w3.org/2000/svg">
+  <title id="dag-title">Required-course prerequisite graph for the UC San Diego Data Science major</title>
+  <desc id="dag-desc">The 22 courses the major requires and the 37 prerequisite relations between them, parsed from catalog prose. Arrows point from a prerequisite to the course that needs it. Hover or focus a course to highlight everything it depends on.</desc>
+  <g class="dag-edges"><path class="dag-edge" data-from="MATH 20A" data-to="MATH 20B" d="M84 223 C103 223 103 194 122 194" /><path class="dag-edge" data-from="MATH 20B" data-to="MATH 183" d="M210 194 C229 194 229 136 248 136" /><path class="dag-edge" data-from="MATH 20B" data-to="MATH 20C" d="M210 194 C229 194 229 213 248 213" /><path class="dag-edge" data-from="MATH 20C" data-to="MATH 180A" d="M336 213 C355 213 355 194 374 194" /><path class="dag-edge" data-from="MATH 20C" data-to="MATH 189" d="M336 213 C418 213 418 213 500 213" /><path class="dag-edge" data-from="MATH 20C" data-to="DSC 40A" d="M336 213 C355 213 355 78 374 78" /><path class="dag-edge" data-from="MATH 18" data-to="MATH 189" d="M84 165 C292 165 292 213 500 213" /><path class="dag-edge" data-from="MATH 18" data-to="DSC 40A" d="M84 165 C229 165 229 78 374 78" /><path class="dag-edge" data-from="MATH 180A" data-to="MATH 189" d="M462 194 C481 194 481 213 500 213" /><path class="dag-edge" data-from="MATH 180A" data-to="DSC 140A" d="M462 194 C544 194 544 136 626 136" /><path class="dag-edge" data-from="MATH 180A" data-to="DSC 140B" d="M462 194 C544 194 544 182 626 182" /><path class="dag-edge" data-from="MATH 180A" data-to="DSC 148" d="M462 194 C544 194 544 229 626 229" /><path class="dag-edge" data-from="MATH 183" data-to="DSC 140A" d="M336 136 C481 136 481 136 626 136" /><path class="dag-edge" data-from="MATH 183" data-to="DSC 140B" d="M336 136 C481 136 481 182 626 182" /><path class="dag-edge" data-from="MATH 183" data-to="DSC 148" d="M336 136 C481 136 481 229 626 229" /><path class="dag-edge" data-from="MATH 189" data-to="DSC 180A" d="M588 213 C733 213 733 136 878 136" /><path class="dag-edge" data-from="DSC 10" data-to="DSC 20" d="M84 107 C103 107 103 78 122 78" /><path class="dag-edge" data-from="DSC 10" data-to="DSC 40A" d="M84 107 C229 107 229 78 374 78" /><path class="dag-edge" data-from="DSC 20" data-to="DSC 30" d="M210 78 C229 78 229 59 248 59" /><path class="dag-edge" data-from="DSC 20" data-to="DSC 40B" d="M210 78 C355 78 355 59 500 59" /><path class="dag-edge" data-from="DSC 30" data-to="DSC 80" d="M336 59 C418 59 418 136 500 136" /><path class="dag-edge" data-from="DSC 40A" data-to="DSC 80" d="M462 78 C481 78 481 136 500 136" /><path class="dag-edge" data-from="DSC 40A" data-to="DSC 40B" d="M462 78 C481 78 481 59 500 59" /><path class="dag-edge" data-from="DSC 40B" data-to="DSC 148" d="M588 59 C607 59 607 229 626 229" /><path class="dag-edge" data-from="DSC 40B" data-to="DSC 100" d="M588 59 C607 59 607 43 626 43" /><path class="dag-edge" data-from="DSC 80" data-to="DSC 140A" d="M588 136 C607 136 607 136 626 136" /><path class="dag-edge" data-from="DSC 80" data-to="DSC 140B" d="M588 136 C607 136 607 182 626 182" /><path class="dag-edge" data-from="DSC 80" data-to="DSC 148" d="M588 136 C607 136 607 229 626 229" /><path class="dag-edge" data-from="DSC 80" data-to="DSC 106" d="M588 136 C607 136 607 90 626 90" /><path class="dag-edge" data-from="DSC 80" data-to="DSC 100" d="M588 136 C607 136 607 43 626 43" /><path class="dag-edge" data-from="DSC 100" data-to="DSC 102" d="M714 43 C733 43 733 136 752 136" /><path class="dag-edge" data-from="DSC 102" data-to="DSC 180A" d="M840 136 C859 136 859 136 878 136" /><path class="dag-edge" data-from="DSC 106" data-to="DSC 180A" d="M714 90 C796 90 796 136 878 136" /><path class="dag-edge" data-from="DSC 140A" data-to="DSC 180A" d="M714 136 C796 136 796 136 878 136" /><path class="dag-edge" data-from="DSC 140B" data-to="DSC 180A" d="M714 182 C796 182 796 136 878 136" /><path class="dag-edge" data-from="DSC 148" data-to="DSC 180A" d="M714 229 C796 229 796 136 878 136" /><path class="dag-edge" data-from="DSC 180A" data-to="DSC 180B" d="M966 136 C985 136 985 136 1004 136" /></g>
+  <g class="dag-nodes"><g class="dag-node" data-id="COGS 9" tabindex="0" role="button" aria-label="COGS 9. No prerequisites."><rect x="40" y="36" rx="5" width="88" height="26"/><text x="84" y="53" text-anchor="middle">COGS 9</text></g><g class="dag-node" data-id="DSC 10" tabindex="0" role="button" aria-label="DSC 10. No prerequisites."><rect x="40" y="94" rx="5" width="88" height="26"/><text x="84" y="111" text-anchor="middle">DSC 10</text></g><g class="dag-node" data-id="DSC 100" tabindex="0" role="button" aria-label="DSC 100. Prerequisites: DSC 40B, DSC 80."><rect x="670" y="30" rx="5" width="88" height="26"/><text x="714" y="47" text-anchor="middle">DSC 100</text></g><g class="dag-node" data-id="DSC 102" tabindex="0" role="button" aria-label="DSC 102. Prerequisites: DSC 100."><rect x="796" y="123" rx="5" width="88" height="26"/><text x="840" y="140" text-anchor="middle">DSC 102</text></g><g class="dag-node" data-id="DSC 106" tabindex="0" role="button" aria-label="DSC 106. Prerequisites: DSC 80."><rect x="670" y="77" rx="5" width="88" height="26"/><text x="714" y="94" text-anchor="middle">DSC 106</text></g><g class="dag-node" data-id="DSC 140A" tabindex="0" role="button" aria-label="DSC 140A. Prerequisites: DSC 80, MATH 180A, MATH 183."><rect x="670" y="123" rx="5" width="88" height="26"/><text x="714" y="140" text-anchor="middle">DSC 140A</text></g><g class="dag-node" data-id="DSC 140B" tabindex="0" role="button" aria-label="DSC 140B. Prerequisites: DSC 80, MATH 180A, MATH 183."><rect x="670" y="169" rx="5" width="88" height="26"/><text x="714" y="186" text-anchor="middle">DSC 140B</text></g><g class="dag-node" data-id="DSC 148" tabindex="0" role="button" aria-label="DSC 148. Prerequisites: DSC 40B, DSC 80, MATH 180A, MATH 183."><rect x="670" y="216" rx="5" width="88" height="26"/><text x="714" y="233" text-anchor="middle">DSC 148</text></g><g class="dag-node dag-capstone" data-id="DSC 180A" tabindex="0" role="button" aria-label="DSC 180A. Prerequisites: DSC 102, DSC 106, DSC 140A, DSC 140B, DSC 148, MATH 189."><rect x="922" y="123" rx="5" width="88" height="26"/><text x="966" y="140" text-anchor="middle">DSC 180A</text></g><g class="dag-node dag-capstone" data-id="DSC 180B" tabindex="0" role="button" aria-label="DSC 180B. Prerequisites: DSC 180A."><rect x="1048" y="123" rx="5" width="88" height="26"/><text x="1092" y="140" text-anchor="middle">DSC 180B</text></g><g class="dag-node" data-id="DSC 20" tabindex="0" role="button" aria-label="DSC 20. Prerequisites: DSC 10."><rect x="166" y="65" rx="5" width="88" height="26"/><text x="210" y="82" text-anchor="middle">DSC 20</text></g><g class="dag-node" data-id="DSC 30" tabindex="0" role="button" aria-label="DSC 30. Prerequisites: DSC 20."><rect x="292" y="46" rx="5" width="88" height="26"/><text x="336" y="63" text-anchor="middle">DSC 30</text></g><g class="dag-node" data-id="DSC 40A" tabindex="0" role="button" aria-label="DSC 40A. Prerequisites: DSC 10, MATH 18, MATH 20C."><rect x="418" y="65" rx="5" width="88" height="26"/><text x="462" y="82" text-anchor="middle">DSC 40A</text></g><g class="dag-node" data-id="DSC 40B" tabindex="0" role="button" aria-label="DSC 40B. Prerequisites: DSC 20, DSC 40A."><rect x="544" y="46" rx="5" width="88" height="26"/><text x="588" y="63" text-anchor="middle">DSC 40B</text></g><g class="dag-node" data-id="DSC 80" tabindex="0" role="button" aria-label="DSC 80. Prerequisites: DSC 30, DSC 40A."><rect x="544" y="123" rx="5" width="88" height="26"/><text x="588" y="140" text-anchor="middle">DSC 80</text></g><g class="dag-node" data-id="MATH 18" tabindex="0" role="button" aria-label="MATH 18. No prerequisites."><rect x="40" y="152" rx="5" width="88" height="26"/><text x="84" y="169" text-anchor="middle">MATH 18</text></g><g class="dag-node" data-id="MATH 180A" tabindex="0" role="button" aria-label="MATH 180A. Prerequisites: MATH 20C."><rect x="418" y="181" rx="5" width="88" height="26"/><text x="462" y="198" text-anchor="middle">MATH 180A</text></g><g class="dag-node" data-id="MATH 183" tabindex="0" role="button" aria-label="MATH 183. Prerequisites: MATH 20B."><rect x="292" y="123" rx="5" width="88" height="26"/><text x="336" y="140" text-anchor="middle">MATH 183</text></g><g class="dag-node" data-id="MATH 189" tabindex="0" role="button" aria-label="MATH 189. Prerequisites: MATH 18, MATH 180A, MATH 20C."><rect x="544" y="200" rx="5" width="88" height="26"/><text x="588" y="217" text-anchor="middle">MATH 189</text></g><g class="dag-node" data-id="MATH 20A" tabindex="0" role="button" aria-label="MATH 20A. No prerequisites."><rect x="40" y="210" rx="5" width="88" height="26"/><text x="84" y="227" text-anchor="middle">MATH 20A</text></g><g class="dag-node" data-id="MATH 20B" tabindex="0" role="button" aria-label="MATH 20B. Prerequisites: MATH 20A."><rect x="166" y="181" rx="5" width="88" height="26"/><text x="210" y="198" text-anchor="middle">MATH 20B</text></g><g class="dag-node" data-id="MATH 20C" tabindex="0" role="button" aria-label="MATH 20C. Prerequisites: MATH 20B."><rect x="292" y="200" rx="5" width="88" height="26"/><text x="336" y="217" text-anchor="middle">MATH 20C</text></g></g>
+</svg>
+            </div>
+            <figcaption>
+                <span class="dag-readout" data-default="Arrows point from a prerequisite to the course that needs it.">Arrows point from a prerequisite to the course that needs it.</span>
+                <a class="dag-link" href="course-planner.html">How it is built <span aria-hidden="true">→</span></a>
+            </figcaption>
+        </figure>
+    </section>
+
+    <section id="internships">
+        <h2>Internships</h2>
+        <div class="card-grid">
+
+            <a class="card card-lead" href="pfizer.html">
+                <div class="card-head">
+                    <span class="card-title">HGRAC Filing Assistant</span>
+                    <span class="card-date">Jul – Sep 2026</span>
+                </div>
+                <span class="card-org">AI Agent Development Intern · Pfizer (China) R&amp;D Center</span>
+                <p class="card-line">
+                    Built the system that turns a human-written application form and a folder of clinical
+                    datasets into a submission-grade regulatory filing — deterministic where it decides,
+                    model-assisted where it advises, and traceable record by record. Three review agents on
+                    top, one of which I caught reading the shape of the data instead of the rule.
+                </p>
+                <span class="card-more">Read the write-up <span aria-hidden="true">→</span></span>
+            </a>
+
+            <a class="card" href="beyond-code.html#enc">
+                <div class="card-head">
+                    <span class="card-title">ENC Mobile</span>
+                    <span class="card-date">May – Sep 2026</span>
+                </div>
+                <span class="card-org">Campus Growth &amp; Technical Marketing Intern</span>
+                <p class="card-line">
+                    Channel and signup data in Python, competitor pricing to pick the segments worth
+                    chasing, and the FAQ and troubleshooting playbook behind first-line support.
+                </p>
+                <span class="card-more">More <span aria-hidden="true">→</span></span>
+            </a>
+
+            <a class="card" href="beyond-code.html#ambassador">
+                <div class="card-head">
+                    <span class="card-title">miHoYo &amp; Lilith Games</span>
+                    <span class="card-date">Jul 2026 – now</span>
+                </div>
+                <span class="card-org">Campus Ambassador · UC San Diego</span>
+                <p class="card-line">
+                    The bridge between UCSD students and both studios' alumni and recruiting networks:
+                    campus campaigns and a hundred-plus member community.
+                </p>
+                <span class="card-more">More <span aria-hidden="true">→</span></span>
+            </a>
+
+        </div>
+    </section>
+
+    <section id="research">
+        <h2>Research, Competitions &amp; Projects</h2>
+        <div class="card-grid">
+
+            <a class="card card-lead" href="aobo-lab.html">
+                <div class="card-head">
+                    <span class="card-title">AI for Neutrino &amp; Dark Matter</span>
+                    <span class="card-date">Oct 2026 – now</span>
+                </div>
+                <span class="card-org">Rare AI Lab · Prof. Aobo Li · HDSI &amp; Physics, UC San Diego</span>
+                <p class="card-line">
+                    Machine learning for physics time series — rare-event searches for neutrinos and dark
+                    matter. I work inside <strong>SIDERIUS</strong>, the group's open-source long-horizon
+                    auto-ML agent, on the training side of its research loop. Joined this October; nothing
+                    of my own to show yet.
+                </p>
+                <span class="card-more">Read more <span aria-hidden="true">→</span></span>
+            </a>
+
+            <a class="card" href="course-planner.html">
+                <div class="card-head">
+                    <span class="card-title">UCSD Course Planning Agent</span>
+                    <span class="card-date">Apr 2026 – now</span>
+                </div>
+                <span class="card-org">Solo project · live demo &amp; source</span>
+                <p class="card-line">
+                    A prerequisite graph parsed out of catalog prose, and a deterministic checker the model
+                    is not allowed to overrule. First-pass plan legality
+                    <strong>40% <span aria-hidden="true">→</span> 100%</strong>.
+                </p>
+                <span class="card-more">Read the write-up <span aria-hidden="true">→</span></span>
+            </a>
+
+            <a class="card" href="night-water-academy.html">
+                <div class="card-head">
+                    <span class="card-title">Night Water Academy 夜水书院</span>
+                    <span class="card-date">2026 · in review</span>
+                </div>
+                <span class="card-org">Unreal Engine 5 puzzle game · Tsinghua × miHoYo competition entry</span>
+                <p class="card-line">
+                    A floating academy where the reflection keeps the version of the world somebody edited
+                    away. Two levels by a team of five: ink-brush interface baked from calligraphy, audio
+                    synthesised in code, and the build checked by automated passes rather than by replaying it.
+                </p>
+                <span class="card-more">Read the write-up <span aria-hidden="true">→</span></span>
+            </a>
+
+            <a class="card" href="edge-ai.html">
+                <div class="card-head">
+                    <span class="card-title">Thermal Throttling &amp; Energy Cost</span>
+                    <span class="card-date">Mar 2026 – now</span>
+                </div>
+                <span class="card-org">Independent study · advised by Prof. Peter Chi</span>
+                <p class="card-line">
+                    How much inference throughput an edge board keeps once it is hot, instrumented as a time
+                    series rather than a cold-start average. Still early.
+                </p>
+                <span class="card-more">Read more <span aria-hidden="true">→</span></span>
+            </a>
+
+            <a class="card" href="data-projects.html">
+                <div class="card-head">
+                    <span class="card-title">Data Science &amp; Modeling</span>
+                    <span class="card-date">2024 – 2026</span>
+                </div>
+                <span class="card-org">SJTU research assistantship · wound-healing model · Steam · Premier League</span>
+                <p class="card-line">
+                    <strong>500+ hours</strong> of child behavioural data into 95 standardised reports, a
+                    wound-closure simulation derived rather than fitted, and <strong>27,000+</strong> Steam
+                    titles cleaned until the joins stopped lying.
+                </p>
+                <span class="card-more">Four projects <span aria-hidden="true">→</span></span>
+            </a>
+
+        </div>
+    </section>
+
+    <section id="community">
+        <h2>Community &amp; Creation</h2>
+        <div class="card-grid">
+            <a class="card card-lead" href="beyond-code.html">
+                <div class="card-head">
+                    <span class="card-title">Beyond Code</span>
+                    <span class="card-date">2025 – now</span>
+                </div>
+                <span class="card-org">Bilibili · UCSD CGC · WFLA Student Union · club tennis</span>
+                <p class="card-line">
+                    <strong>155K+</strong> views explaining technical things to people who did not ask for
+                    jargon, <strong>500+</strong> international freshmen through orientation, and a
+                    <strong>108-member</strong> volunteer team.
+                </p>
+                <span class="card-more">Read more <span aria-hidden="true">→</span></span>
+            </a>
+        </div>
     </section>
 
     <section id="timeline">
@@ -123,147 +294,6 @@
                 <p class="tl-note">Child behavioural data: pipelines, standardised reports, and administering assessments in person.</p>
             </li>
         </ol>
-    </section>
-
-
-    <section id="graph">
-        <h2>What the course agent actually sees</h2>
-        <p class="graph-intro">
-            Every course the Data Science major requires, and what each one waits on — parsed by my planning
-            agent out of catalog sentences written for humans, not for parsers. Hover or tab to a course to
-            light up everything it depends on. That closure is the part the model is not allowed to get
-            wrong: asked for a whole multi-quarter plan in one shot it was legal <strong>40%</strong> of the
-            time; generating one quarter at a time against a recomputed eligible set,
-            <strong>100%</strong> across 20 tasks.
-        </p>
-        <figure class="dag-wrap">
-            <div class="dag-scroll">
-<svg id="dag" viewBox="0 0 1174 260" role="img" aria-labelledby="dag-title dag-desc" xmlns="http://www.w3.org/2000/svg">
-  <title id="dag-title">Required-course prerequisite graph for the UC San Diego Data Science major</title>
-  <desc id="dag-desc">The 22 courses the major requires and the 37 prerequisite relations between them, parsed from catalog prose. Arrows point from a prerequisite to the course that needs it. Hover or focus a course to highlight everything it depends on.</desc>
-  <g class="dag-edges"><path class="dag-edge" data-from="MATH 20A" data-to="MATH 20B" d="M84 223 C103 223 103 194 122 194" /><path class="dag-edge" data-from="MATH 20B" data-to="MATH 183" d="M210 194 C229 194 229 136 248 136" /><path class="dag-edge" data-from="MATH 20B" data-to="MATH 20C" d="M210 194 C229 194 229 213 248 213" /><path class="dag-edge" data-from="MATH 20C" data-to="MATH 180A" d="M336 213 C355 213 355 194 374 194" /><path class="dag-edge" data-from="MATH 20C" data-to="MATH 189" d="M336 213 C418 213 418 213 500 213" /><path class="dag-edge" data-from="MATH 20C" data-to="DSC 40A" d="M336 213 C355 213 355 78 374 78" /><path class="dag-edge" data-from="MATH 18" data-to="MATH 189" d="M84 165 C292 165 292 213 500 213" /><path class="dag-edge" data-from="MATH 18" data-to="DSC 40A" d="M84 165 C229 165 229 78 374 78" /><path class="dag-edge" data-from="MATH 180A" data-to="MATH 189" d="M462 194 C481 194 481 213 500 213" /><path class="dag-edge" data-from="MATH 180A" data-to="DSC 140A" d="M462 194 C544 194 544 136 626 136" /><path class="dag-edge" data-from="MATH 180A" data-to="DSC 140B" d="M462 194 C544 194 544 182 626 182" /><path class="dag-edge" data-from="MATH 180A" data-to="DSC 148" d="M462 194 C544 194 544 229 626 229" /><path class="dag-edge" data-from="MATH 183" data-to="DSC 140A" d="M336 136 C481 136 481 136 626 136" /><path class="dag-edge" data-from="MATH 183" data-to="DSC 140B" d="M336 136 C481 136 481 182 626 182" /><path class="dag-edge" data-from="MATH 183" data-to="DSC 148" d="M336 136 C481 136 481 229 626 229" /><path class="dag-edge" data-from="MATH 189" data-to="DSC 180A" d="M588 213 C733 213 733 136 878 136" /><path class="dag-edge" data-from="DSC 10" data-to="DSC 20" d="M84 107 C103 107 103 78 122 78" /><path class="dag-edge" data-from="DSC 10" data-to="DSC 40A" d="M84 107 C229 107 229 78 374 78" /><path class="dag-edge" data-from="DSC 20" data-to="DSC 30" d="M210 78 C229 78 229 59 248 59" /><path class="dag-edge" data-from="DSC 20" data-to="DSC 40B" d="M210 78 C355 78 355 59 500 59" /><path class="dag-edge" data-from="DSC 30" data-to="DSC 80" d="M336 59 C418 59 418 136 500 136" /><path class="dag-edge" data-from="DSC 40A" data-to="DSC 80" d="M462 78 C481 78 481 136 500 136" /><path class="dag-edge" data-from="DSC 40A" data-to="DSC 40B" d="M462 78 C481 78 481 59 500 59" /><path class="dag-edge" data-from="DSC 40B" data-to="DSC 148" d="M588 59 C607 59 607 229 626 229" /><path class="dag-edge" data-from="DSC 40B" data-to="DSC 100" d="M588 59 C607 59 607 43 626 43" /><path class="dag-edge" data-from="DSC 80" data-to="DSC 140A" d="M588 136 C607 136 607 136 626 136" /><path class="dag-edge" data-from="DSC 80" data-to="DSC 140B" d="M588 136 C607 136 607 182 626 182" /><path class="dag-edge" data-from="DSC 80" data-to="DSC 148" d="M588 136 C607 136 607 229 626 229" /><path class="dag-edge" data-from="DSC 80" data-to="DSC 106" d="M588 136 C607 136 607 90 626 90" /><path class="dag-edge" data-from="DSC 80" data-to="DSC 100" d="M588 136 C607 136 607 43 626 43" /><path class="dag-edge" data-from="DSC 100" data-to="DSC 102" d="M714 43 C733 43 733 136 752 136" /><path class="dag-edge" data-from="DSC 102" data-to="DSC 180A" d="M840 136 C859 136 859 136 878 136" /><path class="dag-edge" data-from="DSC 106" data-to="DSC 180A" d="M714 90 C796 90 796 136 878 136" /><path class="dag-edge" data-from="DSC 140A" data-to="DSC 180A" d="M714 136 C796 136 796 136 878 136" /><path class="dag-edge" data-from="DSC 140B" data-to="DSC 180A" d="M714 182 C796 182 796 136 878 136" /><path class="dag-edge" data-from="DSC 148" data-to="DSC 180A" d="M714 229 C796 229 796 136 878 136" /><path class="dag-edge" data-from="DSC 180A" data-to="DSC 180B" d="M966 136 C985 136 985 136 1004 136" /></g>
-  <g class="dag-nodes"><g class="dag-node" data-id="COGS 9" tabindex="0" role="button" aria-label="COGS 9. No prerequisites."><rect x="40" y="36" rx="5" width="88" height="26"/><text x="84" y="53" text-anchor="middle">COGS 9</text></g><g class="dag-node" data-id="DSC 10" tabindex="0" role="button" aria-label="DSC 10. No prerequisites."><rect x="40" y="94" rx="5" width="88" height="26"/><text x="84" y="111" text-anchor="middle">DSC 10</text></g><g class="dag-node" data-id="DSC 100" tabindex="0" role="button" aria-label="DSC 100. Prerequisites: DSC 40B, DSC 80."><rect x="670" y="30" rx="5" width="88" height="26"/><text x="714" y="47" text-anchor="middle">DSC 100</text></g><g class="dag-node" data-id="DSC 102" tabindex="0" role="button" aria-label="DSC 102. Prerequisites: DSC 100."><rect x="796" y="123" rx="5" width="88" height="26"/><text x="840" y="140" text-anchor="middle">DSC 102</text></g><g class="dag-node" data-id="DSC 106" tabindex="0" role="button" aria-label="DSC 106. Prerequisites: DSC 80."><rect x="670" y="77" rx="5" width="88" height="26"/><text x="714" y="94" text-anchor="middle">DSC 106</text></g><g class="dag-node" data-id="DSC 140A" tabindex="0" role="button" aria-label="DSC 140A. Prerequisites: DSC 80, MATH 180A, MATH 183."><rect x="670" y="123" rx="5" width="88" height="26"/><text x="714" y="140" text-anchor="middle">DSC 140A</text></g><g class="dag-node" data-id="DSC 140B" tabindex="0" role="button" aria-label="DSC 140B. Prerequisites: DSC 80, MATH 180A, MATH 183."><rect x="670" y="169" rx="5" width="88" height="26"/><text x="714" y="186" text-anchor="middle">DSC 140B</text></g><g class="dag-node" data-id="DSC 148" tabindex="0" role="button" aria-label="DSC 148. Prerequisites: DSC 40B, DSC 80, MATH 180A, MATH 183."><rect x="670" y="216" rx="5" width="88" height="26"/><text x="714" y="233" text-anchor="middle">DSC 148</text></g><g class="dag-node dag-capstone" data-id="DSC 180A" tabindex="0" role="button" aria-label="DSC 180A. Prerequisites: DSC 102, DSC 106, DSC 140A, DSC 140B, DSC 148, MATH 189."><rect x="922" y="123" rx="5" width="88" height="26"/><text x="966" y="140" text-anchor="middle">DSC 180A</text></g><g class="dag-node dag-capstone" data-id="DSC 180B" tabindex="0" role="button" aria-label="DSC 180B. Prerequisites: DSC 180A."><rect x="1048" y="123" rx="5" width="88" height="26"/><text x="1092" y="140" text-anchor="middle">DSC 180B</text></g><g class="dag-node" data-id="DSC 20" tabindex="0" role="button" aria-label="DSC 20. Prerequisites: DSC 10."><rect x="166" y="65" rx="5" width="88" height="26"/><text x="210" y="82" text-anchor="middle">DSC 20</text></g><g class="dag-node" data-id="DSC 30" tabindex="0" role="button" aria-label="DSC 30. Prerequisites: DSC 20."><rect x="292" y="46" rx="5" width="88" height="26"/><text x="336" y="63" text-anchor="middle">DSC 30</text></g><g class="dag-node" data-id="DSC 40A" tabindex="0" role="button" aria-label="DSC 40A. Prerequisites: DSC 10, MATH 18, MATH 20C."><rect x="418" y="65" rx="5" width="88" height="26"/><text x="462" y="82" text-anchor="middle">DSC 40A</text></g><g class="dag-node" data-id="DSC 40B" tabindex="0" role="button" aria-label="DSC 40B. Prerequisites: DSC 20, DSC 40A."><rect x="544" y="46" rx="5" width="88" height="26"/><text x="588" y="63" text-anchor="middle">DSC 40B</text></g><g class="dag-node" data-id="DSC 80" tabindex="0" role="button" aria-label="DSC 80. Prerequisites: DSC 30, DSC 40A."><rect x="544" y="123" rx="5" width="88" height="26"/><text x="588" y="140" text-anchor="middle">DSC 80</text></g><g class="dag-node" data-id="MATH 18" tabindex="0" role="button" aria-label="MATH 18. No prerequisites."><rect x="40" y="152" rx="5" width="88" height="26"/><text x="84" y="169" text-anchor="middle">MATH 18</text></g><g class="dag-node" data-id="MATH 180A" tabindex="0" role="button" aria-label="MATH 180A. Prerequisites: MATH 20C."><rect x="418" y="181" rx="5" width="88" height="26"/><text x="462" y="198" text-anchor="middle">MATH 180A</text></g><g class="dag-node" data-id="MATH 183" tabindex="0" role="button" aria-label="MATH 183. Prerequisites: MATH 20B."><rect x="292" y="123" rx="5" width="88" height="26"/><text x="336" y="140" text-anchor="middle">MATH 183</text></g><g class="dag-node" data-id="MATH 189" tabindex="0" role="button" aria-label="MATH 189. Prerequisites: MATH 18, MATH 180A, MATH 20C."><rect x="544" y="200" rx="5" width="88" height="26"/><text x="588" y="217" text-anchor="middle">MATH 189</text></g><g class="dag-node" data-id="MATH 20A" tabindex="0" role="button" aria-label="MATH 20A. No prerequisites."><rect x="40" y="210" rx="5" width="88" height="26"/><text x="84" y="227" text-anchor="middle">MATH 20A</text></g><g class="dag-node" data-id="MATH 20B" tabindex="0" role="button" aria-label="MATH 20B. Prerequisites: MATH 20A."><rect x="166" y="181" rx="5" width="88" height="26"/><text x="210" y="198" text-anchor="middle">MATH 20B</text></g><g class="dag-node" data-id="MATH 20C" tabindex="0" role="button" aria-label="MATH 20C. Prerequisites: MATH 20B."><rect x="292" y="200" rx="5" width="88" height="26"/><text x="336" y="217" text-anchor="middle">MATH 20C</text></g></g>
-</svg>
-            </div>
-            <figcaption>
-                <span class="dag-readout" data-default="Arrows point from a prerequisite to the course that needs it.">Arrows point from a prerequisite to the course that needs it.</span>
-                <a class="dag-link" href="course-planner.html">How it is built <span aria-hidden="true">→</span></a>
-            </figcaption>
-        </figure>
-    </section>
-
-
-    <section id="work">
-        <h2>Work &amp; Research</h2>
-        <div class="card-grid">
-
-            <a class="card card-lead" href="pfizer.html">
-                <div class="card-head">
-                    <span class="card-title">HGRAC Filing Assistant</span>
-                    <span class="card-date">Jul – Sep 2026</span>
-                </div>
-                <span class="card-org">AI Agent Development Intern · Pfizer (China) R&amp;D Center</span>
-                <p class="card-line">
-                    Built the system that turns a human-written application form and a folder of clinical
-                    datasets into a submission-grade regulatory filing — deterministic where it decides,
-                    model-assisted where it advises, and traceable record by record. Three review agents on
-                    top, one of which I caught reading the shape of the data instead of the rule.
-                </p>
-                <span class="card-more">Read the write-up <span aria-hidden="true">→</span></span>
-            </a>
-
-            <a class="card" href="course-planner.html">
-                <div class="card-head">
-                    <span class="card-title">UCSD Course Planning Agent</span>
-                    <span class="card-date">Apr 2026 – now</span>
-                </div>
-                <span class="card-org">Solo project · live demo &amp; source</span>
-                <p class="card-line">
-                    A 69-node prerequisite graph parsed out of catalog prose, and a deterministic checker
-                    the model is not allowed to overrule. First-pass plan legality
-                    <strong>40% <span aria-hidden="true">→</span> 100%</strong>.
-                </p>
-                <span class="card-more">Read the write-up <span aria-hidden="true">→</span></span>
-            </a>
-
-            <a class="card" href="aobo-lab.html">
-                <div class="card-head">
-                    <span class="card-title">AI for Neutrino &amp; Dark Matter</span>
-                    <span class="card-date">Oct 2026 – now</span>
-                </div>
-                <span class="card-org">Rare AI Lab · Prof. Aobo Li · HDSI &amp; Physics, UC San Diego</span>
-                <p class="card-line">
-                    Machine learning for physics time series — rare-event searches for neutrinos and dark
-                    matter, where a model that games its own metric gets caught by the physics. Joined this
-                    October; no results of my own yet.
-                </p>
-                <span class="card-more">Read more <span aria-hidden="true">→</span></span>
-            </a>
-
-            <a class="card" href="edge-ai.html">
-                <div class="card-head">
-                    <span class="card-title">Thermal Throttling &amp; Energy Cost</span>
-                    <span class="card-date">Mar 2026 – now</span>
-                </div>
-                <span class="card-org">Independent study · advised by Prof. Peter Chi</span>
-                <p class="card-line">
-                    How much inference throughput an NVIDIA Jetson keeps once it is hot, instrumented as a
-                    time series rather than a cold-start average. Still early.
-                </p>
-                <span class="card-more">Read more <span aria-hidden="true">→</span></span>
-            </a>
-
-        </div>
-    </section>
-
-    <section id="projects">
-        <h2>Projects &amp; Beyond</h2>
-        <div class="card-grid">
-
-            <a class="card" href="night-water-academy.html">
-                <div class="card-head">
-                    <span class="card-title">Night Water Academy 夜水书院</span>
-                    <span class="card-date">2026 · in review</span>
-                </div>
-                <span class="card-org">Unreal Engine 5 puzzle game · Tsinghua × miHoYo competition entry</span>
-                <p class="card-line">
-                    A floating academy where the reflection keeps the version of the world somebody edited
-                    away. Two levels, built by a team of five: ink-brush interface baked from calligraphy,
-                    audio synthesised in code, and the whole build checked by automated passes rather than
-                    by replaying it.
-                </p>
-                <span class="card-more">Read the write-up <span aria-hidden="true">→</span></span>
-            </a>
-
-            <a class="card" href="data-projects.html">
-                <div class="card-head">
-                    <span class="card-title">Data Science &amp; Modeling</span>
-                    <span class="card-date">2024 – 2026</span>
-                </div>
-                <span class="card-org">SJTU research assistantship · wound-healing model · Steam · Premier League</span>
-                <p class="card-line">
-                    <strong>500+ hours</strong> of child behavioural data into 95 standardised reports, a
-                    wound-closure simulation derived rather than fitted, and <strong>27,000+</strong> Steam
-                    titles cleaned until the joins stopped lying.
-                </p>
-                <span class="card-more">Four projects <span aria-hidden="true">→</span></span>
-            </a>
-
-            <a class="card" href="beyond-code.html">
-                <div class="card-head">
-                    <span class="card-title">Beyond Code</span>
-                    <span class="card-date">2025 – now</span>
-                </div>
-                <span class="card-org">miHoYo &amp; Lilith campus ambassador · ENC Mobile · Bilibili · CGC · WFLA</span>
-                <p class="card-line">
-                    <strong>155K+</strong> views explaining technical things to people who did not ask for
-                    jargon, <strong>500+</strong> international freshmen through orientation, and a
-                    <strong>108-member</strong> volunteer team.
-                </p>
-                <span class="card-more">Read more <span aria-hidden="true">→</span></span>
-            </a>
-
-        </div>
     </section>
 
     <section id="skills">
