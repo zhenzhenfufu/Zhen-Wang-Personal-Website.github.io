@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Night Water Academy 夜水书院 | Zhen Wang</title>
 <meta name="description" content="A first-person Chinese xianxia puzzle game in Unreal Engine 5 where the reflection in the water keeps the version of the world that was edited away. Entry to the Tsinghua School of Architecture × miHoYo digital interactive environment competition.">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=da8eb48f">
 </head>
 <body class="detail" data-ink="water">
 
@@ -81,15 +81,23 @@
                     <defs><marker id="ah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8 z" class="d-head"/></marker></defs>
                     <title id="loop-t">The puzzle loop</title>
                     <desc id="loop-d">Five repeating steps: notice something inconsistent, use an implement to reveal or rewrite it, compare the water against the world, gain a route or a clue, then return to a familiar place to confirm what changed.</desc>
-                    <g class="d-stage">
+                    <g class="d-stage" data-step="1">
                         <rect x="12" y="86" width="150" height="78" rx="8"/>
                         <text x="87" y="118">Notice</text><text class="d-sub" x="87" y="138">something does not match</text>
+                    </g>
+                    <g class="d-stage" data-step="2">
                         <rect x="192" y="86" width="150" height="78" rx="8"/>
                         <text x="267" y="118">Reveal</text><text class="d-sub" x="267" y="138">bell · scroll · staff · talisman</text>
+                    </g>
+                    <g class="d-stage" data-step="3">
                         <rect x="372" y="86" width="150" height="78" rx="8"/>
                         <text x="447" y="118">Compare</text><text class="d-sub" x="447" y="138">water against the world</text>
+                    </g>
+                    <g class="d-stage" data-step="4">
                         <rect x="552" y="86" width="150" height="78" rx="8"/>
                         <text x="627" y="118">Rewrite</text><text class="d-sub" x="627" y="138">a route opens, a clue lands</text>
+                    </g>
+                    <g class="d-stage" data-step="5">
                         <rect x="732" y="86" width="150" height="78" rx="8"/>
                         <text x="807" y="118">Confirm</text><text class="d-sub" x="807" y="138">back where you started</text>
                     </g>
@@ -102,6 +110,12 @@
                     </g>
                     <text class="d-sub d-center" x="447" y="226">the same courtyard, read again with what you now know</text>
                 </svg>
+            </div>
+            <div class="diagram-ctl">
+                <button type="button" data-walk>Walk the loop</button>
+            </div>
+            <div class="stage-panel" data-step-panel aria-live="polite">
+                <b>Click a step</b> to see what the player is actually doing there.
             </div>
             <figcaption>No key collection. The player rewrites the space itself, then goes back to check what the rewrite cost.</figcaption>
         </figure>
@@ -126,6 +140,50 @@
                 can read the three numbers that turn the shelves aside.
             </li>
         </ul>
+    </section>
+
+    <section id="screens">
+        <h2>What it looks like</h2>
+        <p>
+            In-engine captures at 1080p with the interface turned off, except the last one. Click any frame
+            to enlarge it; arrow keys move through them.
+        </p>
+        <div class="shots">
+                <button type="button" class="shot" data-shot="0" aria-label="Screenshot 1: Level one entrance: the moon gate into the water courtyard, the floating city beyond the wall.">
+                    <img src="img/nwa-01.jpg" alt="Level one entrance: the moon gate into the water courtyard, the floating city beyond the wall." width="1280" height="720" loading="lazy" decoding="async">
+                </button>
+                <button type="button" class="shot" data-shot="1" aria-label="Screenshot 2: Across the pool to the central pavilion and the library — the two places level one has to reach.">
+                    <img src="img/nwa-02.jpg" alt="Across the pool to the central pavilion and the library — the two places level one has to reach." width="1280" height="720" loading="lazy" decoding="async">
+                </button>
+                <button type="button" class="shot" data-shot="2" aria-label="Screenshot 3: The courtyard at night: pagoda, hanging waterfall and the sky palace in the distance.">
+                    <img src="img/nwa-03.jpg" alt="The courtyard at night: pagoda, hanging waterfall and the sky palace in the distance." width="1280" height="720" loading="lazy" decoding="async">
+                </button>
+                <button type="button" class="shot" data-shot="3" aria-label="Screenshot 4: The west bank: a cave-temple Buddha out in the cloud sea — a museum photogrammetry scan, credited in the build.">
+                    <img src="img/nwa-04.jpg" alt="The west bank: a cave-temple Buddha out in the cloud sea — a museum photogrammetry scan, credited in the build." width="1280" height="720" loading="lazy" decoding="async">
+                </button>
+                <button type="button" class="shot" data-shot="4" aria-label="Screenshot 5: Inside the library: the archive desk, with the way into level two behind it.">
+                    <img src="img/nwa-05.jpg" alt="Inside the library: the archive desk, with the way into level two behind it." width="1280" height="720" loading="lazy" decoding="async">
+                </button>
+                <button type="button" class="shot" data-shot="5" aria-label="Screenshot 6: Level two: the shelf maze and the central skylight garden.">
+                    <img src="img/nwa-06.jpg" alt="Level two: the shelf maze and the central skylight garden." width="1280" height="720" loading="lazy" decoding="async">
+                </button>
+                <button type="button" class="shot" data-shot="6" aria-label="Screenshot 7: The garden at the centre of the maze — the fountain, and the stones a filled cup sits on.">
+                    <img src="img/nwa-07.jpg" alt="The garden at the centre of the maze — the fountain, and the stones a filled cup sits on." width="1280" height="720" loading="lazy" decoding="async">
+                </button>
+                <button type="button" class="shot" data-shot="7" aria-label="Screenshot 8: Looking into the cup: the gilded half-beam under the water meets the half above it, and the three numbers can be read.">
+                    <img src="img/nwa-08.jpg" alt="Looking into the cup: the gilded half-beam under the water meets the half above it, and the three numbers can be read." width="1280" height="720" loading="lazy" decoding="async">
+                </button>
+                <button type="button" class="shot" data-shot="8" aria-label="Screenshot 9: The armillary sphere above the cloud sea, where the ending camera finishes.">
+                    <img src="img/nwa-09.jpg" alt="The armillary sphere above the cloud sea, where the ending camera finishes." width="1280" height="720" loading="lazy" decoding="async">
+                </button>
+                <button type="button" class="shot" data-shot="9" aria-label="Screenshot 10: The pause menu — every glyph baked from calligraphy rather than set in a system font.">
+                    <img src="img/nwa-10.jpg" alt="The pause menu — every glyph baked from calligraphy rather than set in a system font." width="1280" height="720" loading="lazy" decoding="async">
+                </button>
+        </div>
+        <figure class="shot-view" hidden>
+            <img class="shot-big" alt="">
+            <figcaption><span class="shot-cap"></span><button type="button" class="shot-close">Close</button></figcaption>
+        </figure>
     </section>
 
     <section>
@@ -196,6 +254,6 @@
     <a href="https://github.com/zhenzhenfufu">GitHub</a>
 </footer>
 
-<script src="app.js" defer></script>
+<script src="app.js?v=da8eb48f" defer></script>
 </body>
 </html>

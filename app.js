@@ -359,3 +359,235 @@
 
     render();
 })();
+
+/* ---------------------------------------------------------------------------
+   Screenshot gallery (game page). Click or key a frame open; arrows move; Esc
+   closes. With JS off the thumbnails are still the screenshots, at full size.
+--------------------------------------------------------------------------- */
+
+(function () {
+    'use strict';
+
+    var shots = [].slice.call(document.querySelectorAll('.shot'));
+    var view = document.querySelector('.shot-view');
+    if (!shots.length || !view) return;
+
+    var big = view.querySelector('.shot-big');
+    var cap = view.querySelector('.shot-cap');
+    var closeButton = view.querySelector('.shot-close');
+    var current = 0;
+    var opener = null;
+
+    function open(index) {
+        current = (index + shots.length) % shots.length;
+        var img = shots[current].querySelector('img');
+        big.src = img.getAttribute('src');
+        big.alt = img.getAttribute('alt');
+        cap.textContent = img.getAttribute('alt');
+        view.hidden = false;
+        closeButton.focus();
+    }
+
+    function close() {
+        view.hidden = true;
+        if (opener) opener.focus();
+    }
+
+    shots.forEach(function (button, index) {
+        button.addEventListener('click', function () { opener = button; open(index); });
+    });
+    closeButton.addEventListener('click', close);
+    view.addEventListener('click', function (event) { if (event.target === view) close(); });
+
+    document.addEventListener('keydown', function (event) {
+        if (view.hidden) return;
+        if (event.key === 'Escape') { close(); return; }
+        if (event.key === 'ArrowRight') { event.preventDefault(); open(current + 1); }
+        if (event.key === 'ArrowLeft') { event.preventDefault(); open(current - 1); }
+    });
+})();
+
+/* ---------------------------------------------------------------------------
+   Pipeline diagram (Pfizer page): click a stage to read what happens inside
+   it, or send one record along the path and watch which stage it is in.
+--------------------------------------------------------------------------- */
+
+(function () {
+    'use strict';
+
+    var panel = document.querySelector('[data-stage-panel]');
+    var stages = [].slice.call(document.querySelectorAll('.d-stage[data-stage]'));
+    if (!panel || !stages.length) return;
+
+    var COPY = {
+        '1': '<b>Read.</b> The application form is written by a human in Excel and never twice the same way. ' +
+             'The parser finds each field by what it means rather than where it sits, and writes a control ' +
+             'file the rest of the pipeline reads. A field it cannot find is reported with its cell — never ' +
+             'guessed.',
+        '2': '<b>Resolve.</b> Each participant has their own reference date, and the right column to read it ' +
+             'from differs between datasets. A cascade works down the available evidence per participant and ' +
+             'records which rule fired, which is also what makes the result checkable afterwards.',
+        '3': '<b>Classify.</b> Every record is compared against that participant\'s date and labelled before ' +
+             'or after. This is the only decision in the system that matters, so no model is allowed anywhere ' +
+             'near it — the comparison is deterministic code, and the review agents can disagree but not ' +
+             'overrule.',
+        '4': '<b>Render.</b> Submission-grade documents, RTF first because that is what is actually filed, ' +
+             'then PDF if the machine can produce one. The route chosen is printed at startup so a missing ' +
+             'renderer is legible rather than a silent empty folder.',
+    };
+
+    var svg = document.querySelector('.diagram svg');
+    var token = svg && svg.querySelector('.d-token');
+    var path = svg && svg.querySelector('#flowpath');
+    var button = document.querySelector('[data-flow]');
+    var timer = null;
+
+    function select(stage) {
+        stages.forEach(function (g) { g.classList.toggle('is-on', g.getAttribute('data-stage') === stage); });
+        if (COPY[stage]) panel.innerHTML = COPY[stage];
+    }
+
+    stages.forEach(function (g) {
+        g.setAttribute('tabindex', '0');
+        g.setAttribute('role', 'button');
+        var stage = g.getAttribute('data-stage');
+        g.addEventListener('click', function () { select(stage); });
+        g.addEventListener('keydown', function (event) {
+            if (event.key !== 'Enter' && event.key !== ' ') return;
+            event.preventDefault();
+            select(stage);
+        });
+    });
+
+    if (!button || !token || !path || !path.getTotalLength) return;
+
+    var reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    button.addEventListener('click', function () {
+        if (reducedMotion) { select('4'); return; }
+        if (timer) { window.cancelAnimationFrame(timer); }
+
+        var length = path.getTotalLength();
+        var start = null;
+        var duration = 3200;
+        token.style.opacity = 1;
+
+        (function step(now) {
+            if (start === null) start = now;
+            var t = Math.min((now - start) / duration, 1);
+            var point = path.getPointAtLength(length * t);
+            token.setAttribute('cx', point.x);
+            token.setAttribute('cy', point.y);
+            // the four stages sit at roughly even spacing along the path
+            select(String(Math.min(4, Math.floor(t * 4) + 1)));
+            if (t < 1) { timer = window.requestAnimationFrame(step); return; }
+            timer = null;
+            window.setTimeout(function () { token.style.opacity = 0; }, 400);
+        })(performance.now());
+    });
+})();
+
+/* ---------------------------------------------------------------------------
+   Puzzle-loop walker (game page): click a step, or walk the whole loop once.
+--------------------------------------------------------------------------- */
+
+(function () {
+    'use strict';
+
+    var panel = document.querySelector('[data-step-panel]');
+    var steps = [].slice.call(document.querySelectorAll('.d-stage[data-step]'));
+    if (!panel || !steps.length) return;
+
+    var COPY = {
+        '1': '<b>Notice.</b> Something in the reflection does not match the room it belongs to — a bridge in ' +
+             'the water with no bridge on the bank, a name on the pool floor that the register does not list.',
+        '2': '<b>Reveal.</b> Five implements, each doing exactly one thing: the bell wakes what was hidden, ' +
+             'the scroll takes a reflection, bare hands cut it free along its edge, the staff draws and turns ' +
+             'it, and a talisman makes the change stay until you peel it off.',
+        '3': '<b>Compare.</b> The water is never a copyable answer. You have to stand where the broken thing ' +
+             'under the surface lines up with the broken thing above it, and read the difference between them.',
+        '4': '<b>Rewrite.</b> A bridge where the courtyard had none, a door in a sealed wall, three shelves ' +
+             'that step aside — the space itself changes rather than a key appearing in an inventory.',
+        '5': '<b>Confirm.</b> Go back to the pool, the archive, the register. What the rewrite exposes is the ' +
+             'version of the academy that was edited away, and the seventeenth name nobody is supposed to have.',
+    };
+
+    function select(step) {
+        steps.forEach(function (g) { g.classList.toggle('is-on', g.getAttribute('data-step') === step); });
+        if (COPY[step]) panel.innerHTML = COPY[step];
+    }
+
+    steps.forEach(function (g) {
+        var step = g.getAttribute('data-step');
+        g.setAttribute('tabindex', '0');
+        g.setAttribute('role', 'button');
+        g.addEventListener('click', function () { select(step); });
+        g.addEventListener('keydown', function (event) {
+            if (event.key !== 'Enter' && event.key !== ' ') return;
+            event.preventDefault();
+            select(step);
+        });
+    });
+
+    var button = document.querySelector('[data-walk]');
+    if (!button) return;
+    var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var timers = [];
+
+    button.addEventListener('click', function () {
+        timers.forEach(window.clearTimeout);
+        timers = [];
+        if (reduced) { select('1'); return; }
+        steps.forEach(function (_, i) {
+            timers.push(window.setTimeout(function () { select(String(i + 1)); }, i * 1400));
+        });
+    });
+})();
+
+/* ---------------------------------------------------------------------------
+   Throttling schematic (edge AI page): draw the curve when it scrolls in, and
+   let the reader switch between the two things the curve is contrasting.
+--------------------------------------------------------------------------- */
+
+(function () {
+    'use strict';
+
+    var curve = document.querySelector('[data-curve]');
+    var panel = document.querySelector('[data-phase-panel]');
+    var buttons = [].slice.call(document.querySelectorAll('[data-phase]'));
+    if (!curve || !panel || !buttons.length) return;
+
+    var COPY = {
+        cold: '<b>First minute.</b> The board is cold, the clock sits at its ceiling, and throughput is ' +
+              'whatever the spec sheet implies. This is the number a benchmark run of a few seconds reports.',
+        hot: '<b>After ten minutes.</b> The silicon has heated the heatsink, the governor pulls the clock ' +
+             'down to stay inside its thermal budget, and throughput settles somewhere below where it started. ' +
+             'Where it settles — and what it costs per token to stay there — is what the study measures.',
+    };
+
+    buttons.forEach(function (button) {
+        button.addEventListener('click', function () {
+            var phase = button.getAttribute('data-phase');
+            buttons.forEach(function (b) { b.setAttribute('aria-pressed', String(b === button)); });
+            panel.innerHTML = COPY[phase];
+            curve.classList.toggle('is-hot', phase === 'hot');
+        });
+    });
+
+    var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced || !('IntersectionObserver' in window) || !curve.getTotalLength) return;
+
+    var length = curve.getTotalLength();
+    curve.style.strokeDasharray = length;
+    curve.style.strokeDashoffset = length;
+
+    var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            curve.style.transition = 'stroke-dashoffset 1.4s ease-out';
+            curve.style.strokeDashoffset = 0;
+            io.unobserve(entry.target);
+        });
+    }, { threshold: 0.35 });
+    io.observe(curve);
+})();

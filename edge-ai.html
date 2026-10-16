@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Thermal Throttling &amp; Energy Cost on NVIDIA Jetson | Zhen Wang</title>
 <meta name="description" content="An early independent study on how thermal throttling affects LLM inference efficiency on NVIDIA Jetson, advised by Prof. Peter Chi.">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=da8eb48f">
 </head>
 <body class="detail" data-ink="heat">
 
@@ -80,7 +80,7 @@
 
                 <g class="d-plot">
                     <path class="d-axis" d="M690 220 L690 44 M690 220 L884 220"/>
-                    <path class="d-curve" d="M692 70 C726 70 742 76 764 108 C786 140 800 160 880 166"/>
+                    <path class="d-curve" data-curve d="M692 70 C726 70 742 76 764 108 C786 140 800 160 880 166"/>
                     <path class="d-guide" d="M692 166 L880 166"/>
                     <text class="d-sub" x="787" y="240">time under load</text>
                     <text class="d-sub d-rot" x="674" y="132">throughput</text>
@@ -88,6 +88,14 @@
                     <text class="d-sub" x="744" y="60">what a cold benchmark reports</text>
                 </g>
             </svg>
+        </div>
+        <div class="diagram-ctl">
+            <button type="button" data-phase="cold" aria-pressed="true">First minute</button>
+            <button type="button" data-phase="hot" aria-pressed="false">After ten minutes</button>
+        </div>
+        <div class="stage-panel" data-phase-panel aria-live="polite">
+            <b>First minute.</b> The board is cold, the clock sits at its ceiling, and throughput is whatever
+            the spec sheet implies. This is the number a benchmark run of a few seconds reports.
         </div>
         <figcaption>Schematic of the mechanism, not measured data — the measurements are what the study is for.</figcaption>
     </figure>
@@ -118,6 +126,6 @@
     <a href="https://github.com/zhenzhenfufu">GitHub</a>
 </footer>
 
-<script src="app.js" defer></script>
+<script src="app.js?v=da8eb48f" defer></script>
 </body>
 </html>

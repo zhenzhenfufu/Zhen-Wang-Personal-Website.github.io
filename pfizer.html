@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HGRAC Filing Assistant — Pfizer | Zhen Wang</title>
 <meta name="description" content="An agent-assisted regulatory filing system built during a three-month internship at Pfizer China R&D: how an inconsistent application form and a folder of clinical datasets become a submission-grade filing a reviewer can check by hand.">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=da8eb48f">
 </head>
 <body class="detail" data-ink="seal">
 
@@ -27,7 +27,7 @@
 
     <p class="eyebrow">Internship · Jul – Sep 2026 · Shanghai</p>
     <h1>HGRAC Filing Assistant</h1>
-    <p class="role">AI Agent Development Intern · Biomedical Informatics &amp; Data, Pfizer (China) R&amp;D Center</p>
+    <p class="role">AI Agent Development Intern · Data Science &amp; Analysis (DSA), Pfizer (China) R&amp;D Center</p>
 
     <p class="lede">
         A regulatory filing is one of the few places where a plausible answer is worth nothing. I spent
@@ -81,22 +81,31 @@
                         <text class="d-sub" x="83" y="152">one folder per study</text>
                     </g>
 
-                    <g class="d-stage">
+                    <path id="flowpath" d="M83 57 C150 57 150 98 284 98 L474 98 L664 98 L854 98" fill="none" stroke="none"/>
+                    <circle class="d-token" r="5" cx="83" cy="57" style="opacity:0"/>
+
+                    <g class="d-stage" data-stage="1">
                         <rect x="204" y="52" width="160" height="92" rx="8"/>
                         <text x="284" y="80">1 · Read</text>
                         <text class="d-sub" x="284" y="100">form → control file</text>
                         <text class="d-sub" x="284" y="118">layout-tolerant parsing</text>
 
+                    </g>
+                    <g class="d-stage" data-stage="2">
                         <rect x="394" y="52" width="160" height="92" rx="8"/>
                         <text x="474" y="80">2 · Resolve</text>
                         <text class="d-sub" x="474" y="100">per-participant</text>
                         <text class="d-sub" x="474" y="118">reference date</text>
 
+                    </g>
+                    <g class="d-stage" data-stage="3">
                         <rect x="584" y="52" width="160" height="92" rx="8"/>
                         <text x="664" y="80">3 · Classify</text>
                         <text class="d-sub" x="664" y="100">each record, before</text>
                         <text class="d-sub" x="664" y="118">or after that date</text>
 
+                    </g>
+                    <g class="d-stage" data-stage="4">
                         <rect x="774" y="52" width="160" height="92" rx="8"/>
                         <text x="854" y="80">4 · Render</text>
                         <text class="d-sub" x="854" y="100">RTF first, then PDF</text>
@@ -133,6 +142,12 @@
                         <text class="d-sub" x="183" y="262">all arithmetic lives here, not in a model</text>
                     </g>
                 </svg>
+            </div>
+            <div class="diagram-ctl">
+                <button type="button" data-flow>Send one record through</button>
+            </div>
+            <div class="stage-panel" data-stage-panel aria-live="polite">
+                <b>Click a stage</b> to see what happens inside it — or send a record through the whole thing.
             </div>
             <figcaption>The model advises. Code decides. Every record can be traced back to the rule that classified it.</figcaption>
         </figure>
@@ -238,6 +253,6 @@
     <a href="https://github.com/zhenzhenfufu">GitHub</a>
 </footer>
 
-<script src="app.js" defer></script>
+<script src="app.js?v=da8eb48f" defer></script>
 </body>
 </html>

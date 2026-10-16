@@ -931,3 +931,113 @@ body.detail[data-ink] .page h1::after {
     font-weight: 500;
     color: var(--ink-soft);
 }
+
+/* --- screenshot gallery -------------------------------------------------- */
+
+.shots {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    gap: 10px;
+    margin-top: 6px;
+}
+.shot {
+    display: block;
+    padding: 0;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--card-bg);
+    cursor: zoom-in;
+    transition: transform 0.16s ease, border-color 0.16s ease;
+}
+.shot img { display: block; width: 100%; height: auto; }
+.shot:hover, .shot:focus-visible { transform: translateY(-2px); border-color: var(--iris); }
+
+.shot-view {
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 12px;
+    padding: 24px;
+    background: color-mix(in srgb, var(--page-bg) 94%, transparent);
+    backdrop-filter: blur(6px);
+}
+.shot-big {
+    max-width: min(1100px, 100%);
+    max-height: 76vh;
+    margin: 0 auto;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+}
+.shot-view figcaption {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    max-width: 860px;
+    margin: 0 auto;
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+}
+.shot-close {
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 5px 12px;
+    background: var(--card-bg);
+    color: var(--iris);
+    font: inherit;
+    font-size: 0.82rem;
+    cursor: pointer;
+}
+.shot-close:hover { border-color: var(--iris); }
+
+/* --- interactive diagram bits -------------------------------------------- */
+
+.d-stage[data-stage] { cursor: pointer; }
+.d-stage[data-stage] rect { transition: fill 0.18s ease, stroke-width 0.18s ease; }
+.d-stage[data-stage].is-on rect { fill: var(--sakura-wash); stroke: var(--sakura); stroke-width: 2; }
+.d-token { fill: var(--sakura); stroke: var(--card-bg); stroke-width: 1.5; }
+
+.stage-panel {
+    margin-top: 12px;
+    padding: 14px 16px;
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--iris);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    background: var(--card-bg);
+    font-size: 0.9rem;
+    min-height: 68px;
+}
+.stage-panel b { color: var(--ink); }
+
+.diagram-ctl {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin: 12px 0 0;
+}
+.diagram-ctl button {
+    border: 1px solid var(--iris);
+    border-radius: 6px;
+    padding: 6px 13px;
+    background: transparent;
+    color: var(--iris);
+    font: inherit;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+.diagram-ctl button[aria-pressed="true"], .diagram-ctl button:hover {
+    background: var(--iris);
+    color: var(--on-accent);
+}
+
+@media (prefers-reduced-motion: reduce) { .d-token { display: none; } }
+
+.d-plot .d-curve.is-hot { stroke: var(--sakura); }
