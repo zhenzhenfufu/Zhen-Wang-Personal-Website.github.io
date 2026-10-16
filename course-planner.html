@@ -7,7 +7,7 @@
 <meta name="description" content="A course planner that will not hand you a schedule you are not allowed to take: a prerequisite DAG parsed from catalog prose, a deterministic validator, and first-pass plan legality from 40% to 100%.">
 <link rel="stylesheet" href="style.css">
 </head>
-<body class="detail">
+<body class="detail" data-ink="grid">
 
 <header class="topbar">
     <a class="home-link" href="index.html"><span aria-hidden="true">←</span> Zhen Wang</a>
@@ -16,6 +16,7 @@
         <a href="course-planner.html" aria-current="page">Course Agent</a>
         <a href="aobo-lab.html">Rare AI Lab</a>
         <a href="edge-ai.html">Edge AI</a>
+        <a href="night-water-academy.html">Night Water Academy</a>
         <a href="data-projects.html">Data Projects</a>
         <a href="beyond-code.html">Beyond Code</a>
     </nav>
@@ -34,13 +35,13 @@
 
     <p class="lede">
         A language model is good at reading "I want to specialise in machine learning" and picking
-        sensible courses. It is unreliable at the other half of the job: holding a 68-node prerequisite
+        sensible courses. It is unreliable at the other half of the job: holding a 69-node prerequisite
         graph in its head. So in this planner the model does not get to decide whether a plan is legal.
         Code does.
     </p>
 
     <dl class="factbar">
-        <div><dt>Graph</dt><dd>68 nodes · 74 edges, parsed from prose</dd></div>
+        <div><dt>Graph</dt><dd>69 nodes · 95 edges, parsed from prose</dd></div>
         <div><dt>Context per query</dt><dd>8–13% of the catalog, not 100%</dd></div>
         <div><dt>First-pass legality</dt><dd>40% <span aria-hidden="true">→</span> 100%</dd></div>
         <div><dt>Tests</dt><dd>27 unit tests · 9 validator fixtures</dd></div>
@@ -60,6 +61,16 @@
             Replacing the app's hand-maintained edge list with the parsed graph closed a
             <strong>25-edge drift</strong> between two sources of truth that had been diverging for
             months.
+        </p>
+
+        <p>
+            In October 2026 I checked every parsed prerequisite against the official UC San Diego
+            catalog line by line and found six courses whose stored description was simply wrong —
+            DSC 80 was recorded as needing DSC 10 when it needs DSC 30 and DSC 40A, DSC 161's real
+            prerequisites are not DSC courses at all, and the "probability course" group was missing
+            half its options. Fixing the source text, not the parser, took the graph from 74 edges to
+            <strong>95</strong>. Alternatives the dataset does not contain — MATH 31AH, ECON 120A,
+            MAE 108 — are now reported as out-of-catalog requirements rather than dropped.
         </p>
     </section>
 
@@ -97,41 +108,50 @@
             <code>validator.py</code> actually prints.
         </p>
         <div class="pv" id="pv">
-                <p class="pv-eyebrow">Deterministic checker &mdash; runnable</p>
-                <h3 class="pv-title">Build a four-quarter plan. Watch the checker reject it.</h3>
-                <p class="pv-sub">A 12-course slice of the planner's 68-node / 74-edge prerequisite DAG, running the app's own rule set: ordering, AND-of-OR groups, abstract requirements, duplicates, and the 12-unit full-time floor / 19-unit heavy flag / 22-unit cap. Errors reject a plan; warnings do not. The model never gets a vote on legality.</p>
+          <p class="pv-eyebrow">Deterministic checker — runnable</p>
+          <h3 class="pv-title">Two ways to build the same four quarters.</h3>
+          <p class="pv-sub">Twelve required courses for the Data Science major, for a student who has already finished
+             the first row. The rules are the app's own: ordering, AND-of-OR groups, abstract requirements such as
+             <i>a probability course</i>, duplicates, and the twelve-unit full-time floor. Every verdict below is
+             <code>validator.py</code>'s own output, recorded from a real run.</p>
 
-                <div class="pv-ctl">
-                    <button type="button" class="pv-btn" data-pv="oneshot">One-shot plan</button>
-                    <button type="button" class="pv-btn" data-pv="perq">Per-quarter plan</button>
-                </div>
+          <p class="pv-done-label">Already completed</p>
+          <div class="pv-done"><button type="button" class="pv-c pv-c-done" data-id="DSC 10">DSC 10<i>4</i></button><button type="button" class="pv-c pv-c-done" data-id="MATH 18">MATH 18<i>4</i></button><button type="button" class="pv-c pv-c-done" data-id="MATH 20A">MATH 20A<i>4</i></button><button type="button" class="pv-c pv-c-done" data-id="MATH 20B">MATH 20B<i>4</i></button></div>
 
-                <ol class="pv-grid">
-                    <li class="pv-term ok" data-pv-term="0">
-                        <p class="pv-th"><span class="pv-q">Q1</span> Fall<span class="pv-u" data-pv-u>12u</span></p>
-                        <div class="pv-slot" data-pv-slot><span class="pv-c">DSC 10<i>4</i></span><span class="pv-c">MATH 20A<i>4</i></span><span class="pv-c">MATH 18<i>4</i></span></div>
-                    </li>
-                    <li class="pv-term ok" data-pv-term="1">
-                        <p class="pv-th"><span class="pv-q">Q2</span> Winter<span class="pv-u" data-pv-u>12u</span></p>
-                        <div class="pv-slot" data-pv-slot><span class="pv-c">DSC 20<i>4</i></span><span class="pv-c">MATH 20B<i>4</i></span><span class="pv-c">DSC 80<i>4</i></span></div>
-                    </li>
-                    <li class="pv-term ok" data-pv-term="2">
-                        <p class="pv-th"><span class="pv-q">Q3</span> Spring<span class="pv-u" data-pv-u>12u</span></p>
-                        <div class="pv-slot" data-pv-slot><span class="pv-c">MATH 20C<i>4</i></span><span class="pv-c">DSC 30<i>4</i></span><span class="pv-c">MATH 183<i>4</i></span></div>
-                    </li>
-                    <li class="pv-term ok" data-pv-term="3">
-                        <p class="pv-th"><span class="pv-q">Q4</span> Fall<span class="pv-u" data-pv-u>12u</span></p>
-                        <div class="pv-slot" data-pv-slot><span class="pv-c">DSC 40A<i>4</i></span><span class="pv-c">DSC 140A<i>4</i></span><span class="pv-c">CSE 11<i>4</i></span></div>
-                    </li>
-                </ol>
+          <div class="pv-ctl">
+            <button type="button" class="pv-btn" data-pv="perq">Per-quarter plan</button>
+            <button type="button" class="pv-btn pv-btn-ghost" data-pv="oneshot">One-shot plan</button>
+          </div>
 
-                <div class="pv-out">
-                    <p class="pv-verdict pv-pass" data-pv-verdict aria-live="polite">Accepted &middot; 12 of 12 courses legal &middot; 0 errors</p>
-                    <ul class="pv-log" data-pv-log><li>This is the plan the per-quarter generator produces. <b>DSC 140A</b> needs <b>DSC 80</b> and a probability course; <b>MATH 183</b> satisfies the abstract <i>probability</i> group, one of four courses the catalog names. Press a button, or click any course to see its prerequisites resolved.</li></ul>
-                </div>
+          <ol class="pv-grid">
+                    <li class="pv-term" data-pv-term="0">
+                      <p class="pv-th"><span class="pv-q">Q1</span>Fall<span class="pv-u" data-pv-u></span></p>
+                      <div class="pv-slot" data-pv-slot></div>
+                    </li>
+                    <li class="pv-term" data-pv-term="1">
+                      <p class="pv-th"><span class="pv-q">Q2</span>Winter<span class="pv-u" data-pv-u></span></p>
+                      <div class="pv-slot" data-pv-slot></div>
+                    </li>
+                    <li class="pv-term" data-pv-term="2">
+                      <p class="pv-th"><span class="pv-q">Q3</span>Spring<span class="pv-u" data-pv-u></span></p>
+                      <div class="pv-slot" data-pv-slot></div>
+                    </li>
+                    <li class="pv-term" data-pv-term="3">
+                      <p class="pv-th"><span class="pv-q">Q4</span>Fall<span class="pv-u" data-pv-u></span></p>
+                      <div class="pv-slot" data-pv-slot></div>
+                    </li>
+          </ol>
 
-                <p class="pv-foot">Measured in the live app: one-shot generation produced a plan the checker accepted <b>40%</b> of the time. Regenerating quarter by quarter against a recomputed eligible set reached <b>100%</b>, across 20 planning tasks.</p>
-            </div>
+          <div class="pv-out">
+            <p class="pv-verdict" data-pv-verdict aria-live="polite"></p>
+            <ul class="pv-log" data-pv-log></ul>
+          </div>
+
+          <p class="pv-foot">Click any course to see its prerequisite groups resolved. Across the twenty-task
+             evaluation suite, asking for a whole plan in one pass was accepted <b>40%</b> of the time; rebuilding it
+             quarter by quarter against a recomputed eligible set reached <b>100%</b>. Those runs predate the October
+             catalog correction, so the rates describe the method rather than this exact graph.</p>
+        </div>
     </section>
 
     <section id="eval">

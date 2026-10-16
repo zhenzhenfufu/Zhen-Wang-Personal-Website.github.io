@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HGRAC Filing Assistant — Pfizer | Zhen Wang</title>
-<meta name="description" content="An agent-assisted regulatory filing system built during a three-month internship at Pfizer China R&D: 10,184 clinical records classified per run, verified against an independent engine with zero discrepancies.">
+<meta name="description" content="An agent-assisted regulatory filing system built during a three-month internship at Pfizer China R&D: how an inconsistent application form and a folder of clinical datasets become a submission-grade filing a reviewer can check by hand.">
 <link rel="stylesheet" href="style.css">
 </head>
-<body class="detail">
+<body class="detail" data-ink="seal">
 
 <header class="topbar">
     <a class="home-link" href="index.html"><span aria-hidden="true">←</span> Zhen Wang</a>
@@ -16,6 +16,7 @@
         <a href="course-planner.html">Course Agent</a>
         <a href="aobo-lab.html">Rare AI Lab</a>
         <a href="edge-ai.html">Edge AI</a>
+        <a href="night-water-academy.html">Night Water Academy</a>
         <a href="data-projects.html">Data Projects</a>
         <a href="beyond-code.html">Beyond Code</a>
     </nav>
@@ -30,137 +31,199 @@
 
     <p class="lede">
         A regulatory filing is one of the few places where a plausible answer is worth nothing. I spent
-        three months building the system that produces one — and more time proving it was right than
-        building it.
+        three months building the system that produces one — and more of that time on proving it was right
+        than on making it work.
     </p>
 
-    <dl class="factbar">
-        <div><dt>Scale</dt><dd>10,184 records · 3,792 pages per run</dd></div>
-        <div><dt>Runtime</dt><dd>~20 min full library</dd></div>
-        <div><dt>Verification</dt><dd>1,197 records, zero discrepancies</dd></div>
-        <div><dt>Agents</dt><dd>3 built · 4 architectures scored</dd></div>
-    </dl>
+    <p class="note">
+        Everything on this page is about structure and method. No study data, no counts, no outputs — not
+        even from the dummy study the work was developed against.
+    </p>
 
     <section>
         <h2>The problem</h2>
         <p>
-            Before a clinical study can be filed with Chinese regulators, every record belonging to a
-            Chinese subject has to be split into pre-randomisation and post-randomisation on a
-            per-subject basis, then rendered into submission-grade reports. The inputs are an Excel
-            application form written by humans, with no fixed layout, and a folder of SAS datasets.
-            The process was done by hand, per study, by people whose time is worth more than this.
+            Before a clinical study can be filed with Chinese regulators, the records belonging to Chinese
+            participants have to be separated into the ones collected before that participant was randomised
+            and the ones collected after — participant by participant, because each has their own
+            randomisation date — and then rendered into submission-grade documents.
+        </p>
+        <p>
+            The two inputs disagree about everything. One is an application form written by a human in Excel,
+            with no fixed layout: the same field may sit in a different row, carry a different label, or be
+            spelled differently in the next study. The other is a folder of clinical datasets, each with its
+            own column naming and its own idea of which column holds the date that matters. The work used to
+            be done by hand, per study, by people whose time is worth considerably more than that.
         </p>
     </section>
 
     <section>
-        <h2>What I built</h2>
-        <ul>
-            <li>
-                An end-to-end pipeline: parse the application form into a machine-readable control
-                file, resolve each subject's randomisation date, classify every record against it, and
-                emit compliant RTF and PDF reports. One run turned 25 SDTM datasets into
-                <strong>10,184 classified records</strong> across three reports totalling
-                <strong>3,792 pages</strong>, in about twenty minutes.
-            </li>
-            <li>
-                <strong>Per-record cascading date resolution</strong>, which fixed three systematic
-                misclassifications the manual process had been absorbing — including a per-dataset
-                column choice that misrouted every one of 1,800+ records in one domain, and a
-                randomisation lookup that left 40+ screen-failure subjects unclassifiable.
-            </li>
-            <li>
-                A provenance column on every record: which date it was judged on, and what it was
-                compared against. A reviewer who cannot read R can still check the result, which is the
-                only kind of checking that happens in practice.
-            </li>
-            <li>
-                Report generation that survives its environment. The original design needed a headless
-                browser to render PDFs, and the company's Linux server had none — so the route is now
-                RTF first (which is what actually gets submitted), then browser, then LibreOffice, with
-                the chosen path printed at startup.
-            </li>
-        </ul>
-    </section>
-
-    <section>
-        <h2>Three agents, and one that was quietly wrong</h2>
-        <ul>
-            <li>
-                I added three agents on top of the deterministic core — dataset reconciliation,
-                classification review, and open-item triage — switchable between the Gemini API and a
-                local Ollama <code>qwen2.5</code> backend.
-            </li>
-            <li>
-                One of them kept misclassifying a record that the rules were unambiguous about. I found
-                it by <strong>ablation</strong>: the model was keying on how often a date appeared and
-                where it sat in the row, not on the rule it had been given. The same record flipped when
-                I changed only duplication and field position — never a value.
-            </li>
-            <li>
-                The fix was to stop asking politely. The instruction became a hard constraint, and all
-                arithmetic went back to deterministic code. That closed the <strong>last three
-                disagreements</strong> with the reference implementation out of 90+ sampled records —
-                97% agreement to 100%. Three records is a small delta; the useful part is knowing
-                <em>why</em> they disagreed.
-            </li>
-            <li>
-                I then scored four architectures — straight automation, ReAct, Plan-and-Execute, and a
-                seven-role council — against a 12-criterion rubric I derived from the regulatory
-                specification: the seven-role council reached <strong>0.925</strong> against
-                <strong>0.719</strong> for the automation baseline. I scored it myself, one run per
-                architecture, so treat it as an internal comparison and not a benchmark result.
-            </li>
-        </ul>
-    </section>
-
-    <section>
-        <h2>How I know it is right</h2>
+        <h2>How it works</h2>
         <p>
-            A colleague had independently written a classification engine for the same rules. We
-            reconciled 13 datasets and 1,197 records line by line: <strong>zero discrepancies</strong>.
-            That is the only independent check here — re-running the whole library two days later
-            reproduced identical counts, which proves determinism, not correctness. His implementation,
-            not my own reading of the specification, was treated as the definition of correct — and his
-            code was never edited; the six places where our interfaces disagreed are worked around on
-            my side, with the reason written at each one.
+            The pipeline is deliberately boring in the middle: everything that decides anything is
+            deterministic code, and the language model is kept to the edges, where being wrong is
+            recoverable.
+        </p>
+
+        <figure class="diagram">
+            <div class="diagram-scroll">
+                <svg viewBox="0 0 980 330" role="img" aria-labelledby="pipe-t pipe-d" xmlns="http://www.w3.org/2000/svg">
+                    <defs><marker id="ah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8 z" class="d-head"/></marker></defs>
+                    <title id="pipe-t">Architecture of the filing pipeline</title>
+                    <desc id="pipe-d">Two inputs — a human-written application form and a folder of clinical datasets — enter a four-stage deterministic pipeline: read the form into a machine-readable control file, resolve each participant's reference date, classify every record against it, then render the filing. A review layer of three language-model agents sits alongside the middle stages and can only comment, never decide. Every classified record carries a provenance note.</desc>
+
+                    <g class="d-io">
+                        <rect x="8" y="30" width="150" height="54" rx="8"/>
+                        <text x="83" y="52">Application form</text>
+                        <text class="d-sub" x="83" y="70">human-written Excel</text>
+                        <rect x="8" y="112" width="150" height="54" rx="8"/>
+                        <text x="83" y="134">Clinical datasets</text>
+                        <text class="d-sub" x="83" y="152">one folder per study</text>
+                    </g>
+
+                    <g class="d-stage">
+                        <rect x="204" y="52" width="160" height="92" rx="8"/>
+                        <text x="284" y="80">1 · Read</text>
+                        <text class="d-sub" x="284" y="100">form → control file</text>
+                        <text class="d-sub" x="284" y="118">layout-tolerant parsing</text>
+
+                        <rect x="394" y="52" width="160" height="92" rx="8"/>
+                        <text x="474" y="80">2 · Resolve</text>
+                        <text class="d-sub" x="474" y="100">per-participant</text>
+                        <text class="d-sub" x="474" y="118">reference date</text>
+
+                        <rect x="584" y="52" width="160" height="92" rx="8"/>
+                        <text x="664" y="80">3 · Classify</text>
+                        <text class="d-sub" x="664" y="100">each record, before</text>
+                        <text class="d-sub" x="664" y="118">or after that date</text>
+
+                        <rect x="774" y="52" width="160" height="92" rx="8"/>
+                        <text x="854" y="80">4 · Render</text>
+                        <text class="d-sub" x="854" y="100">RTF first, then PDF</text>
+                        <text class="d-sub" x="854" y="118">if the box allows it</text>
+                    </g>
+
+                    <g class="d-arrow">
+                        <path marker-end="url(#ah)" d="M158 57 L198 86" /><path marker-end="url(#ah)" d="M158 139 L198 110"/>
+                        <path marker-end="url(#ah)" d="M364 98 L388 98"/><path marker-end="url(#ah)" d="M554 98 L578 98"/><path marker-end="url(#ah)" d="M744 98 L768 98"/>
+                    </g>
+
+                    <g class="d-agent">
+                        <rect x="394" y="196" width="350" height="86" rx="8"/>
+                        <text x="569" y="222">Review agents — advisory only</text>
+                        <text class="d-sub" x="569" y="242">reconcile datasets · review classifications · triage open items</text>
+                        <text class="d-sub" x="569" y="262">swappable: hosted model or a local one</text>
+                    </g>
+                    <g class="d-arrow d-dash">
+                        <path marker-end="url(#ah)" d="M474 196 L474 148"/><path marker-end="url(#ah)" d="M664 196 L664 148"/>
+                    </g>
+
+                    <g class="d-note">
+                        <rect x="774" y="196" width="160" height="86" rx="8"/>
+                        <text x="854" y="222">Provenance</text>
+                        <text class="d-sub" x="854" y="242">every record carries</text>
+                        <text class="d-sub" x="854" y="262">why it was classified</text>
+                    </g>
+                    <g class="d-arrow d-dash"><path marker-end="url(#ah)" d="M854 196 L854 148"/></g>
+
+                    <g class="d-io">
+                        <rect x="8" y="196" width="350" height="86" rx="8"/>
+                        <text x="183" y="222">Deterministic core</text>
+                        <text class="d-sub" x="183" y="242">stages 1–3 never touch the network;</text>
+                        <text class="d-sub" x="183" y="262">all arithmetic lives here, not in a model</text>
+                    </g>
+                </svg>
+            </div>
+            <figcaption>The model advises. Code decides. Every record can be traced back to the rule that classified it.</figcaption>
+        </figure>
+    </section>
+
+    <section>
+        <h2>What I actually did</h2>
+        <ul>
+            <li>
+                <strong>Made the form machine-readable.</strong> The parser locates fields by what they mean
+                rather than where they sit, and writes a control file the rest of the pipeline reads. When it
+                cannot find something, it says so and names the cell — it never guesses a default.
+            </li>
+            <li>
+                <strong>Rewrote the date logic as a per-participant cascade.</strong> The original approach
+                picked one date column per dataset, which is wrong whenever a dataset mixes sources; the
+                cascade resolves each participant's reference date from the best available evidence and
+                records which rule fired. Doing this surfaced several systematic misclassifications the manual
+                process had been quietly absorbing for years.
+            </li>
+            <li>
+                <strong>Added a provenance column to every classified record</strong> — which date it was
+                judged on, and what it was compared against. A reviewer who does not read code can still check
+                the result, and in practice that is the only kind of checking that actually happens.
+            </li>
+            <li>
+                <strong>Made the output survive its environment.</strong> Rendering originally required a
+                headless browser the company's Linux server did not have, so nothing came out at all. The
+                route is now RTF first — which is what gets submitted anyway — then a browser, then an office
+                suite, with the chosen path printed at startup so a failure is legible instead of silent.
+            </li>
+            <li>
+                <strong>Built three review agents and kept them away from the decisions:</strong> one
+                reconciles dataset inventories, one reviews classifications and flags disagreements, one
+                triages the open items a human still has to answer. They can be pointed at a hosted model or a
+                local one, because a regulated network cannot be assumed to reach the internet.
+            </li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>The agent that was confidently wrong</h2>
+        <p>
+            One review agent kept disagreeing with the deterministic classifier on records where the rule was
+            not ambiguous at all. Rather than rewrite the prompt by feel, I ablated the input: hold the record
+            constant and change one structural property at a time. The agent's answer flipped when I changed
+            how often a date appeared in the row and where the field sat — without changing a single value.
+            It had learned the shape of the data, not the rule it was given.
+        </p>
+        <p>
+            Two changes followed. The instruction became a hard constraint instead of a polite request, and
+            every arithmetic comparison went back to deterministic code, leaving the model to explain rather
+            than compute. I also compared several agent architectures — straight automation, a reasoning-plus-tool
+            loop, plan-then-execute, and a multi-role council — against criteria I derived from the regulatory
+            specification, which is how the final shape was chosen rather than assumed.
+        </p>
+    </section>
+
+    <section>
+        <h2>How correctness was established</h2>
+        <p>
+            A colleague had independently written a classification engine for the same regulation. Our outputs
+            were reconciled line by line, and his implementation — not my reading of the specification — was
+            treated as the definition of correct; his code was never edited, and every place where our
+            interfaces disagreed is worked around on my side with the reason written at the point of the
+            workaround. Re-running the whole pipeline on a later day reproduced identical output, which proves
+            determinism rather than correctness, and the two tests answer different questions on purpose.
         </p>
     </section>
 
     <section>
         <h2>The data boundary</h2>
         <p>
-            The agents only ever see file names, date fields, and column names. Never subject
-            identifiers — row numbers stand in for them — never lab values, never free text. The first
-            three stages of the pipeline do not touch the network at all, and the API key lives only in
-            a local <code>.Renviron</code>, never in anything that ships.
+            The agents only ever see file names, date field names and column names. Never participant
+            identifiers — row numbers stand in for them — never measurements, never free text. The first three
+            stages do not touch the network at all, and the API credential lives in a local environment file
+            that is excluded from every package the project produces.
         </p>
     </section>
 
     <section class="limits">
         <h2>What this is not</h2>
         <ul>
-            <li>
-                It was handed over as code plus documentation at the end of my internship, written for a
-                department of about 200 people. Rolling it onto live studies is the team's next step,
-                not something I can claim as done.
-            </li>
-            <li>
-                It has never run against a real study library — every number here comes from a dummy
-                study (A1234567, 132 subjects, 25 datasets, 135,130 rows).
-            </li>
-            <li>
-                The agent features cannot run on company machines, which have no external API access.
-                They work locally and in the demo; inside the firewall, everything except the agents is
-                usable.
-            </li>
-            <li>
-                24 open items still need the study team's confirmation, and 246 hand-filled cells in the
-                application form are not automated yet.
-            </li>
+            <li>It was handed over as documented code at the end of my internship, written for a department to adopt. Rolling it onto live studies is their next step, not something I can claim as done.</li>
+            <li>It was developed against a dummy study. It has never been run against a real study library.</li>
+            <li>The agent features cannot run on company machines, which have no external API access. Everything except the agents is usable inside the firewall.</li>
+            <li>A set of open items still needs the study team's confirmation, and part of the application form is still filled by hand.</li>
         </ul>
     </section>
 
-    <p class="stack-line">R · Shiny · haven (SAS sas7bdat) · officer / flextable / pagedown · dplyr · Gemini API · Ollama (qwen2.5) · multi-agent orchestration · SDTM clinical data</p>
+    <p class="stack-line">R · Shiny · SAS dataset I/O · document rendering (RTF / PDF) · multi-agent orchestration · hosted and local model backends · regulated-environment constraints</p>
 
 </article>
 

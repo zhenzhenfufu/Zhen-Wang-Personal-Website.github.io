@@ -7,7 +7,7 @@
 <meta name="description" content="Research assistantship at Shanghai Jiao Tong University, a wound-healing geometry simulator, 27,000+ Steam titles, and ten years of Premier League transfer spending.">
 <link rel="stylesheet" href="style.css">
 </head>
-<body class="detail">
+<body class="detail" data-ink="chart">
 
 <header class="topbar">
     <a class="home-link" href="index.html"><span aria-hidden="true">←</span> Zhen Wang</a>
@@ -16,6 +16,7 @@
         <a href="course-planner.html">Course Agent</a>
         <a href="aobo-lab.html">Rare AI Lab</a>
         <a href="edge-ai.html">Edge AI</a>
+        <a href="night-water-academy.html">Night Water Academy</a>
         <a href="data-projects.html" aria-current="page">Data Projects</a>
         <a href="beyond-code.html">Beyond Code</a>
     </nav>
@@ -53,6 +54,44 @@
             <li>Produced dual-panel animations (top-view ellipse shrinkage, side-view depth reduction) and CSV time-series exports with NumPy, Matplotlib and Pandas.</li>
         </ul>
     </section>
+
+    <figure class="diagram">
+        <div class="diagram-scroll">
+            <svg viewBox="0 0 900 230" role="img" aria-labelledby="wound-t wound-d" xmlns="http://www.w3.org/2000/svg">
+                <title id="wound-t">How the wound-healing model is structured</title>
+                <desc id="wound-d">Five hidden biological quantities — fibrin clot, macrophage activity, growth-factor signalling, fibroblast activity and collagen maturity — evolve as latent state and drive the three visible wound dimensions: width, length and depth. Only the visible dimensions are plotted.</desc>
+                <defs><marker id="ah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8 z" class="d-head"/></marker></defs>
+                <g class="d-agent">
+                    <rect x="14" y="28" width="300" height="172" rx="8"/>
+                    <text x="164" y="56">Latent state</text>
+                    <text class="d-sub" x="164" y="82">fibrin clot</text>
+                    <text class="d-sub" x="164" y="104">macrophage activity</text>
+                    <text class="d-sub" x="164" y="126">growth-factor signal</text>
+                    <text class="d-sub" x="164" y="148">fibroblast activity</text>
+                    <text class="d-sub" x="164" y="170">collagen maturity</text>
+                </g>
+                <g class="d-stage">
+                    <rect x="380" y="74" width="170" height="80" rx="8"/>
+                    <text x="465" y="104">Coupled system</text>
+                    <text class="d-sub" x="465" y="126">stepped forward in time</text>
+                </g>
+                <g class="d-io">
+                    <rect x="616" y="28" width="268" height="172" rx="8"/>
+                    <text x="750" y="56">What you can see</text>
+                    <text class="d-sub" x="750" y="86">width · length · depth</text>
+                    <text class="d-sub" x="750" y="112">plotted from above and</text>
+                    <text class="d-sub" x="750" y="132">from the side as it closes</text>
+                    <text class="d-sub" x="750" y="166">the only quantities a</text>
+                    <text class="d-sub" x="750" y="186">clinician would measure</text>
+                </g>
+                <g class="d-arrow">
+                    <path marker-end="url(#ah)" d="M314 114 L374 114"/>
+                    <path marker-end="url(#ah)" d="M550 114 L610 114"/>
+                </g>
+            </svg>
+        </div>
+        <figcaption>The biology is the hidden half. The model only ever shows you the part a clinician could measure.</figcaption>
+    </figure>
 
     <section id="steam">
         <h2>Steam Commercial Success Prediction</h2>

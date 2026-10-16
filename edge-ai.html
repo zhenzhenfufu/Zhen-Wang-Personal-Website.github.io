@@ -7,7 +7,7 @@
 <meta name="description" content="An early independent study on how thermal throttling affects LLM inference efficiency on NVIDIA Jetson, advised by Prof. Peter Chi.">
 <link rel="stylesheet" href="style.css">
 </head>
-<body class="detail">
+<body class="detail" data-ink="heat">
 
 <header class="topbar">
     <a class="home-link" href="index.html"><span aria-hidden="true">←</span> Zhen Wang</a>
@@ -16,6 +16,7 @@
         <a href="course-planner.html">Course Agent</a>
         <a href="aobo-lab.html">Rare AI Lab</a>
         <a href="edge-ai.html" aria-current="page">Edge AI</a>
+        <a href="night-water-academy.html">Night Water Academy</a>
         <a href="data-projects.html">Data Projects</a>
         <a href="beyond-code.html">Beyond Code</a>
     </nav>
@@ -46,6 +47,50 @@
             <li>GPU temperature, clock frequency, power draw and throughput (tokens/sec) logged through <code>nvidia-smi</code> and Prometheus, so throttling shows up as a time series rather than a single average.</li>
         </ul>
     </section>
+
+    <figure class="diagram">
+        <div class="diagram-scroll">
+            <svg viewBox="0 0 900 270" role="img" aria-labelledby="edge-t edge-d" xmlns="http://www.w3.org/2000/svg">
+                <title id="edge-t">What the study measures</title>
+                <desc id="edge-d">A language-model workload runs continuously on the board while four quantities are logged as time series: GPU temperature, clock frequency, power draw and tokens per second. The question is what the sustained figures settle to once the board is hot, not what the first minute reports. The curve shown is a schematic of the mechanism, not measured data.</desc>
+                <defs><marker id="ah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8 z" class="d-head"/></marker></defs>
+
+                <g class="d-io">
+                    <rect x="10" y="40" width="160" height="72" rx="8"/>
+                    <text x="90" y="68">Sustained load</text>
+                    <text class="d-sub" x="90" y="88">the same workload,</text>
+                    <text class="d-sub" x="90" y="104">minute after minute</text>
+                </g>
+                <g class="d-stage">
+                    <rect x="220" y="40" width="160" height="72" rx="8"/>
+                    <text x="300" y="68">Edge board</text>
+                    <text class="d-sub" x="300" y="88">power mode held</text>
+                    <text class="d-sub" x="300" y="104">fixed per run</text>
+                </g>
+                <g class="d-note">
+                    <rect x="430" y="28" width="196" height="96" rx="8"/>
+                    <text x="528" y="54">Logged as time series</text>
+                    <text class="d-sub" x="528" y="78">temperature · clock</text>
+                    <text class="d-sub" x="528" y="98">power · tokens per second</text>
+                </g>
+                <g class="d-arrow">
+                    <path marker-end="url(#ah)" d="M170 76 L214 76"/>
+                    <path marker-end="url(#ah)" d="M380 76 L424 76"/>
+                </g>
+
+                <g class="d-plot">
+                    <path class="d-axis" d="M690 220 L690 44 M690 220 L884 220"/>
+                    <path class="d-curve" d="M692 70 C726 70 742 76 764 108 C786 140 800 160 880 166"/>
+                    <path class="d-guide" d="M692 166 L880 166"/>
+                    <text class="d-sub" x="787" y="240">time under load</text>
+                    <text class="d-sub d-rot" x="674" y="132">throughput</text>
+                    <text class="d-sub" x="800" y="186">what it settles to</text>
+                    <text class="d-sub" x="744" y="60">what a cold benchmark reports</text>
+                </g>
+            </svg>
+        </div>
+        <figcaption>Schematic of the mechanism, not measured data — the measurements are what the study is for.</figcaption>
+    </figure>
 
     <section class="limits">
         <h2>Honest status</h2>

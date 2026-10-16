@@ -39,6 +39,10 @@
     --brass-line:   #ad8134;
 
     --code-bg:      #f1eee6;
+    --sakura-wash:  rgba(192, 41, 90, 0.06);
+    --brass-wash:   rgba(173, 129, 52, 0.07);
+    --ink-wash-a:   rgba(87, 68, 207, 0.05);
+    --ink-wash-b:   rgba(192, 41, 90, 0.04);
 
     /* status + validator-widget surfaces */
     --on-accent:    #ffffff;
@@ -80,6 +84,10 @@
         --brass-line:   #c9a05c;
 
         --code-bg:      #1f2433;
+        --sakura-wash:  rgba(233, 142, 168, 0.09);
+        --brass-wash:   rgba(226, 185, 116, 0.08);
+        --ink-wash-a:   rgba(159, 177, 255, 0.07);
+        --ink-wash-b:   rgba(233, 142, 168, 0.05);
 
         --on-accent:    #121521;
         --ok:           #4fdcae;
@@ -764,3 +772,156 @@ button.pv-c:hover { border-color: var(--iris); color: var(--iris); }
     .pv::after { display: none; }
     :focus-visible { outline-color: Highlight; }
 }
+
+/* completed-courses strip inside the validator widget */
+.pv-done-label {
+    margin: 14px 0 6px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+.pv-done { display: flex; flex-wrap: wrap; gap: 6px; }
+.pv-c-done { opacity: 0.72; border-style: dashed; }
+
+/* --- diagrams ------------------------------------------------------------ */
+
+.diagram { margin: 0 0 10px; }
+
+.diagram-scroll {
+    overflow-x: auto;
+    padding: 14px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--card-bg);
+}
+.diagram svg { display: block; width: 100%; min-width: 660px; height: auto; }
+
+.diagram text {
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    fill: var(--ink);
+    text-anchor: middle;
+}
+.diagram .d-sub { font-size: 11.5px; font-weight: 400; fill: var(--muted); }
+.diagram .d-center { text-anchor: middle; }
+
+.d-stage rect { fill: var(--card-bg-alt); stroke: var(--iris); stroke-width: 1.3; }
+.d-io rect { fill: none; stroke: var(--bar); stroke-width: 1.1; stroke-dasharray: 5 4; }
+.d-agent rect { fill: var(--sakura-wash); stroke: var(--sakura); stroke-width: 1.2; stroke-dasharray: 6 4; }
+.d-note rect { fill: none; stroke: var(--brass-line); stroke-width: 1.2; }
+.d-arrow path { fill: none; stroke: var(--bar); stroke-width: 1.6; }
+.d-arrow.d-dash path { stroke-dasharray: 4 4; stroke-width: 1.2; }
+.d-head { fill: var(--bar); stroke: none; }
+
+.diagram figcaption,
+.dag-wrap figcaption { margin-top: 10px; font-size: 0.84rem; color: var(--muted); }
+.diagram figcaption { max-width: 60ch; }
+
+/* a short framing note, used where a page has to state a boundary up front */
+.note {
+    margin: 0 0 26px;
+    padding: 12px 16px;
+    border-left: 2px solid var(--brass-line);
+    background: var(--brass-wash);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+}
+
+.h1-cn { font-size: 0.62em; font-weight: 600; color: var(--sakura); margin-left: 6px; white-space: nowrap; }
+
+/* --- the ACG layer: one quiet mark per detail page ----------------------- */
+
+body.detail { position: relative; }
+body.detail::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+        radial-gradient(760px 420px at 100% 0%, var(--ink-wash-a), transparent 60%),
+        radial-gradient(620px 380px at 0% 18%, var(--ink-wash-b), transparent 62%);
+}
+body.detail[data-ink="seal"] .page > article > .eyebrow::after,
+body.detail[data-ink="water"] .page > article > .eyebrow::after { content: none; }
+
+/* a vermilion seal mark beside the page title — the one decorative object */
+.page h1 { position: relative; }
+body.detail[data-ink] .page h1::after {
+    content: "";
+    position: absolute;
+    top: -14px;
+    right: -4px;
+    width: 34px;
+    height: 34px;
+    border: 1.5px solid var(--sakura);
+    border-radius: 5px;
+    opacity: 0.5;
+    background:
+        linear-gradient(var(--sakura), var(--sakura)) center/14px 1.5px no-repeat,
+        linear-gradient(var(--sakura), var(--sakura)) center/1.5px 14px no-repeat;
+    transform: rotate(6deg);
+}
+@media (max-width: 900px) { body.detail[data-ink] .page h1::after { display: none; } }
+
+/* --- timeline ------------------------------------------------------------ */
+
+.timeline {
+    list-style: none;
+    margin: 0;
+    padding: 0 0 0 26px;
+    position: relative;
+}
+.timeline::before {
+    content: "";
+    position: absolute;
+    left: 6px;
+    top: 6px;
+    bottom: 6px;
+    width: 1px;
+    background: linear-gradient(var(--iris), var(--sakura) 55%, var(--line));
+    opacity: 0.5;
+}
+
+.tl-item { position: relative; margin-bottom: 20px; }
+.tl-item::before {
+    content: "";
+    position: absolute;
+    left: -24px;
+    top: 7px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--card-bg);
+    border: 2px solid var(--bar);
+}
+.tl-now::before { border-color: var(--sakura); background: var(--sakura); }
+
+.tl-when {
+    margin: 0;
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+.tl-what { margin: 2px 0 0; font-size: 1rem; font-weight: 700; color: var(--ink); }
+.tl-what a { text-decoration: none; }
+.tl-what a:hover { text-decoration: underline; }
+.tl-note { margin: 3px 0 0; font-size: 0.9rem; max-width: 68ch; }
+
+@media (max-width: 900px) {
+    .timeline { padding-left: 22px; }
+    .tl-item::before { left: -20px; }
+    .tl-what { font-size: 0.96rem; }
+}
+
+/* schematic plot inside a diagram */
+.d-plot .d-axis { fill: none; stroke: var(--bar); stroke-width: 1.2; }
+.d-plot .d-curve { fill: none; stroke: var(--iris); stroke-width: 2; }
+.d-plot .d-guide { fill: none; stroke: var(--sakura); stroke-width: 1; stroke-dasharray: 4 4; }
+.d-plot .d-rot { transform: rotate(-90deg); transform-origin: 674px 132px; }

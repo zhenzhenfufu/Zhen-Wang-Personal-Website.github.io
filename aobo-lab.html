@@ -7,7 +7,7 @@
 <meta name="description" content="Undergraduate researcher in the Rare AI Lab (Prof. Aobo Li, HDSI &amp; Physics, UC San Diego) — machine learning for physics time series and rare-event searches.">
 <link rel="stylesheet" href="style.css">
 </head>
-<body class="detail">
+<body class="detail" data-ink="star">
 
 <header class="topbar">
     <a class="home-link" href="index.html"><span aria-hidden="true">←</span> Zhen Wang</a>
@@ -16,6 +16,7 @@
         <a href="course-planner.html">Course Agent</a>
         <a href="aobo-lab.html" aria-current="page">Rare AI Lab</a>
         <a href="edge-ai.html">Edge AI</a>
+        <a href="night-water-academy.html">Night Water Academy</a>
         <a href="data-projects.html">Data Projects</a>
         <a href="beyond-code.html">Beyond Code</a>
     </nav>
@@ -45,6 +46,61 @@
             evaluation procedure, and still produce a high-scoring model that is scientifically invalid.
         </p>
     </section>
+
+    <figure class="diagram">
+        <div class="diagram-scroll">
+            <svg viewBox="0 0 900 260" role="img" aria-labelledby="rare-t rare-d" xmlns="http://www.w3.org/2000/svg">
+                <title id="rare-t">Why a score is not enough in physics</title>
+                <desc id="rare-d">A physics time series goes into a model, which produces a score. Optimising the score alone admits three failure modes — taking a shortcut, collapsing to a degenerate solution, and gaming the evaluation — each of which can produce a high score and a scientifically invalid model. An evaluation protocol sits across all three.</desc>
+                <defs><marker id="ah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8 z" class="d-head"/></marker></defs>
+                <g class="d-io">
+                    <rect x="10" y="36" width="170" height="70" rx="8"/>
+                    <text x="95" y="64">Physics time series</text>
+                    <text class="d-sub" x="95" y="84">weak signal, complex noise</text>
+                </g>
+                <g class="d-stage">
+                    <rect x="230" y="36" width="160" height="70" rx="8"/>
+                    <text x="310" y="64">ML system</text>
+                    <text class="d-sub" x="310" y="84">increasingly, an agent</text>
+                    <rect x="440" y="36" width="140" height="70" rx="8"/>
+                    <text x="510" y="64">A score</text>
+                    <text class="d-sub" x="510" y="84">one number, or two</text>
+                </g>
+                <g class="d-arrow">
+                    <path marker-end="url(#ah)" d="M180 71 L224 71"/>
+                    <path marker-end="url(#ah)" d="M390 71 L434 71"/>
+                </g>
+                <g class="d-agent">
+                    <rect x="230" y="150" width="110" height="74" rx="8"/>
+                    <text x="285" y="180">Shortcut</text>
+                    <text class="d-sub" x="285" y="200">right answer,</text>
+                    <text class="d-sub" x="285" y="216">wrong reason</text>
+                    <rect x="360" y="150" width="110" height="74" rx="8"/>
+                    <text x="415" y="180">Collapse</text>
+                    <text class="d-sub" x="415" y="200">one output</text>
+                    <text class="d-sub" x="415" y="216">for everything</text>
+                    <rect x="490" y="150" width="110" height="74" rx="8"/>
+                    <text x="545" y="180">Gaming</text>
+                    <text class="d-sub" x="545" y="200">fits the test,</text>
+                    <text class="d-sub" x="545" y="216">not the physics</text>
+                </g>
+                <g class="d-arrow d-dash">
+                    <path marker-end="url(#ah)" d="M510 110 L510 146"/>
+                </g>
+                <g class="d-note">
+                    <rect x="650" y="36" width="238" height="188" rx="8"/>
+                    <text x="769" y="72">What an evaluation</text>
+                    <text x="769" y="94">protocol is for</text>
+                    <text class="d-sub" x="769" y="126">judge the development run,</text>
+                    <text class="d-sub" x="769" y="146">not only the final number —</text>
+                    <text class="d-sub" x="769" y="166">so a model that scores well</text>
+                    <text class="d-sub" x="769" y="186">for the wrong reason can</text>
+                    <text class="d-sub" x="769" y="206">still be caught</text>
+                </g>
+            </svg>
+        </div>
+        <figcaption>The lab's framing, as I understand it so far — and the reason I wanted in.</figcaption>
+    </figure>
 
     <section>
         <h2>Why it lines up with what I have done</h2>
