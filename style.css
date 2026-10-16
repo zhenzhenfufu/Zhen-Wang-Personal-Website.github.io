@@ -925,3 +925,9 @@ body.detail[data-ink] .page h1::after {
 .d-plot .d-curve { fill: none; stroke: var(--iris); stroke-width: 2; }
 .d-plot .d-guide { fill: none; stroke: var(--sakura); stroke-width: 1; stroke-dasharray: 4 4; }
 .d-plot .d-rot { transform: rotate(-90deg); transform-origin: 674px 132px; }
+
+.role-mine {
+    margin-top: -14px;
+    font-weight: 500;
+    color: var(--ink-soft);
+}
