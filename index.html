@@ -4,12 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Zhen Wang | UCSD Data Science</title>
-<meta name="description" content="Zhen Wang — UC San Diego undergraduate in Data Science. AI agents for high-stakes workflows: a clinical filing system at Pfizer China R&D, a course planner with a deterministic validator, and ML for physics time series in Prof. Aobo Li's group.">
+<meta name="description" content="Zhen Wang — UC San Diego undergraduate in Data Science. Machine learning for physics time series in the Rare AI Lab, agent development at Pfizer China R&D, and a course planner whose model is not allowed to overrule its checker.">
 <meta name="author" content="Zhen Wang">
 <meta property="og:title" content="Zhen Wang | AI Agents · Machine Learning · Data Science">
-<meta property="og:description" content="UCSD undergraduate building AI agents whose answers can be checked — clinical filings at Pfizer, a validated course planner, and ML for physics time series.">
+<meta property="og:description" content="UCSD undergraduate building AI agents whose answers can be checked — ML for physics time series, clinical filings at Pfizer, a validated course planner, and an Unreal Engine puzzle game.">
 <meta property="og:type" content="profile">
-<link rel="stylesheet" href="style.css?v=df0a6195">
+<link rel="stylesheet" href="style.css?v=7acb36fe">
 </head>
 <body>
 
@@ -25,44 +25,139 @@
         <a href="mailto:zhw124@ucsd.edu" class="sidebar-link"><span aria-hidden="true">✉</span> zhw124@ucsd.edu</a>
         <a href="https://github.com/zhenzhenfufu" class="sidebar-link">GitHub</a>
         <a href="https://ucsd-course-planning-tutor.streamlit.app/" class="sidebar-link">Course Planning Agent — demo</a>
-        <!-- Upload one canonical CV next to index.html as cv.pdf, then uncomment:
-        <a href="cv.pdf" class="sidebar-link">CV (PDF)</a> -->
         <a href="https://aobol.github.io/AoboLi/" class="sidebar-link">Rare AI Lab · Prof. Aobo Li</a>
         <a href="https://space.bilibili.com/3493110992603365" class="sidebar-link">Bilibili · 155K+ views</a>
+        <!-- Upload one canonical CV next to index.html as cv.pdf, then uncomment:
+        <a href="cv.pdf" class="sidebar-link">CV (PDF)</a> -->
     </nav>
 
     <nav class="sidebar-sections" aria-label="On this page">
-        <a href="#about">About</a>
-        <a href="#internships">Internships</a>
         <a href="#research">Research &amp; Projects</a>
-        <a href="#community">Community</a>
+        <a href="#internships">Internships</a>
+        <a href="#graph">Course graph</a>
         <a href="#timeline">Timeline</a>
+        <a href="#community">Community</a>
         <a href="#skills">Stack</a>
+        <a href="#about">About</a>
     </nav>
-
-    <div class="sidebar-focus">
-        Building AI agents for work where a wrong answer has to be caught, not just avoided —
-        and, on the side, agents that turn flat references into 3D game assets.
-    </div>
 </aside>
 
 <main class="main">
 
-    <section id="about">
-        <h2>About</h2>
-        <p class="intro">
-            I am a second-year undergraduate at <strong>UC San Diego</strong> in <strong>Data Science</strong>.
-            I build <strong>AI agents and machine learning systems</strong>, and I care most about the part
-            that usually gets skipped: showing that the output is actually correct. This summer I spent
-            three months at <strong>Pfizer China R&amp;D</strong> building an agent-assisted pipeline that
-            turns clinical trial data into regulator-ready filings — a place where an unverified answer is
-            not an answer.
-        </p>
-        <p class="intro-aside">
-            I work in the <a href="https://aobol.github.io/AoboLi/">Rare AI Lab</a> (Prof. Aobo Li, HDSI
-            &amp; Physics) on machine learning for physics time series, and I am always glad to talk about
-            agent evaluation — <a href="mailto:zhw124@ucsd.edu">zhw124@ucsd.edu</a>.
-        </p>
+    <section id="research">
+        <h2>Research, Competitions &amp; Projects</h2>
+        <div class="card-grid card-rows">
+
+    <a class="card card-lead card-current" href="aobo-lab.html">
+                    <div class="card-head">
+                        <span class="card-title">AI for Neutrino &amp; Dark Matter</span>
+                        <span class="card-date"><span class="chip-now">Current</span> Sep 2026 – now</span>
+                    </div>
+                    <span class="card-org">Rare AI Lab · Prof. Aobo Li · HDSI &amp; Physics, UC San Diego</span>
+                    <p class="card-line">
+                        Machine learning for physics time series — rare-event searches for neutrinos and dark
+                        matter. I work inside <strong>SIDERIUS</strong>, the group's open-source long-horizon
+                        auto-ML agent, on the training side of its research loop. Joined in September; nothing
+                        of my own to show yet.
+                    </p>
+                    <span class="card-more">Read more <span aria-hidden="true">→</span></span>
+                </a>
+
+
+
+            <a class="card" href="course-planner.html">
+                <div class="card-head">
+                    <span class="card-title">UCSD Course Planning Agent</span>
+                    <span class="card-date">Apr 2026 – now</span>
+                </div>
+                <span class="card-org">Solo project · live demo &amp; source</span>
+                <p class="card-line">
+                    A prerequisite graph parsed out of catalog prose — 69 courses, 142 relations, rebuilt
+                    this October against every department catalog the major touches — and a deterministic
+                    checker the model is not allowed to overrule. First-pass plan legality
+                    <strong>40% <span aria-hidden="true">→</span> 100%</strong>.
+                </p>
+                <span class="card-more">Read the write-up <span aria-hidden="true">→</span></span>
+            </a>
+
+    <a class="card" href="night-water-academy.html">
+                    <div class="card-head">
+                        <span class="card-title">Night Water Academy 夜水书院</span>
+                        <span class="card-date">2026 · in review</span>
+                    </div>
+                    <span class="card-org">Unreal Engine 5 puzzle game · producer, engine, art, lighting, modelling, trailer</span>
+                    <p class="card-line">
+                        A floating academy where the reflection keeps the version of the world somebody edited
+                        away. Two levels by a team of five: ink-brush interface baked from calligraphy, audio
+                        synthesised in code, and the build checked by automated passes rather than by replaying it.
+                    </p>
+                    <span class="card-more">Read the write-up <span aria-hidden="true">→</span></span>
+                </a>
+
+    <a class="card" href="edge-ai.html">
+                    <div class="card-head">
+                        <span class="card-title">Thermal Throttling &amp; Energy Cost</span>
+                        <span class="card-date">Mar 2026 – now</span>
+                    </div>
+                    <span class="card-org">Independent study · advised by Prof. Peter Chi</span>
+                    <p class="card-line">
+                        How much inference throughput an edge board keeps once it is hot, instrumented as a time
+                        series rather than a cold-start average. Still early.
+                    </p>
+                    <span class="card-more">Read more <span aria-hidden="true">→</span></span>
+                </a>
+
+    <a class="card" href="data-projects.html">
+                    <div class="card-head">
+                        <span class="card-title">Data Science &amp; Modeling</span>
+                        <span class="card-date">2024 – 2026</span>
+                    </div>
+                    <span class="card-org">SJTU research assistantship · wound-healing model · Steam · Premier League</span>
+                    <p class="card-line">
+                        <strong>500+ hours</strong> of child behavioural data into 95 standardised reports, a
+                        wound-closure simulation derived rather than fitted, and <strong>27,000+</strong> Steam
+                        titles cleaned until the joins stopped lying.
+                    </p>
+                    <span class="card-more">Four projects <span aria-hidden="true">→</span></span>
+                </a>
+
+        </div>
+    </section>
+
+    <section id="internships">
+        <h2>Internships</h2>
+        <!-- TODO (Zhen): to use real company marks instead of the letter tiles, drop files into
+             img/ as logo-pfizer.png, logo-mihoyo.png, logo-enc.png and tell me — a company's logo
+             is its trademark, so keep them small, unaltered and uncaptioned. -->
+    <ul class="joblist">
+                <li class="job">
+                    <span class="job-mark" aria-hidden="true">Pf</span>
+                    <span class="job-body">
+                        <a class="job-org" href="pfizer.html">Pfizer (China) R&amp;D Center</a>
+                        <span class="job-unit">Data Science &amp; Analysis (DSA)</span>
+                        <span class="job-role">AI Agent Development Intern</span>
+                        <span class="job-when">Jul – Sep 2026 · Shanghai</span>
+                    </span>
+                </li>
+                <li class="job">
+                    <span class="job-mark" aria-hidden="true">mH</span>
+                    <span class="job-body">
+                        <a class="job-org" href="beyond-code.html#ambassador">miHoYo &amp; Lilith Games</a>
+                        <span class="job-unit">Campus programme · UC San Diego</span>
+                        <span class="job-role">Campus Ambassador</span>
+                        <span class="job-when">Jul 2026 – now</span>
+                    </span>
+                </li>
+                <li class="job">
+                    <span class="job-mark" aria-hidden="true">EN</span>
+                    <span class="job-body">
+                        <a class="job-org" href="beyond-code.html#enc">ENC Mobile</a>
+                        <span class="job-unit">Campus growth</span>
+                        <span class="job-role">Growth &amp; Technical Marketing Intern</span>
+                        <span class="job-when">May – Sep 2026</span>
+                    </span>
+                </li>
+            </ul>
     </section>
 
     <section id="graph">
@@ -91,156 +186,12 @@
         </figure>
     </section>
 
-    <section id="internships">
-        <h2>Internships</h2>
-        <div class="card-grid">
-
-            <a class="card card-lead" href="pfizer.html">
-                <div class="card-head">
-                    <span class="card-title">HGRAC Filing Assistant</span>
-                    <span class="card-date">Jul – Sep 2026</span>
-                </div>
-                <span class="card-org">AI Agent Development Intern · Pfizer (China) R&amp;D Center</span>
-                <p class="card-line">
-                    Built the system that turns a human-written application form and a folder of clinical
-                    datasets into a submission-grade regulatory filing — deterministic where it decides,
-                    model-assisted where it advises, and traceable record by record. Three review agents on
-                    top, one of which I caught reading the shape of the data instead of the rule.
-                </p>
-                <span class="card-more">Read the write-up <span aria-hidden="true">→</span></span>
-            </a>
-
-            <a class="card" href="beyond-code.html#enc">
-                <div class="card-head">
-                    <span class="card-title">ENC Mobile</span>
-                    <span class="card-date">May – Sep 2026</span>
-                </div>
-                <span class="card-org">Campus Growth &amp; Technical Marketing Intern</span>
-                <p class="card-line">
-                    Channel and signup data in Python, competitor pricing to pick the segments worth
-                    chasing, and the FAQ and troubleshooting playbook behind first-line support.
-                </p>
-                <span class="card-more">More <span aria-hidden="true">→</span></span>
-            </a>
-
-            <a class="card" href="beyond-code.html#ambassador">
-                <div class="card-head">
-                    <span class="card-title">miHoYo &amp; Lilith Games</span>
-                    <span class="card-date">Jul 2026 – now</span>
-                </div>
-                <span class="card-org">Campus Ambassador · UC San Diego</span>
-                <p class="card-line">
-                    The bridge between UCSD students and both studios' alumni and recruiting networks:
-                    campus campaigns and a hundred-plus member community.
-                </p>
-                <span class="card-more">More <span aria-hidden="true">→</span></span>
-            </a>
-
-        </div>
-    </section>
-
-    <section id="research">
-        <h2>Research, Competitions &amp; Projects</h2>
-        <div class="card-grid">
-
-            <a class="card card-lead" href="aobo-lab.html">
-                <div class="card-head">
-                    <span class="card-title">AI for Neutrino &amp; Dark Matter</span>
-                    <span class="card-date">Oct 2026 – now</span>
-                </div>
-                <span class="card-org">Rare AI Lab · Prof. Aobo Li · HDSI &amp; Physics, UC San Diego</span>
-                <p class="card-line">
-                    Machine learning for physics time series — rare-event searches for neutrinos and dark
-                    matter. I work inside <strong>SIDERIUS</strong>, the group's open-source long-horizon
-                    auto-ML agent, on the training side of its research loop. Joined this October; nothing
-                    of my own to show yet.
-                </p>
-                <span class="card-more">Read more <span aria-hidden="true">→</span></span>
-            </a>
-
-            <a class="card" href="course-planner.html">
-                <div class="card-head">
-                    <span class="card-title">UCSD Course Planning Agent</span>
-                    <span class="card-date">Apr 2026 – now</span>
-                </div>
-                <span class="card-org">Solo project · live demo &amp; source</span>
-                <p class="card-line">
-                    A prerequisite graph parsed out of catalog prose, and a deterministic checker the model
-                    is not allowed to overrule. First-pass plan legality
-                    <strong>40% <span aria-hidden="true">→</span> 100%</strong>.
-                </p>
-                <span class="card-more">Read the write-up <span aria-hidden="true">→</span></span>
-            </a>
-
-            <a class="card" href="night-water-academy.html">
-                <div class="card-head">
-                    <span class="card-title">Night Water Academy 夜水书院</span>
-                    <span class="card-date">2026 · in review</span>
-                </div>
-                <span class="card-org">Unreal Engine 5 puzzle game · producer, engine, art, lighting, modelling, trailer</span>
-                <p class="card-line">
-                    A floating academy where the reflection keeps the version of the world somebody edited
-                    away. Two levels by a team of five: ink-brush interface baked from calligraphy, audio
-                    synthesised in code, and the build checked by automated passes rather than by replaying it.
-                </p>
-                <span class="card-more">Read the write-up <span aria-hidden="true">→</span></span>
-            </a>
-
-            <a class="card" href="edge-ai.html">
-                <div class="card-head">
-                    <span class="card-title">Thermal Throttling &amp; Energy Cost</span>
-                    <span class="card-date">Mar 2026 – now</span>
-                </div>
-                <span class="card-org">Independent study · advised by Prof. Peter Chi</span>
-                <p class="card-line">
-                    How much inference throughput an edge board keeps once it is hot, instrumented as a time
-                    series rather than a cold-start average. Still early.
-                </p>
-                <span class="card-more">Read more <span aria-hidden="true">→</span></span>
-            </a>
-
-            <a class="card" href="data-projects.html">
-                <div class="card-head">
-                    <span class="card-title">Data Science &amp; Modeling</span>
-                    <span class="card-date">2024 – 2026</span>
-                </div>
-                <span class="card-org">SJTU research assistantship · wound-healing model · Steam · Premier League</span>
-                <p class="card-line">
-                    <strong>500+ hours</strong> of child behavioural data into 95 standardised reports, a
-                    wound-closure simulation derived rather than fitted, and <strong>27,000+</strong> Steam
-                    titles cleaned until the joins stopped lying.
-                </p>
-                <span class="card-more">Four projects <span aria-hidden="true">→</span></span>
-            </a>
-
-        </div>
-    </section>
-
-    <section id="community">
-        <h2>Community &amp; Creation</h2>
-        <div class="card-grid">
-            <a class="card card-lead" href="beyond-code.html">
-                <div class="card-head">
-                    <span class="card-title">Beyond Code</span>
-                    <span class="card-date">2025 – now</span>
-                </div>
-                <span class="card-org">Bilibili · UCSD CGC · WFLA Student Union · club tennis</span>
-                <p class="card-line">
-                    <strong>155K+</strong> views explaining technical things to people who did not ask for
-                    jargon, <strong>500+</strong> international freshmen through orientation, and a
-                    <strong>108-member</strong> volunteer team.
-                </p>
-                <span class="card-more">Read more <span aria-hidden="true">→</span></span>
-            </a>
-        </div>
-    </section>
-
     <section id="timeline">
         <h2>Timeline</h2>
 
         <ol class="timeline">
             <li class="tl-item tl-now">
-                <p class="tl-when">Oct 2026 — now</p>
+                <p class="tl-when">Sep 2026 — now</p>
                 <p class="tl-what"><a href="aobo-lab.html">Rare AI Lab</a>, UC San Diego</p>
                 <p class="tl-note">Undergraduate researcher with Prof. Aobo Li (HDSI &amp; Physics) — machine learning for physics time series. Taking his DSC 291 this quarter.</p>
             </li>
@@ -296,6 +247,27 @@
         </ol>
     </section>
 
+    <section id="community">
+        <h2>Community &amp; Creation</h2>
+        <div class="card-grid card-rows">
+
+    <a class="card card-lead" href="beyond-code.html">
+                    <div class="card-head">
+                        <span class="card-title">Beyond Code</span>
+                        <span class="card-date">2025 – now</span>
+                    </div>
+                    <span class="card-org">Bilibili · UCSD CGC · WFLA Student Union · club tennis</span>
+                    <p class="card-line">
+                        <strong>155K+</strong> views explaining technical things to people who did not ask for
+                        jargon, <strong>500+</strong> international freshmen through orientation, and a
+                        <strong>108-member</strong> volunteer team.
+                    </p>
+                    <span class="card-more">Read more <span aria-hidden="true">→</span></span>
+                </a>
+
+        </div>
+    </section>
+
     <section id="skills">
         <h2>Technical Stack</h2>
         <!-- TODO (Zhen): if you have actually used scikit-learn or PyTorch, add them. A physics ML group
@@ -316,8 +288,25 @@
         </div>
     </section>
 
+    <section id="about" class="about-foot">
+        <h2>About</h2>
+        <p class="intro">
+            I am a second-year undergraduate at <strong>UC San Diego</strong> in <strong>Data Science</strong>.
+            I build <strong>AI agents and machine learning systems</strong>, and I care most about the part
+            that usually gets skipped: showing that the output is actually correct. This summer I spent
+            three months at <strong>Pfizer China R&amp;D</strong> building an agent-assisted pipeline that
+            turns clinical trial data into regulator-ready filings — a place where an unverified answer is
+            not an answer.
+        </p>
+        <p class="intro-aside">
+            I work in the <a href="https://aobol.github.io/AoboLi/">Rare AI Lab</a> (Prof. Aobo Li, HDSI
+            &amp; Physics) on machine learning for physics time series, and I am always glad to talk about
+            agent evaluation — <a href="mailto:zhw124@ucsd.edu">zhw124@ucsd.edu</a>.
+        </p>
+    </section>
+
 </main>
 
-<script src="app.js?v=df0a6195" defer></script>
+<script src="app.js?v=7acb36fe" defer></script>
 </body>
 </html>
