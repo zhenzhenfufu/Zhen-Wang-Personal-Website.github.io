@@ -9,7 +9,7 @@
 <meta property="og:title" content="Zhen Wang | AI Agents · Machine Learning · Data Science">
 <meta property="og:description" content="UCSD undergraduate building AI agents whose answers can be checked — ML for physics time series, clinical filings at Pfizer, a validated course planner, and an Unreal Engine puzzle game.">
 <meta property="og:type" content="profile">
-<link rel="stylesheet" href="style.css?v=b577db7f">
+<link rel="stylesheet" href="style.css?v=ed0871f2">
 </head>
 <body>
 
@@ -33,8 +33,7 @@
 
     <nav class="sidebar-sections" aria-label="On this page">
         <a href="#about">About</a>
-        <a href="#internships">Internships</a>
-        <a href="#research">Research &amp; Projects</a>
+        <a href="#work">What I do</a>
         <a href="#graph">Course graph</a>
         <a href="#timeline">Timeline</a>
         <a href="#community">Community</a>
@@ -61,119 +60,112 @@
         </p>
     </section>
 
-    <section id="internships">
-        <h2>Internships</h2>
-        <!-- Company marks identify the employer and nothing else: shown small, unaltered, on a
-             neutral tile, and never used as decoration elsewhere on the site. -->
-    <ul class="joblist">
-                <li class="job">
-                    <span class="job-mark job-logo"><img src="img/logo-pfizer.png" alt="Pfizer" width="320" height="132" loading="lazy"></span>
-                    <span class="job-body">
-                        <a class="job-org" href="pfizer.html">Pfizer (China) R&amp;D Center</a>
-                        <span class="job-unit">Data Science &amp; Analysis (DSA)</span>
-                        <span class="job-role">AI Agent Development Intern</span>
-                        <span class="job-when">Jul – Sep 2026 · Shanghai</span>
+    <section id="work">
+        <h2>What I have been doing</h2>
+        <div class="filters" role="group" aria-label="Filter by kind">
+            <button type="button" data-filter="all" aria-pressed="true">Everything</button>
+            <button type="button" data-filter="research" aria-pressed="false">Research</button>
+            <button type="button" data-filter="industry" aria-pressed="false">Industry</button>
+            <button type="button" data-filter="project" aria-pressed="false">Projects &amp; games</button>
+        </div>
+        <div class="rows">
+            <a class="row row-current" data-kind="research" href="aobo-lab.html">
+                <span class="row-mark" aria-hidden="true">RL</span>
+                <span class="row-body">
+                    <span class="row-head">
+                        <span class="row-title">AI for Neutrino &amp; Dark Matter</span>
+                        <span class="row-when"><span class="chip-now">Current</span> Sep 2026 – now</span>
                     </span>
-                </li>
-                <li class="job">
-                    <span class="job-mark job-logo"><img src="img/logo-mihoyo.png" alt="miHoYo" width="320" height="102" loading="lazy"></span>
-                    <span class="job-body">
-                        <a class="job-org" href="beyond-code.html#ambassador">miHoYo &amp; Lilith Games</a>
-                        <span class="job-unit">Campus programme · UC San Diego</span>
-                        <span class="job-role">Campus Ambassador</span>
-                        <span class="job-when">Jul 2026 – now</span>
-                    </span>
-                </li>
-                <li class="job">
-                    <span class="job-mark job-logo"><img src="img/logo-enc.png" alt="ENC Mobile" width="320" height="152" loading="lazy"></span>
-                    <span class="job-body">
-                        <a class="job-org" href="beyond-code.html#enc">ENC Mobile</a>
-                        <span class="job-unit">Campus growth</span>
-                        <span class="job-role">Growth &amp; Technical Marketing Intern</span>
-                        <span class="job-when">May – Sep 2026</span>
-                    </span>
-                </li>
-            </ul>
-    </section>
-
-    <section id="research">
-        <h2>Research, Competitions &amp; Projects</h2>
-        <div class="card-grid card-rows">
-
-    <a class="card card-lead card-current" href="aobo-lab.html">
-                    <div class="card-head">
-                        <span class="card-title">AI for Neutrino &amp; Dark Matter</span>
-                        <span class="card-date"><span class="chip-now">Current</span> Sep 2026 – now</span>
-                    </div>
-                    <span class="card-org">Rare AI Lab · Prof. Aobo Li · HDSI &amp; Physics, UC San Diego</span>
-                    <p class="card-line">
-                        Machine learning for physics time series — rare-event searches for neutrinos and dark
-                        matter. I work inside <strong>SIDERIUS</strong>, the group's open-source long-horizon
-                        auto-ML agent, on the training side of its research loop. Joined in September; nothing
-                        of my own to show yet.
-                    </p>
-                    <span class="card-more">Read more <span aria-hidden="true">→</span></span>
-                </a>
-
-
-
-            <a class="card" href="course-planner.html">
-                <div class="card-head">
-                    <span class="card-title">UCSD Course Planning Agent</span>
-                    <span class="card-date">Apr 2026 – now</span>
-                </div>
-                <span class="card-org">Solo project · live demo &amp; source</span>
-                <p class="card-line">
-                    A prerequisite graph parsed out of catalog prose — 69 courses, 142 relations, rebuilt
-                    this October against every department catalog the major touches — and a deterministic
-                    checker the model is not allowed to overrule. First-pass plan legality
-                    <strong>40% <span aria-hidden="true">→</span> 100%</strong>.
-                </p>
-                <span class="card-more">Read the write-up <span aria-hidden="true">→</span></span>
+                    <span class="row-org"><span class="row-chip">Research</span>Rare AI Lab · Prof. Aobo Li · HDSI &amp; Physics, UC San Diego</span>
+                    <span class="row-line">Machine learning for physics time series. I work inside <strong>SIDERIUS</strong>, the group’s open-source long-horizon auto-ML agent, on the training side of its research loop — nothing of my own to show yet.</span>
+                </span>
             </a>
 
-    <a class="card" href="night-water-academy.html">
-                    <div class="card-head">
-                        <span class="card-title">Night Water Academy 夜水书院</span>
-                        <span class="card-date">2026 · in review</span>
-                    </div>
-                    <span class="card-org">Unreal Engine 5 puzzle game · producer, engine, art, lighting, modelling, trailer</span>
-                    <p class="card-line">
-                        A floating academy where the reflection keeps the version of the world somebody edited
-                        away. Two levels by a team of five: ink-brush interface baked from calligraphy, audio
-                        synthesised in code, and the build checked by automated passes rather than by replaying it.
-                    </p>
-                    <span class="card-more">Read the write-up <span aria-hidden="true">→</span></span>
-                </a>
+            <a class="row" data-kind="project" href="night-water-academy.html">
+                <span class="row-mark" aria-hidden="true">NW</span>
+                <span class="row-body">
+                    <span class="row-head">
+                        <span class="row-title">Night Water Academy 夜水书院</span>
+                        <span class="row-when">2026 · in review</span>
+                    </span>
+                    <span class="row-org"><span class="row-chip">Competition</span>Unreal Engine 5 puzzle game · Tsinghua × miHoYo competition entry</span>
+                    <span class="row-line">A floating academy where the reflection keeps the version of the world somebody edited away. Team of five; I produced it and built everything except the design document.</span>
+                </span>
+            </a>
 
-    <a class="card" href="edge-ai.html">
-                    <div class="card-head">
-                        <span class="card-title">Thermal Throttling &amp; Energy Cost</span>
-                        <span class="card-date">Mar 2026 – now</span>
-                    </div>
-                    <span class="card-org">Independent study · advised by Prof. Peter Chi</span>
-                    <p class="card-line">
-                        How much inference throughput an edge board keeps once it is hot, instrumented as a time
-                        series rather than a cold-start average. Still early.
-                    </p>
-                    <span class="card-more">Read more <span aria-hidden="true">→</span></span>
-                </a>
+            <a class="row" data-kind="industry" href="pfizer.html">
+                <span class="row-mark job-logo"><img src="img/logo-pfizer.png" alt="Pfizer (China) R&D Center" loading="lazy"></span>
+                <span class="row-body">
+                    <span class="row-head">
+                        <span class="row-title">Pfizer (China) R&amp;D Center</span>
+                        <span class="row-when">Jul – Sep 2026 · Shanghai</span>
+                    </span>
+                    <span class="row-org"><span class="row-chip">Internship</span>Data Science &amp; Analysis (DSA) · AI Agent Development Intern</span>
+                    <span class="row-line">Built the system that turns a hand-written application form and a folder of clinical datasets into a submission-grade regulatory filing — deterministic where it decides, model-assisted where it advises, traceable record by record.</span>
+                </span>
+            </a>
 
-    <a class="card" href="data-projects.html">
-                    <div class="card-head">
-                        <span class="card-title">Data Science &amp; Modeling</span>
-                        <span class="card-date">2024 – 2026</span>
-                    </div>
-                    <span class="card-org">SJTU research assistantship · wound-healing model · Steam · Premier League</span>
-                    <p class="card-line">
-                        <strong>500+ hours</strong> of child behavioural data into 95 standardised reports, a
-                        wound-closure simulation derived rather than fitted, and <strong>27,000+</strong> Steam
-                        titles cleaned until the joins stopped lying.
-                    </p>
-                    <span class="card-more">Four projects <span aria-hidden="true">→</span></span>
-                </a>
+            <a class="row" data-kind="industry" href="beyond-code.html#ambassador">
+                <span class="row-mark job-logo"><img src="img/logo-mihoyo.png" alt="miHoYo & Lilith Games" loading="lazy"></span>
+                <span class="row-body">
+                    <span class="row-head">
+                        <span class="row-title">miHoYo &amp; Lilith Games</span>
+                        <span class="row-when">Jul 2026 – now</span>
+                    </span>
+                    <span class="row-org"><span class="row-chip">Industry</span>Campus Ambassador · UC San Diego</span>
+                    <span class="row-line">The bridge between UCSD students and both studios’ alumni and recruiting networks: campus campaigns and a hundred-plus member community.</span>
+                </span>
+            </a>
 
+            <a class="row" data-kind="industry" href="beyond-code.html#enc">
+                <span class="row-mark job-logo"><img src="img/logo-enc.png" alt="ENC Mobile" loading="lazy"></span>
+                <span class="row-body">
+                    <span class="row-head">
+                        <span class="row-title">ENC Mobile</span>
+                        <span class="row-when">May – Sep 2026</span>
+                    </span>
+                    <span class="row-org"><span class="row-chip">Internship</span>Campus Growth &amp; Technical Marketing Intern</span>
+                    <span class="row-line">Channel and signup data in Python, competitor pricing to pick the segments worth chasing, and the FAQ and troubleshooting playbook behind first-line support.</span>
+                </span>
+            </a>
+
+            <a class="row" data-kind="project" href="course-planner.html">
+                <span class="row-mark" aria-hidden="true">CP</span>
+                <span class="row-body">
+                    <span class="row-head">
+                        <span class="row-title">UCSD Course Planning Agent</span>
+                        <span class="row-when">Apr 2026 – now</span>
+                    </span>
+                    <span class="row-org"><span class="row-chip">Project</span>Solo project · live demo &amp; source</span>
+                    <span class="row-line">A prerequisite graph parsed out of catalog prose — 69 courses, 142 relations, rebuilt this October against every department catalog the major touches — and a deterministic checker the model is not allowed to overrule. First-pass plan legality <strong>40% → 100%</strong>.</span>
+                </span>
+            </a>
+
+            <a class="row" data-kind="research" href="edge-ai.html">
+                <span class="row-mark" aria-hidden="true">EA</span>
+                <span class="row-body">
+                    <span class="row-head">
+                        <span class="row-title">Thermal Throttling &amp; Energy Cost</span>
+                        <span class="row-when">Mar 2026 – now</span>
+                    </span>
+                    <span class="row-org"><span class="row-chip">Research</span>Independent study · advised by Prof. Peter Chi</span>
+                    <span class="row-line">How much inference throughput an edge board keeps once it is hot, instrumented as a time series rather than a cold-start average. Still early.</span>
+                </span>
+            </a>
+
+            <a class="row" data-kind="project" href="data-projects.html">
+                <span class="row-mark" aria-hidden="true">DS</span>
+                <span class="row-body">
+                    <span class="row-head">
+                        <span class="row-title">Data Science &amp; Modeling</span>
+                        <span class="row-when">2024 – 2026</span>
+                    </span>
+                    <span class="row-org"><span class="row-chip">Projects</span>SJTU research assistantship · wound-healing model · Steam · Premier League</span>
+                    <span class="row-line"><strong>500+ hours</strong> of child behavioural data into 95 standardised reports, a wound-closure simulation derived rather than fitted, and <strong>27,000+</strong> Steam titles cleaned until the joins stopped lying.</span>
+                </span>
+            </a>
         </div>
+        <p class="rows-foot">Newest first. <a href="#timeline">The full timeline</a> sits further down, including what came before UCSD.</p>
     </section>
 
     <section id="graph">
@@ -306,6 +298,6 @@
 
 </main>
 
-<script src="app.js?v=b577db7f" defer></script>
+<script src="app.js?v=ed0871f2" defer></script>
 </body>
 </html>

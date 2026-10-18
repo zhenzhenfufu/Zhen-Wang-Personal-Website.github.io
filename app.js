@@ -591,3 +591,26 @@
     }, { threshold: 0.35 });
     io.observe(curve);
 })();
+
+/* ---------------------------------------------------------------------------
+   Filter the single experience list. Without JS every row is visible, which is
+   the honest default: the filters only ever hide things.
+--------------------------------------------------------------------------- */
+
+(function () {
+    'use strict';
+
+    var buttons = [].slice.call(document.querySelectorAll('.filters button'));
+    var rows = [].slice.call(document.querySelectorAll('.row[data-kind]'));
+    if (!buttons.length || !rows.length) return;
+
+    buttons.forEach(function (button) {
+        button.addEventListener('click', function () {
+            var kind = button.getAttribute('data-filter');
+            buttons.forEach(function (b) { b.setAttribute('aria-pressed', String(b === button)); });
+            rows.forEach(function (row) {
+                row.hidden = kind !== 'all' && row.getAttribute('data-kind') !== kind;
+            });
+        });
+    });
+})();
