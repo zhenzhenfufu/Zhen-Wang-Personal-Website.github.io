@@ -1102,14 +1102,11 @@ body.detail[data-ink] .page h1::after {
 .card-rows { grid-template-columns: 1fr; }
 .card-rows .card-lead { grid-column: auto; }
 
-/* --- About, at the foot of the column ------------------------------------ */
+/* --- About, opening the column ------------------------------------------- */
 
-.about-foot {
-    margin-top: 8px;
-    padding-top: 26px;
-    border-top: 1px solid var(--line);
-}
-.about-foot .intro { font-size: 0.98rem; }
+.about-top { margin-bottom: 42px; }
+.about-top .intro { font-size: 1.06rem; }
+.about-top .intro-aside { margin-top: 12px; font-size: 0.95rem; }
 
 @media (max-width: 900px) {
     .side-block { margin-top: 20px; }
