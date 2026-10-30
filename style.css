@@ -1315,3 +1315,14 @@ body.detail[data-ink] .page h1::after {
 .d-mine rect { stroke: var(--sakura) !important; stroke-width: 2.2 !important; }
 .d-mine-tag { fill: var(--sakura) !important; font-weight: 700 !important; }
 .page-links { margin: 0 0 30px; }
+
+/* --- schematic waveform demo -------------------------------------------- */
+
+.wave-ctl { margin: 0 0 10px; }
+.wave-axes path { fill: none; stroke: var(--line); stroke-width: 1; }
+.wave-label { font-size: 12px !important; font-weight: 600 !important; fill: var(--muted) !important; text-anchor: start !important; }
+.wave-right { text-anchor: end !important; }
+.wave-set { opacity: 0; transition: opacity 0.35s ease; }
+.wave-set.is-on { opacity: 1; }
+.wave-line { fill: none; stroke: var(--iris); stroke-width: 2.4; stroke-linejoin: round; }
+.wave-der { fill: none; stroke: var(--sakura); stroke-width: 2.2; stroke-linejoin: round; }

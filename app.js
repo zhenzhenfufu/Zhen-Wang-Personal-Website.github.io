@@ -660,3 +660,25 @@
         });
     });
 })();
+
+/* ---------------------------------------------------------------------------
+   Waveform demo (Majorana page): switch between the schematic signal-like and
+   background-like pulse. Without JS the signal-like case is shown.
+--------------------------------------------------------------------------- */
+
+(function () {
+    'use strict';
+
+    var root = document.querySelector('[data-wave]');
+    if (!root) return;
+    var buttons = [].slice.call(root.querySelectorAll('[data-wave-show]'));
+    var sets = [].slice.call(root.querySelectorAll('[data-wave-set]'));
+
+    buttons.forEach(function (button) {
+        button.addEventListener('click', function () {
+            var which = button.getAttribute('data-wave-show');
+            buttons.forEach(function (b) { b.setAttribute('aria-pressed', String(b === button)); });
+            sets.forEach(function (g) { g.classList.toggle('is-on', g.getAttribute('data-wave-set') === which); });
+        });
+    });
+})();

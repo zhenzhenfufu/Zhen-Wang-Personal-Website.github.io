@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Signal or Background? — Majorana Waveform Classifier | Zhen Wang</title>
+<meta name="description" content="A neural-network classifier for germanium-detector waveforms from the Majorana Demonstrator, a search for neutrinoless double-beta decay: two-channel residual CNN, self-training on 65,000 unlabelled pulses, holdout ROC AUC 0.971.">
+<link rel="stylesheet" href="style.css?v=cd5aa7eb">
+</head>
+<body class="detail" data-ink="star">
+
+<header class="topbar">
+    <a class="home-link" href="index.html"><span aria-hidden="true">←</span> Zhen Wang</a>
+    <nav class="topnav" aria-label="Project pages">
+        <a href="pfizer.html">Pfizer</a>
+        <a href="course-planner.html">Course Agent</a>
+        <a href="aobo-lab.html">SIDERIUS</a>
+        <a href="edge-ai.html">Edge AI</a>
+        <a href="night-water-academy.html">Night Water Academy</a>
+        <a href="majorana.html" aria-current="page">Majorana</a>
+        <a href="data-projects.html">Data Projects</a>
+        <a href="beyond-code.html">Beyond Code</a>
+    </nav>
+</header>
+
+<main class="page">
+<article>
+
+    <p class="eyebrow">Course project · DSC 40A · Spring 2026</p>
+    <h1>Signal or Background?</h1>
+    <p class="role">Classifying germanium-detector waveforms from the Majorana Demonstrator</p>
+
+    <p class="lede">
+        The Majorana Demonstrator looked for one of the rarest processes physics has a name for — a
+        nucleus decaying in a way that would show neutrinos are their own antiparticles. Almost everything
+        its detectors record is background. This project was a classifier that reads the shape of a single
+        detector pulse and says which is which.
+    </p>
+
+    <dl class="factbar">
+        <div><dt>Data</dt><dd>20,000 labelled · 65,000 unlabelled waveforms</dd></div>
+        <div><dt>Input</dt><dd>3,800 samples per pulse</dd></div>
+        <div><dt>Model</dt><dd>Residual 1D CNN, self-trained ensemble</dd></div>
+        <div><dt>Holdout</dt><dd>ROC AUC 0.971</dd></div>
+    </dl>
+
+    <section>
+        <h2>Why the shape of a pulse matters</h2>
+        <p>
+            The experiment used high-purity germanium detectors. When something deposits energy inside one, it
+            produces a pulse whose rise depends on <em>where</em> and <em>how many places</em> the energy was
+            left. The decay being searched for deposits its energy at essentially a single point. Much of the
+            background — gamma rays that scatter through the crystal — leaves energy at several points, and the
+            pulse records that as a rise with a shoulder in it.
+        </p>
+        <p>
+            So the task is not about how big a pulse is but about how it rises. Switch between the two cases
+            below and watch the second channel — the slope — which is the one the network was given precisely
+            because it makes the difference visible.
+        </p>
+
+        <figure class="diagram wave-demo" data-wave>
+            <div class="diagram-ctl wave-ctl" role="group" aria-label="Choose an event type">
+                <button type="button" data-wave-show="single" aria-pressed="true">Signal-like · one deposit</button>
+                <button type="button" data-wave-show="multi" aria-pressed="false">Background-like · several deposits</button>
+            </div>
+            <div class="diagram-scroll">
+                <svg viewBox="0 0 980 320" role="img" aria-labelledby="wv-t wv-d" xmlns="http://www.w3.org/2000/svg">
+                    <title id="wv-t">Schematic detector pulses and their derivatives</title>
+                    <desc id="wv-d">Two illustrative cases. A single energy deposit gives one clean rise in the pulse and one sharp peak in its derivative. Deposits at several points give a rise with a shoulder and several peaks in the derivative. Schematic, not measured data.</desc>
+                    <g class="wave-axes">
+                        <path d="M40 140 L940 140 M40 300 L940 300"/>
+                        <text x="40" y="14" class="wave-label">pulse (normalised)</text>
+                        <text x="40" y="182" class="wave-label">its slope — the second channel</text>
+                        <text x="940" y="316" class="wave-label wave-right">time →</text>
+                    </g>
+                    <g class="wave-set is-on" data-wave-set="single">
+                        <path class="wave-line" d="M40.0 140.0 L42.3 140.0 L44.5 140.0 L46.8 140.0 L49.0 140.0 L51.3 140.0 L53.5 140.0 L55.8 140.0 L58.0 140.0 L60.3 140.0 L62.6 140.0 L64.8 140.0 L67.1 140.0 L69.3 140.0 L71.6 140.0 L73.8 140.0 L76.1 140.0 L78.3 140.0 L80.6 140.0 L82.9 140.0 L85.1 140.0 L87.4 140.0 L89.6 140.0 L91.9 140.0 L94.1 140.0 L96.4 140.0 L98.6 140.0 L100.9 140.0 L103.2 140.0 L105.4 140.0 L107.7 140.0 L109.9 140.0 L112.2 140.0 L114.4 140.0 L116.7 140.0 L118.9 140.0 L121.2 140.0 L123.5 140.0 L125.7 140.0 L128.0 140.0 L130.2 140.0 L132.5 140.0 L134.7 140.0 L137.0 140.0 L139.2 140.0 L141.5 140.0 L143.8 140.0 L146.0 140.0 L148.3 140.0 L150.5 140.0 L152.8 140.0 L155.0 140.0 L157.3 140.0 L159.5 140.0 L161.8 140.0 L164.1 140.0 L166.3 140.0 L168.6 140.0 L170.8 140.0 L173.1 140.0 L175.3 140.0 L177.6 140.0 L179.8 140.0 L182.1 140.0 L184.4 140.0 L186.6 140.0 L188.9 140.0 L191.1 140.0 L193.4 140.0 L195.6 140.0 L197.9 140.0 L200.2 140.0 L202.4 140.0 L204.7 140.0 L206.9 140.0 L209.2 140.0 L211.4 140.0 L213.7 140.0 L215.9 140.0 L218.2 140.0 L220.5 140.0 L222.7 140.0 L225.0 140.0 L227.2 140.0 L229.5 140.0 L231.7 140.0 L234.0 140.0 L236.2 140.0 L238.5 140.0 L240.8 140.0 L243.0 140.0 L245.3 140.0 L247.5 140.0 L249.8 140.0 L252.0 140.0 L254.3 140.0 L256.5 140.0 L258.8 140.0 L261.1 140.0 L263.3 140.0 L265.6 140.0 L267.8 140.0 L270.1 140.0 L272.3 140.0 L274.6 140.0 L276.8 140.0 L279.1 140.0 L281.4 140.0 L283.6 140.0 L285.9 140.0 L288.1 140.0 L290.4 140.0 L292.6 140.0 L294.9 140.0 L297.1 140.0 L299.4 140.0 L301.7 140.0 L303.9 140.0 L306.2 140.0 L308.4 140.0 L310.7 140.0 L312.9 140.0 L315.2 140.0 L317.4 140.0 L319.7 140.0 L322.0 140.0 L324.2 140.0 L326.5 140.0 L328.7 140.0 L331.0 140.0 L333.2 140.0 L335.5 140.0 L337.7 140.0 L340.0 140.0 L342.3 140.0 L344.5 140.0 L346.8 140.0 L349.0 140.0 L351.3 140.0 L353.5 140.0 L355.8 140.0 L358.0 140.0 L360.3 140.0 L362.6 140.0 L364.8 140.0 L367.1 140.0 L369.3 140.0 L371.6 140.0 L373.8 140.0 L376.1 140.0 L378.3 140.0 L380.6 140.0 L382.9 140.0 L385.1 140.0 L387.4 140.0 L389.6 140.0 L391.9 140.0 L394.1 140.0 L396.4 140.0 L398.6 139.9 L400.9 139.9 L403.2 139.9 L405.4 139.9 L407.7 139.8 L409.9 139.7 L412.2 139.6 L414.4 139.5 L416.7 139.3 L418.9 139.1 L421.2 138.8 L423.5 138.3 L425.7 137.7 L428.0 136.9 L430.2 135.7 L432.5 134.2 L434.7 132.3 L437.0 129.7 L439.2 126.3 L441.5 122.0 L443.8 116.7 L446.0 110.2 L448.3 102.7 L450.5 94.2 L452.8 85.1 L455.0 75.7 L457.3 66.5 L459.5 58.0 L461.8 50.3 L464.1 43.8 L466.3 38.4 L468.6 34.0 L470.8 30.6 L473.1 27.9 L475.3 25.9 L477.6 24.4 L479.8 23.2 L482.1 22.4 L484.4 21.7 L486.6 21.3 L488.9 20.9 L491.1 20.7 L493.4 20.5 L495.6 20.4 L497.9 20.3 L500.2 20.2 L502.4 20.1 L504.7 20.1 L506.9 20.1 L509.2 20.1 L511.4 20.0 L513.7 20.0 L515.9 20.0 L518.2 20.0 L520.5 20.0 L522.7 20.0 L525.0 20.0 L527.2 20.0 L529.5 20.0 L531.7 20.0 L534.0 20.0 L536.2 20.0 L538.5 20.0 L540.8 20.0 L543.0 20.0 L545.3 20.0 L547.5 20.0 L549.8 20.0 L552.0 20.0 L554.3 20.0 L556.5 20.0 L558.8 20.0 L561.1 20.0 L563.3 20.0 L565.6 20.0 L567.8 20.0 L570.1 20.0 L572.3 20.0 L574.6 20.0 L576.8 20.0 L579.1 20.0 L581.4 20.0 L583.6 20.0 L585.9 20.0 L588.1 20.0 L590.4 20.0 L592.6 20.0 L594.9 20.0 L597.1 20.0 L599.4 20.0 L601.7 20.0 L603.9 20.0 L606.2 20.0 L608.4 20.0 L610.7 20.0 L612.9 20.0 L615.2 20.0 L617.4 20.0 L619.7 20.0 L622.0 20.0 L624.2 20.0 L626.5 20.0 L628.7 20.0 L631.0 20.0 L633.2 20.0 L635.5 20.0 L637.7 20.0 L640.0 20.0 L642.3 20.0 L644.5 20.0 L646.8 20.0 L649.0 20.0 L651.3 20.0 L653.5 20.0 L655.8 20.0 L658.0 20.0 L660.3 20.0 L662.6 20.0 L664.8 20.0 L667.1 20.0 L669.3 20.0 L671.6 20.0 L673.8 20.0 L676.1 20.0 L678.3 20.0 L680.6 20.0 L682.9 20.0 L685.1 20.0 L687.4 20.0 L689.6 20.0 L691.9 20.0 L694.1 20.0 L696.4 20.0 L698.6 20.0 L700.9 20.0 L703.2 20.0 L705.4 20.0 L707.7 20.0 L709.9 20.0 L712.2 20.0 L714.4 20.0 L716.7 20.0 L718.9 20.0 L721.2 20.0 L723.5 20.0 L725.7 20.0 L728.0 20.0 L730.2 20.0 L732.5 20.0 L734.7 20.0 L737.0 20.0 L739.2 20.0 L741.5 20.0 L743.8 20.0 L746.0 20.0 L748.3 20.0 L750.5 20.0 L752.8 20.0 L755.0 20.0 L757.3 20.0 L759.5 20.0 L761.8 20.0 L764.1 20.0 L766.3 20.0 L768.6 20.0 L770.8 20.0 L773.1 20.0 L775.3 20.0 L777.6 20.0 L779.8 20.0 L782.1 20.0 L784.4 20.0 L786.6 20.0 L788.9 20.0 L791.1 20.0 L793.4 20.0 L795.6 20.0 L797.9 20.0 L800.2 20.0 L802.4 20.0 L804.7 20.0 L806.9 20.0 L809.2 20.0 L811.4 20.0 L813.7 20.0 L815.9 20.0 L818.2 20.0 L820.5 20.0 L822.7 20.0 L825.0 20.0 L827.2 20.0 L829.5 20.0 L831.7 20.0 L834.0 20.0 L836.2 20.0 L838.5 20.0 L840.8 20.0 L843.0 20.0 L845.3 20.0 L847.5 20.0 L849.8 20.0 L852.0 20.0 L854.3 20.0 L856.5 20.0 L858.8 20.0 L861.1 20.0 L863.3 20.0 L865.6 20.0 L867.8 20.0 L870.1 20.0 L872.3 20.0 L874.6 20.0 L876.8 20.0 L879.1 20.0 L881.4 20.0 L883.6 20.0 L885.9 20.0 L888.1 20.0 L890.4 20.0 L892.6 20.0 L894.9 20.0 L897.1 20.0 L899.4 20.0 L901.7 20.0 L903.9 20.0 L906.2 20.0 L908.4 20.0 L910.7 20.0 L912.9 20.0 L915.2 20.0 L917.4 20.0 L919.7 20.0 L922.0 20.0 L924.2 20.0 L926.5 20.0 L928.7 20.0 L931.0 20.0 L933.2 20.0 L935.5 20.0 L937.7 20.0 L940.0 20.0"/>
+                        <path class="wave-der" d="M40.0 300.0 L42.3 300.0 L44.5 300.0 L46.8 300.0 L49.0 300.0 L51.3 300.0 L53.5 300.0 L55.8 300.0 L58.0 300.0 L60.3 300.0 L62.6 300.0 L64.8 300.0 L67.1 300.0 L69.3 300.0 L71.6 300.0 L73.8 300.0 L76.1 300.0 L78.3 300.0 L80.6 300.0 L82.9 300.0 L85.1 300.0 L87.4 300.0 L89.6 300.0 L91.9 300.0 L94.1 300.0 L96.4 300.0 L98.6 300.0 L100.9 300.0 L103.2 300.0 L105.4 300.0 L107.7 300.0 L109.9 300.0 L112.2 300.0 L114.4 300.0 L116.7 300.0 L118.9 300.0 L121.2 300.0 L123.5 300.0 L125.7 300.0 L128.0 300.0 L130.2 300.0 L132.5 300.0 L134.7 300.0 L137.0 300.0 L139.2 300.0 L141.5 300.0 L143.8 300.0 L146.0 300.0 L148.3 300.0 L150.5 300.0 L152.8 300.0 L155.0 300.0 L157.3 300.0 L159.5 300.0 L161.8 300.0 L164.1 300.0 L166.3 300.0 L168.6 300.0 L170.8 300.0 L173.1 300.0 L175.3 300.0 L177.6 300.0 L179.8 300.0 L182.1 300.0 L184.4 300.0 L186.6 300.0 L188.9 300.0 L191.1 300.0 L193.4 300.0 L195.6 300.0 L197.9 300.0 L200.2 300.0 L202.4 300.0 L204.7 300.0 L206.9 300.0 L209.2 300.0 L211.4 300.0 L213.7 300.0 L215.9 300.0 L218.2 300.0 L220.5 300.0 L222.7 300.0 L225.0 300.0 L227.2 300.0 L229.5 300.0 L231.7 300.0 L234.0 300.0 L236.2 300.0 L238.5 300.0 L240.8 300.0 L243.0 300.0 L245.3 300.0 L247.5 300.0 L249.8 300.0 L252.0 300.0 L254.3 300.0 L256.5 300.0 L258.8 300.0 L261.1 300.0 L263.3 300.0 L265.6 300.0 L267.8 300.0 L270.1 300.0 L272.3 300.0 L274.6 300.0 L276.8 300.0 L279.1 300.0 L281.4 300.0 L283.6 300.0 L285.9 300.0 L288.1 300.0 L290.4 300.0 L292.6 300.0 L294.9 300.0 L297.1 300.0 L299.4 300.0 L301.7 300.0 L303.9 300.0 L306.2 300.0 L308.4 300.0 L310.7 300.0 L312.9 300.0 L315.2 300.0 L317.4 300.0 L319.7 300.0 L322.0 300.0 L324.2 300.0 L326.5 300.0 L328.7 300.0 L331.0 300.0 L333.2 300.0 L335.5 300.0 L337.7 300.0 L340.0 300.0 L342.3 300.0 L344.5 300.0 L346.8 300.0 L349.0 300.0 L351.3 300.0 L353.5 300.0 L355.8 300.0 L358.0 300.0 L360.3 300.0 L362.6 300.0 L364.8 300.0 L367.1 300.0 L369.3 300.0 L371.6 300.0 L373.8 300.0 L376.1 300.0 L378.3 300.0 L380.6 300.0 L382.9 300.0 L385.1 300.0 L387.4 300.0 L389.6 299.9 L391.9 299.9 L394.1 299.9 L396.4 299.8 L398.6 299.8 L400.9 299.7 L403.2 299.6 L405.4 299.5 L407.7 299.3 L409.9 299.0 L412.2 298.6 L414.4 298.2 L416.7 297.5 L418.9 296.6 L421.2 295.3 L423.5 293.7 L425.7 291.4 L428.0 288.5 L430.2 284.5 L432.5 279.4 L434.7 272.8 L437.0 264.6 L439.2 254.6 L441.5 243.0 L443.8 230.1 L446.0 217.0 L448.3 204.9 L450.5 195.5 L452.8 190.2 L455.0 190.0 L457.3 194.9 L459.5 204.0 L461.8 216.0 L464.1 229.1 L466.3 242.0 L468.6 253.7 L470.8 263.9 L473.1 272.2 L475.3 278.9 L477.6 284.2 L479.8 288.2 L482.1 291.2 L484.4 293.5 L486.6 295.2 L488.9 296.5 L491.1 297.4 L493.4 298.1 L495.6 298.6 L497.9 299.0 L500.2 299.3 L502.4 299.5 L504.7 299.6 L506.9 299.7 L509.2 299.8 L511.4 299.8 L513.7 299.9 L515.9 299.9 L518.2 299.9 L520.5 300.0 L522.7 300.0 L525.0 300.0 L527.2 300.0 L529.5 300.0 L531.7 300.0 L534.0 300.0 L536.2 300.0 L538.5 300.0 L540.8 300.0 L543.0 300.0 L545.3 300.0 L547.5 300.0 L549.8 300.0 L552.0 300.0 L554.3 300.0 L556.5 300.0 L558.8 300.0 L561.1 300.0 L563.3 300.0 L565.6 300.0 L567.8 300.0 L570.1 300.0 L572.3 300.0 L574.6 300.0 L576.8 300.0 L579.1 300.0 L581.4 300.0 L583.6 300.0 L585.9 300.0 L588.1 300.0 L590.4 300.0 L592.6 300.0 L594.9 300.0 L597.1 300.0 L599.4 300.0 L601.7 300.0 L603.9 300.0 L606.2 300.0 L608.4 300.0 L610.7 300.0 L612.9 300.0 L615.2 300.0 L617.4 300.0 L619.7 300.0 L622.0 300.0 L624.2 300.0 L626.5 300.0 L628.7 300.0 L631.0 300.0 L633.2 300.0 L635.5 300.0 L637.7 300.0 L640.0 300.0 L642.3 300.0 L644.5 300.0 L646.8 300.0 L649.0 300.0 L651.3 300.0 L653.5 300.0 L655.8 300.0 L658.0 300.0 L660.3 300.0 L662.6 300.0 L664.8 300.0 L667.1 300.0 L669.3 300.0 L671.6 300.0 L673.8 300.0 L676.1 300.0 L678.3 300.0 L680.6 300.0 L682.9 300.0 L685.1 300.0 L687.4 300.0 L689.6 300.0 L691.9 300.0 L694.1 300.0 L696.4 300.0 L698.6 300.0 L700.9 300.0 L703.2 300.0 L705.4 300.0 L707.7 300.0 L709.9 300.0 L712.2 300.0 L714.4 300.0 L716.7 300.0 L718.9 300.0 L721.2 300.0 L723.5 300.0 L725.7 300.0 L728.0 300.0 L730.2 300.0 L732.5 300.0 L734.7 300.0 L737.0 300.0 L739.2 300.0 L741.5 300.0 L743.8 300.0 L746.0 300.0 L748.3 300.0 L750.5 300.0 L752.8 300.0 L755.0 300.0 L757.3 300.0 L759.5 300.0 L761.8 300.0 L764.1 300.0 L766.3 300.0 L768.6 300.0 L770.8 300.0 L773.1 300.0 L775.3 300.0 L777.6 300.0 L779.8 300.0 L782.1 300.0 L784.4 300.0 L786.6 300.0 L788.9 300.0 L791.1 300.0 L793.4 300.0 L795.6 300.0 L797.9 300.0 L800.2 300.0 L802.4 300.0 L804.7 300.0 L806.9 300.0 L809.2 300.0 L811.4 300.0 L813.7 300.0 L815.9 300.0 L818.2 300.0 L820.5 300.0 L822.7 300.0 L825.0 300.0 L827.2 300.0 L829.5 300.0 L831.7 300.0 L834.0 300.0 L836.2 300.0 L838.5 300.0 L840.8 300.0 L843.0 300.0 L845.3 300.0 L847.5 300.0 L849.8 300.0 L852.0 300.0 L854.3 300.0 L856.5 300.0 L858.8 300.0 L861.1 300.0 L863.3 300.0 L865.6 300.0 L867.8 300.0 L870.1 300.0 L872.3 300.0 L874.6 300.0 L876.8 300.0 L879.1 300.0 L881.4 300.0 L883.6 300.0 L885.9 300.0 L888.1 300.0 L890.4 300.0 L892.6 300.0 L894.9 300.0 L897.1 300.0 L899.4 300.0 L901.7 300.0 L903.9 300.0 L906.2 300.0 L908.4 300.0 L910.7 300.0 L912.9 300.0 L915.2 300.0 L917.4 300.0 L919.7 300.0 L922.0 300.0 L924.2 300.0 L926.5 300.0 L928.7 300.0 L931.0 300.0 L933.2 300.0 L935.5 300.0 L937.7 300.0 L940.0 300.0"/>
+                    </g>
+                    <g class="wave-set" data-wave-set="multi">
+                        <path class="wave-line" d="M40.0 140.0 L42.3 140.0 L44.5 140.0 L46.8 140.0 L49.0 140.0 L51.3 140.0 L53.5 140.0 L55.8 140.0 L58.0 140.0 L60.3 140.0 L62.6 140.0 L64.8 140.0 L67.1 140.0 L69.3 140.0 L71.6 140.0 L73.8 140.0 L76.1 140.0 L78.3 140.0 L80.6 140.0 L82.9 140.0 L85.1 140.0 L87.4 140.0 L89.6 140.0 L91.9 140.0 L94.1 140.0 L96.4 140.0 L98.6 140.0 L100.9 140.0 L103.2 140.0 L105.4 140.0 L107.7 140.0 L109.9 140.0 L112.2 140.0 L114.4 140.0 L116.7 140.0 L118.9 140.0 L121.2 140.0 L123.5 140.0 L125.7 140.0 L128.0 140.0 L130.2 140.0 L132.5 140.0 L134.7 140.0 L137.0 140.0 L139.2 140.0 L141.5 140.0 L143.8 140.0 L146.0 140.0 L148.3 140.0 L150.5 140.0 L152.8 140.0 L155.0 140.0 L157.3 140.0 L159.5 140.0 L161.8 140.0 L164.1 140.0 L166.3 140.0 L168.6 140.0 L170.8 140.0 L173.1 140.0 L175.3 140.0 L177.6 140.0 L179.8 140.0 L182.1 140.0 L184.4 140.0 L186.6 140.0 L188.9 140.0 L191.1 140.0 L193.4 140.0 L195.6 140.0 L197.9 140.0 L200.2 140.0 L202.4 140.0 L204.7 140.0 L206.9 140.0 L209.2 140.0 L211.4 140.0 L213.7 140.0 L215.9 140.0 L218.2 140.0 L220.5 140.0 L222.7 140.0 L225.0 140.0 L227.2 140.0 L229.5 140.0 L231.7 140.0 L234.0 140.0 L236.2 140.0 L238.5 140.0 L240.8 140.0 L243.0 140.0 L245.3 140.0 L247.5 140.0 L249.8 140.0 L252.0 140.0 L254.3 140.0 L256.5 140.0 L258.8 140.0 L261.1 140.0 L263.3 140.0 L265.6 140.0 L267.8 140.0 L270.1 140.0 L272.3 140.0 L274.6 140.0 L276.8 140.0 L279.1 140.0 L281.4 140.0 L283.6 140.0 L285.9 140.0 L288.1 140.0 L290.4 140.0 L292.6 140.0 L294.9 140.0 L297.1 140.0 L299.4 140.0 L301.7 140.0 L303.9 140.0 L306.2 140.0 L308.4 140.0 L310.7 140.0 L312.9 140.0 L315.2 140.0 L317.4 140.0 L319.7 140.0 L322.0 140.0 L324.2 140.0 L326.5 140.0 L328.7 140.0 L331.0 140.0 L333.2 140.0 L335.5 140.0 L337.7 140.0 L340.0 140.0 L342.3 140.0 L344.5 140.0 L346.8 140.0 L349.0 140.0 L351.3 140.0 L353.5 140.0 L355.8 139.9 L358.0 139.9 L360.3 139.9 L362.6 139.8 L364.8 139.7 L367.1 139.6 L369.3 139.4 L371.6 139.2 L373.8 138.8 L376.1 138.4 L378.3 137.7 L380.6 136.7 L382.9 135.4 L385.1 133.6 L387.4 131.2 L389.6 128.0 L391.9 123.9 L394.1 119.0 L396.4 113.2 L398.6 106.8 L400.9 100.1 L403.2 93.7 L405.4 87.7 L407.7 82.6 L409.9 78.4 L412.2 75.0 L414.4 72.4 L416.7 70.5 L418.9 69.1 L421.2 68.1 L423.5 67.4 L425.7 66.8 L428.0 66.5 L430.2 66.2 L432.5 66.0 L434.7 65.9 L437.0 65.8 L439.2 65.7 L441.5 65.7 L443.8 65.7 L446.0 65.6 L448.3 65.6 L450.5 65.6 L452.8 65.6 L455.0 65.6 L457.3 65.6 L459.5 65.6 L461.8 65.6 L464.1 65.6 L466.3 65.6 L468.6 65.6 L470.8 65.6 L473.1 65.6 L475.3 65.5 L477.6 65.5 L479.8 65.5 L482.1 65.4 L484.4 65.3 L486.6 65.2 L488.9 65.1 L491.1 64.9 L493.4 64.6 L495.6 64.1 L497.9 63.5 L500.2 62.7 L502.4 61.5 L504.7 60.0 L506.9 57.9 L509.2 55.4 L511.4 52.3 L513.7 48.7 L515.9 44.7 L518.2 40.6 L520.5 36.7 L522.7 33.1 L525.0 30.0 L527.2 27.5 L529.5 25.5 L531.7 24.0 L534.0 22.9 L536.2 22.1 L538.5 21.5 L540.8 21.0 L543.0 20.7 L545.3 20.5 L547.5 20.4 L549.8 20.2 L552.0 20.2 L554.3 20.1 L556.5 20.1 L558.8 20.1 L561.1 20.0 L563.3 20.0 L565.6 20.0 L567.8 20.0 L570.1 20.0 L572.3 20.0 L574.6 20.0 L576.8 20.0 L579.1 20.0 L581.4 20.0 L583.6 20.0 L585.9 20.0 L588.1 20.0 L590.4 20.0 L592.6 20.0 L594.9 20.0 L597.1 20.0 L599.4 20.0 L601.7 20.0 L603.9 20.0 L606.2 20.0 L608.4 20.0 L610.7 20.0 L612.9 20.0 L615.2 20.0 L617.4 20.0 L619.7 20.0 L622.0 20.0 L624.2 20.0 L626.5 20.0 L628.7 20.0 L631.0 20.0 L633.2 20.0 L635.5 20.0 L637.7 20.0 L640.0 20.0 L642.3 20.0 L644.5 20.0 L646.8 20.0 L649.0 20.0 L651.3 20.0 L653.5 20.0 L655.8 20.0 L658.0 20.0 L660.3 20.0 L662.6 20.0 L664.8 20.0 L667.1 20.0 L669.3 20.0 L671.6 20.0 L673.8 20.0 L676.1 20.0 L678.3 20.0 L680.6 20.0 L682.9 20.0 L685.1 20.0 L687.4 20.0 L689.6 20.0 L691.9 20.0 L694.1 20.0 L696.4 20.0 L698.6 20.0 L700.9 20.0 L703.2 20.0 L705.4 20.0 L707.7 20.0 L709.9 20.0 L712.2 20.0 L714.4 20.0 L716.7 20.0 L718.9 20.0 L721.2 20.0 L723.5 20.0 L725.7 20.0 L728.0 20.0 L730.2 20.0 L732.5 20.0 L734.7 20.0 L737.0 20.0 L739.2 20.0 L741.5 20.0 L743.8 20.0 L746.0 20.0 L748.3 20.0 L750.5 20.0 L752.8 20.0 L755.0 20.0 L757.3 20.0 L759.5 20.0 L761.8 20.0 L764.1 20.0 L766.3 20.0 L768.6 20.0 L770.8 20.0 L773.1 20.0 L775.3 20.0 L777.6 20.0 L779.8 20.0 L782.1 20.0 L784.4 20.0 L786.6 20.0 L788.9 20.0 L791.1 20.0 L793.4 20.0 L795.6 20.0 L797.9 20.0 L800.2 20.0 L802.4 20.0 L804.7 20.0 L806.9 20.0 L809.2 20.0 L811.4 20.0 L813.7 20.0 L815.9 20.0 L818.2 20.0 L820.5 20.0 L822.7 20.0 L825.0 20.0 L827.2 20.0 L829.5 20.0 L831.7 20.0 L834.0 20.0 L836.2 20.0 L838.5 20.0 L840.8 20.0 L843.0 20.0 L845.3 20.0 L847.5 20.0 L849.8 20.0 L852.0 20.0 L854.3 20.0 L856.5 20.0 L858.8 20.0 L861.1 20.0 L863.3 20.0 L865.6 20.0 L867.8 20.0 L870.1 20.0 L872.3 20.0 L874.6 20.0 L876.8 20.0 L879.1 20.0 L881.4 20.0 L883.6 20.0 L885.9 20.0 L888.1 20.0 L890.4 20.0 L892.6 20.0 L894.9 20.0 L897.1 20.0 L899.4 20.0 L901.7 20.0 L903.9 20.0 L906.2 20.0 L908.4 20.0 L910.7 20.0 L912.9 20.0 L915.2 20.0 L917.4 20.0 L919.7 20.0 L922.0 20.0 L924.2 20.0 L926.5 20.0 L928.7 20.0 L931.0 20.0 L933.2 20.0 L935.5 20.0 L937.7 20.0 L940.0 20.0"/>
+                        <path class="wave-der" d="M40.0 300.0 L42.3 300.0 L44.5 300.0 L46.8 300.0 L49.0 300.0 L51.3 300.0 L53.5 300.0 L55.8 300.0 L58.0 300.0 L60.3 300.0 L62.6 300.0 L64.8 300.0 L67.1 300.0 L69.3 300.0 L71.6 300.0 L73.8 300.0 L76.1 300.0 L78.3 300.0 L80.6 300.0 L82.9 300.0 L85.1 300.0 L87.4 300.0 L89.6 300.0 L91.9 300.0 L94.1 300.0 L96.4 300.0 L98.6 300.0 L100.9 300.0 L103.2 300.0 L105.4 300.0 L107.7 300.0 L109.9 300.0 L112.2 300.0 L114.4 300.0 L116.7 300.0 L118.9 300.0 L121.2 300.0 L123.5 300.0 L125.7 300.0 L128.0 300.0 L130.2 300.0 L132.5 300.0 L134.7 300.0 L137.0 300.0 L139.2 300.0 L141.5 300.0 L143.8 300.0 L146.0 300.0 L148.3 300.0 L150.5 300.0 L152.8 300.0 L155.0 300.0 L157.3 300.0 L159.5 300.0 L161.8 300.0 L164.1 300.0 L166.3 300.0 L168.6 300.0 L170.8 300.0 L173.1 300.0 L175.3 300.0 L177.6 300.0 L179.8 300.0 L182.1 300.0 L184.4 300.0 L186.6 300.0 L188.9 300.0 L191.1 300.0 L193.4 300.0 L195.6 300.0 L197.9 300.0 L200.2 300.0 L202.4 300.0 L204.7 300.0 L206.9 300.0 L209.2 300.0 L211.4 300.0 L213.7 300.0 L215.9 300.0 L218.2 300.0 L220.5 300.0 L222.7 300.0 L225.0 300.0 L227.2 300.0 L229.5 300.0 L231.7 300.0 L234.0 300.0 L236.2 300.0 L238.5 300.0 L240.8 300.0 L243.0 300.0 L245.3 300.0 L247.5 300.0 L249.8 300.0 L252.0 300.0 L254.3 300.0 L256.5 300.0 L258.8 300.0 L261.1 300.0 L263.3 300.0 L265.6 300.0 L267.8 300.0 L270.1 300.0 L272.3 300.0 L274.6 300.0 L276.8 300.0 L279.1 300.0 L281.4 300.0 L283.6 300.0 L285.9 300.0 L288.1 300.0 L290.4 300.0 L292.6 300.0 L294.9 300.0 L297.1 300.0 L299.4 300.0 L301.7 300.0 L303.9 300.0 L306.2 300.0 L308.4 300.0 L310.7 300.0 L312.9 300.0 L315.2 300.0 L317.4 300.0 L319.7 300.0 L322.0 300.0 L324.2 300.0 L326.5 300.0 L328.7 300.0 L331.0 300.0 L333.2 300.0 L335.5 300.0 L337.7 300.0 L340.0 300.0 L342.3 300.0 L344.5 299.9 L346.8 299.9 L349.0 299.9 L351.3 299.8 L353.5 299.7 L355.8 299.6 L358.0 299.4 L360.3 299.2 L362.6 298.8 L364.8 298.3 L367.1 297.6 L369.3 296.6 L371.6 295.1 L373.8 293.1 L376.1 290.2 L378.3 286.3 L380.6 280.9 L382.9 273.8 L385.1 264.5 L387.4 252.9 L389.6 239.2 L391.9 224.3 L394.1 209.8 L396.4 197.8 L398.6 190.7 L400.9 190.0 L403.2 195.9 L405.4 207.1 L407.7 221.3 L409.9 236.3 L412.2 250.3 L414.4 262.3 L416.7 272.1 L418.9 279.6 L421.2 285.3 L423.5 289.5 L425.7 292.6 L428.0 294.7 L430.2 296.3 L432.5 297.4 L434.7 298.2 L437.0 298.7 L439.2 299.1 L441.5 299.4 L443.8 299.6 L446.0 299.7 L448.3 299.8 L450.5 299.8 L452.8 299.9 L455.0 299.9 L457.3 299.9 L459.5 299.9 L461.8 299.9 L464.1 299.9 L466.3 299.9 L468.6 299.9 L470.8 299.8 L473.1 299.7 L475.3 299.6 L477.6 299.5 L479.8 299.2 L482.1 298.9 L484.4 298.4 L486.6 297.8 L488.9 296.9 L491.1 295.6 L493.4 293.7 L495.6 291.2 L497.9 287.8 L500.2 283.2 L502.4 277.4 L504.7 270.1 L506.9 261.6 L509.2 252.4 L511.4 243.6 L513.7 236.6 L515.9 232.7 L518.2 232.8 L520.5 236.9 L522.7 244.1 L525.0 253.0 L527.2 262.1 L529.5 270.6 L531.7 277.8 L534.0 283.6 L536.2 288.0 L538.5 291.4 L540.8 293.9 L543.0 295.6 L545.3 296.9 L547.5 297.8 L549.8 298.5 L552.0 298.9 L554.3 299.3 L556.5 299.5 L558.8 299.6 L561.1 299.7 L563.3 299.8 L565.6 299.9 L567.8 299.9 L570.1 299.9 L572.3 300.0 L574.6 300.0 L576.8 300.0 L579.1 300.0 L581.4 300.0 L583.6 300.0 L585.9 300.0 L588.1 300.0 L590.4 300.0 L592.6 300.0 L594.9 300.0 L597.1 300.0 L599.4 300.0 L601.7 300.0 L603.9 300.0 L606.2 300.0 L608.4 300.0 L610.7 300.0 L612.9 300.0 L615.2 300.0 L617.4 300.0 L619.7 300.0 L622.0 300.0 L624.2 300.0 L626.5 300.0 L628.7 300.0 L631.0 300.0 L633.2 300.0 L635.5 300.0 L637.7 300.0 L640.0 300.0 L642.3 300.0 L644.5 300.0 L646.8 300.0 L649.0 300.0 L651.3 300.0 L653.5 300.0 L655.8 300.0 L658.0 300.0 L660.3 300.0 L662.6 300.0 L664.8 300.0 L667.1 300.0 L669.3 300.0 L671.6 300.0 L673.8 300.0 L676.1 300.0 L678.3 300.0 L680.6 300.0 L682.9 300.0 L685.1 300.0 L687.4 300.0 L689.6 300.0 L691.9 300.0 L694.1 300.0 L696.4 300.0 L698.6 300.0 L700.9 300.0 L703.2 300.0 L705.4 300.0 L707.7 300.0 L709.9 300.0 L712.2 300.0 L714.4 300.0 L716.7 300.0 L718.9 300.0 L721.2 300.0 L723.5 300.0 L725.7 300.0 L728.0 300.0 L730.2 300.0 L732.5 300.0 L734.7 300.0 L737.0 300.0 L739.2 300.0 L741.5 300.0 L743.8 300.0 L746.0 300.0 L748.3 300.0 L750.5 300.0 L752.8 300.0 L755.0 300.0 L757.3 300.0 L759.5 300.0 L761.8 300.0 L764.1 300.0 L766.3 300.0 L768.6 300.0 L770.8 300.0 L773.1 300.0 L775.3 300.0 L777.6 300.0 L779.8 300.0 L782.1 300.0 L784.4 300.0 L786.6 300.0 L788.9 300.0 L791.1 300.0 L793.4 300.0 L795.6 300.0 L797.9 300.0 L800.2 300.0 L802.4 300.0 L804.7 300.0 L806.9 300.0 L809.2 300.0 L811.4 300.0 L813.7 300.0 L815.9 300.0 L818.2 300.0 L820.5 300.0 L822.7 300.0 L825.0 300.0 L827.2 300.0 L829.5 300.0 L831.7 300.0 L834.0 300.0 L836.2 300.0 L838.5 300.0 L840.8 300.0 L843.0 300.0 L845.3 300.0 L847.5 300.0 L849.8 300.0 L852.0 300.0 L854.3 300.0 L856.5 300.0 L858.8 300.0 L861.1 300.0 L863.3 300.0 L865.6 300.0 L867.8 300.0 L870.1 300.0 L872.3 300.0 L874.6 300.0 L876.8 300.0 L879.1 300.0 L881.4 300.0 L883.6 300.0 L885.9 300.0 L888.1 300.0 L890.4 300.0 L892.6 300.0 L894.9 300.0 L897.1 300.0 L899.4 300.0 L901.7 300.0 L903.9 300.0 L906.2 300.0 L908.4 300.0 L910.7 300.0 L912.9 300.0 L915.2 300.0 L917.4 300.0 L919.7 300.0 L922.0 300.0 L924.2 300.0 L926.5 300.0 L928.7 300.0 L931.0 300.0 L933.2 300.0 L935.5 300.0 L937.7 300.0 L940.0 300.0"/>
+                    </g>
+                </svg>
+            </div>
+            <figcaption>Schematic pulses drawn to show the mechanism, not real detector data.</figcaption>
+        </figure>
+    </section>
+
+    <section id="pipeline">
+        <h2>How the classifier is built — click a step</h2>
+        <figure class="diagram" data-steps>
+            <div class="diagram-scroll">
+                <svg viewBox="0 0 960 180" role="img" aria-labelledby="pp-t pp-d" xmlns="http://www.w3.org/2000/svg">
+                    <title id="pp-t">The classification pipeline</title>
+                    <desc id="pp-d">Six stages: normalise each waveform, build two input channels, a residual convolutional network, training across four seeds, self-training on 65,000 unlabelled waveforms, and a test-time-augmented ensemble.</desc>
+                    <defs><marker id="ah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8 z" class="d-head"/></marker></defs>
+                    <g class="d-stage" data-copy="<b>Normalise.</b> Every waveform is rescaled to zero mean and unit spread on its own, so the network learns the <i>shape</i> of the pulse rather than how much energy happened to be deposited."><rect x="10" y="60" width="148" height="84" rx="8"/><text x="84" y="94">Normalise</text><text class="d-sub" x="84" y="114">per waveform</text></g><g class="d-stage" data-copy="<b>Two channels.</b> The network sees the waveform and its first derivative side by side. A deposit at one point is one sharp peak in the derivative; deposits at several points are several peaks — the difference the classifier has to find, made explicit before any learning starts."><rect x="168" y="60" width="148" height="84" rx="8"/><text x="242" y="94">Two channels</text><text class="d-sub" x="242" y="114">pulse + slope</text></g><g class="d-stage" data-copy="<b>Network.</b> A one-dimensional residual convolutional network: a strided stem, four residual blocks with squeeze-and-excitation channel attention, then average- and max-pooling together into a small dropout head that outputs a score between 0 and 1."><rect x="326" y="60" width="148" height="84" rx="8"/><text x="400" y="94">Residual CNN</text><text class="d-sub" x="400" y="114">squeeze-excitation</text></g><g class="d-stage" data-copy="<b>Train.</b> AdamW with a cosine schedule, label smoothing, and an exponential moving average of the weights. Each batch is shifted in time by a few samples and given a little noise, so the model cannot memorise exact positions. Four seeds, each kept at its best holdout score."><rect x="484" y="60" width="148" height="84" rx="8"/><text x="558" y="94">Train</text><text class="d-sub" x="558" y="114">4 seeds · EMA</text></g><g class="d-stage" data-copy="<b>Self-training.</b> A teacher — eight trained networks, each also run on three time shifts — scores the 65,000 unlabelled waveforms. A second generation of students is then trained on the real labels (weighted 3×) together with those soft labels (weighted 1×). Unlabelled data teaches the model what real pulses look like, not just the few it has answers for."><rect x="642" y="60" width="148" height="84" rx="8"/><text x="716" y="94">Self-train</text><text class="d-sub" x="716" y="114">65k unlabelled</text></g><g class="d-stage" data-copy="<b>Ensemble.</b> The final classifier averages four student networks, each run on the waveform shifted −6, 0 and +6 samples. Larger ensembles that mixed in first-generation models scored no better on the holdout, so the simplest one won."><rect x="800" y="60" width="148" height="84" rx="8"/><text x="874" y="94">Ensemble</text><text class="d-sub" x="874" y="114">4 nets × 3 shifts</text></g>
+                    <g class="d-arrow"><path marker-end="url(#ah)" d="M158 102 L168 102"/><path marker-end="url(#ah)" d="M316 102 L326 102"/><path marker-end="url(#ah)" d="M474 102 L484 102"/><path marker-end="url(#ah)" d="M632 102 L642 102"/><path marker-end="url(#ah)" d="M790 102 L800 102"/></g>
+                </svg>
+            </div>
+            <div class="diagram-ctl">
+                <button type="button" data-walk-steps>Walk through the pipeline</button>
+            </div>
+            <div class="stage-panel" data-steps-panel aria-live="polite">
+                <b>Click any step</b> to see what it does and why it is there.
+            </div>
+        </figure>
+    </section>
+
+    <section>
+        <h2>The result, and which number to trust</h2>
+        <p>
+            The model was chosen and scored on a <strong>holdout of 1,600 waveforms</strong> that never took part
+            in any training: <strong>ROC AUC 0.971</strong>. The course's final ranking used 65,000 further
+            waveforms whose labels were never released.
+        </p>
+        <div class="table-wrap">
+            <table class="evaltable">
+                <caption>Final candidates, scored on the same 1,600-waveform holdout. The smallest ensemble was as good as the larger ones, so it was the one submitted.</caption>
+                <thead><tr><th scope="col">Candidate</th><th scope="col">Networks</th><th scope="col">Holdout ROC AUC</th></tr></thead>
+                <tbody>
+                    <tr><th scope="row">Second-generation students + time-shift averaging</th><td>4</td><td><strong>0.9711</strong></td></tr>
+                    <tr><th scope="row">… plus first-generation distilled models</th><td>8</td><td>0.9706</td></tr>
+                    <tr><th scope="row">… plus the original supervised models</th><td>12</td><td>0.9709</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <p>
+            The notebook also prints a score of 0.982 on the course's labelled test set. That number is not a fair
+            measure: to give the final model as much signal as possible, I folded the labelled test set into
+            training and kept back a separate holdout instead. The holdout is the honest score; the 0.982 is the
+            model grading data it had already seen.
+        </p>
+    </section>
+
+    <section>
+        <h2>What I took from it</h2>
+        <ul>
+            <li><strong>Put the physics in the input.</strong> Handing the network the slope as its own channel did more than any amount of depth would have: it turned "find a shoulder in a rise" into "count the peaks".</li>
+            <li><strong>Unlabelled data is still data.</strong> Sixty-five thousand pulses with no answers taught the second-generation models more about what real waveforms look like than the twenty thousand with answers could alone.</li>
+            <li><strong>Pick the simplest model that is not worse.</strong> Three ensembles finished within 0.0005 of each other. The four-network one was cheaper to run and no less accurate, which made the choice.</li>
+            <li><strong>Know which score you are allowed to quote.</strong> Using every labelled example for training was the right call for the leaderboard and the wrong number to report — so the page reports the holdout.</li>
+        </ul>
+        <p>
+            It is also where my research started. Bringing machine learning to germanium-detector experiments —
+            the Majorana Demonstrator and its successor, LEGEND — is part of the background of
+            <a href="https://aobol.github.io/AoboLi/">Prof. Aobo Li</a>, whose
+            <a href="aobo-lab.html">Rare AI Lab</a> I joined in September.
+        </p>
+    </section>
+
+    <section class="limits">
+        <h2>Why there is no code on this page</h2>
+        <p>
+            The course does not allow project notebooks to be shared between students, and a project like this
+            is reused in later quarters. The method is described here in full; the notebook itself stays private.
+        </p>
+    </section>
+
+    <p class="stack-line">Python · PyTorch · residual CNNs with squeeze-and-excitation · semi-supervised self-training · ensembling and test-time augmentation · ROC analysis</p>
+
+</article>
+
+<nav class="pager" aria-label="More pages">
+    <a class="pager-prev" href="night-water-academy.html"><span aria-hidden="true">←</span> Previous: Night Water Academy</a>
+    <a class="pager-next" href="data-projects.html">Next: Data Projects <span aria-hidden="true">→</span></a>
+</nav>
+</main>
+
+<footer class="sitefoot">
+    <a href="index.html">Overview</a> ·
+    <a href="mailto:zhw124@ucsd.edu">zhw124@ucsd.edu</a> ·
+    <a href="https://github.com/zhenzhenfufu">GitHub</a>
+</footer>
+
+<script src="app.js?v=cd5aa7eb" defer></script>
+</body>
+</html>
