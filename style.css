@@ -1257,3 +1257,5 @@ body.detail[data-ink] .page h1::after {
     .row-mark { width: 44px; height: 44px; font-size: 0.78rem; }
     .row-title { font-size: 1rem; }
 }
+
+.honors { display: block; margin-top: 4px; font-size: 0.78rem; color: var(--muted); }

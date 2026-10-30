@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Rare AI Lab — AI for Neutrino &amp; Dark Matter | Zhen Wang</title>
 <meta name="description" content="Undergraduate researcher in the Rare AI Lab (Prof. Aobo Li, HDSI &amp; Physics, UC San Diego) — machine learning for physics time series and rare-event searches.">
-<link rel="stylesheet" href="style.css?v=ed0871f2">
+<link rel="stylesheet" href="style.css?v=289c6519">
 </head>
 <body class="detail" data-ink="star">
 
@@ -50,8 +50,17 @@
             <a href="https://zenodo.org/records/23071121">here</a>.
         </p>
         <p>
-            My work starts from that system and pushes on the training side of the loop. I am not rebuilding
-            it; I am working inside it. There is nothing of my own to show yet — I joined in September.
+            I work on SIDERIUS itself. I run and tune its <strong>orchestration</strong> — the layer that
+            decides which research step comes next and which model carries it out — test the agent end to end
+            on a real physics task, and file the defects I find back to its maintainers.
+        </p>
+        <p>
+            The test task is Project 8: estimating an electron's energy from the faint radio signal it emits
+            while spiralling in a magnetic field. On it I replicated the agent's workflow on the full public
+            data, worked out why the models it designs stop improving, built physics-based baselines to test
+            that explanation, and fed what I learned back into the agent as structured guidance. I also
+            packaged the task's physics, contract and known pitfalls as a reusable skill, so the next run —
+            the agent's or a person's — starts from what the group already knows.
         </p>
     </section>
 
@@ -134,11 +143,10 @@
     </section>
 
     <section class="limits">
-        <h2>Where I am right now</h2>
+        <h2>Why there are no numbers here</h2>
         <p>
-            Early. I am working through SIDERIUS and the group's results, and running training on top of
-            it; I have no findings of my own yet, and I would rather say so than dress up a couple of months of
-            reading. I am also taking Prof. Li's DSC 291 this quarter.
+            This work is unpublished and belongs to the group. The results stay inside the lab until they are
+            written up, so this page says what I do and how, not what it scored.
         </p>
     </section>
 
@@ -156,6 +164,6 @@
     <a href="https://github.com/zhenzhenfufu">GitHub</a>
 </footer>
 
-<script src="app.js?v=ed0871f2" defer></script>
+<script src="app.js?v=289c6519" defer></script>
 </body>
 </html>
