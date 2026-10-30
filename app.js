@@ -614,3 +614,49 @@
         });
     });
 })();
+
+/* ---------------------------------------------------------------------------
+   Generic step diagram: any figure marked [data-steps] whose stages carry
+   data-copy shows that text in its panel when a stage is chosen, and can be
+   walked through once with a [data-walk-steps] button. The copy lives in the
+   HTML next to the diagram it describes, not in this file.
+--------------------------------------------------------------------------- */
+
+(function () {
+    'use strict';
+
+    [].slice.call(document.querySelectorAll('[data-steps]')).forEach(function (figure) {
+        var stages = [].slice.call(figure.querySelectorAll('[data-copy]'));
+        var panel = figure.querySelector('[data-steps-panel]');
+        var walk = figure.querySelector('[data-walk-steps]');
+        if (!stages.length || !panel) return;
+
+        function select(stage) {
+            stages.forEach(function (g) { g.classList.toggle('is-on', g === stage); });
+            panel.innerHTML = stage.getAttribute('data-copy');
+        }
+
+        stages.forEach(function (stage) {
+            stage.setAttribute('tabindex', '0');
+            stage.setAttribute('role', 'button');
+            stage.addEventListener('click', function () { select(stage); });
+            stage.addEventListener('keydown', function (event) {
+                if (event.key !== 'Enter' && event.key !== ' ') return;
+                event.preventDefault();
+                select(stage);
+            });
+        });
+
+        if (!walk) return;
+        var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var timers = [];
+        walk.addEventListener('click', function () {
+            timers.forEach(window.clearTimeout);
+            timers = [];
+            if (reduced) { select(stages[0]); return; }
+            stages.forEach(function (stage, i) {
+                timers.push(window.setTimeout(function () { select(stage); }, i * 1500));
+            });
+        });
+    });
+})();

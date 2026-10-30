@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rare AI Lab — AI for Neutrino &amp; Dark Matter | Zhen Wang</title>
+<title>SIDERIUS — open-source auto-ML agent · Rare AI Lab | Zhen Wang</title>
 <meta name="description" content="Undergraduate researcher in the Rare AI Lab (Prof. Aobo Li, HDSI &amp; Physics, UC San Diego) — machine learning for physics time series and rare-event searches.">
-<link rel="stylesheet" href="style.css?v=289c6519">
+<link rel="stylesheet" href="style.css?v=0ce72a73">
 </head>
 <body class="detail" data-ink="star">
 
@@ -14,7 +14,7 @@
     <nav class="topnav" aria-label="Project pages">
         <a href="pfizer.html">Pfizer</a>
         <a href="course-planner.html">Course Agent</a>
-        <a href="aobo-lab.html" aria-current="page">Rare AI Lab</a>
+        <a href="aobo-lab.html" aria-current="page">SIDERIUS</a>
         <a href="edge-ai.html">Edge AI</a>
         <a href="night-water-academy.html">Night Water Academy</a>
         <a href="data-projects.html">Data Projects</a>
@@ -26,42 +26,70 @@
 <article>
 
     <p class="eyebrow">Undergraduate research · Sep 2026 – present</p>
-    <h1>AI for Neutrino &amp; Dark Matter</h1>
-    <p class="role"><a href="https://aobol.github.io/AoboLi/">Rare AI Lab</a> ·
+    <h1>SIDERIUS</h1>
+    <p class="role">Open-source auto-ML agent for science ·
+       <a href="https://aobol.github.io/AoboLi/">Rare AI Lab</a> ·
        <a href="https://aobol.github.io/AoboLi/">Prof. Aobo Li</a>
        (<a href="https://datascience.ucsd.edu/people/aobo-li">UCSD profile</a>) ·
-       Halıcıoğlu Data Science Institute &amp; Department of Physics, UC San Diego</p>
+       HDSI &amp; Physics, UC San Diego</p>
 
     <p class="lede">
-        I joined the Rare AI Lab in September. The reason I wanted in is narrow and specific: physics is
-        where a model that games its own metric gets caught, because the signal it is supposed to find is
-        a real thing in the universe and not a number on a leaderboard.
+        SIDERIUS turns a dataset and a research question into an iterative machine-learning experiment:
+        it proposes models, writes them, trains and evaluates them, and uses what came back to decide what
+        to try next. I am part of the team building it.
     </p>
 
+    <div class="feature-links page-links">
+        <a class="primary" href="https://github.com/yuema137/SIDERIUS">Try it on GitHub</a>
+        <a href="https://arxiv.org/abs/2610.14024">Paper · arXiv:2610.14024</a>
+        <a href="https://github.com/yuema137/SIDERIUS#start-with-your-coding-agent">Get started</a>
+        <a href="https://github.com/yuema137/SIDERIUS/issues">Give feedback</a>
+    </div>
+
     <section>
-        <h2>What I am working on</h2>
+        <h2>What it is</h2>
         <p>
-            The lab's open-source system is <a href="https://github.com/yuema137/SIDERIUS">SIDERIUS</a>, a
-            long-horizon auto-ML agent built by <strong>Yue Ma</strong> with
-            <a href="https://aobol.github.io/AoboLi/">Prof. Li</a> and the group: you give
-            it a dataset and a research question, and it proposes models, implements them, trains and
-            evaluates them, and uses what came back to choose the next attempt — declaring validity checks
-            alongside the metric rather than optimising the metric alone. The write-up is
-            <a href="https://zenodo.org/records/23071121">here</a>.
+            The name is an acronym — <strong>S</strong>cientific <strong>I</strong>nquiry,
+            <strong>D</strong>esign, <strong>E</strong>xploration and <strong>R</strong>easoning
+            <strong>I</strong>ntegrated <strong>U</strong>sing multi-agent <strong>S</strong>ystems — and the
+            idea is in the first word. Most auto-ML optimises a number. SIDERIUS treats a run as research: the
+            task is written down before anything starts, every iteration is recorded, and task-specific
+            validity checks sit beside the score so a model that wins for the wrong reason gets caught rather
+            than shipped.
         </p>
         <p>
-            I work on SIDERIUS itself. I run and tune its <strong>orchestration</strong> — the layer that
-            decides which research step comes next and which model carries it out — test the agent end to end
-            on a real physics task, and file the defects I find back to its maintainers.
+            You can drive it two ways. In a <strong>fixed workflow</strong>, a short Python file declares
+            which research steps run, the advice each step gets, the budgets and the stop conditions. With
+            <strong>orchestration</strong>, an LLM decides which step to call next and which model carries it
+            out, inside the data-access rules and budgets you agreed on. The repository was built by
+            <strong>Yue Ma</strong> with Prof. Li and the group, and is open source under the MIT licence.
         </p>
-        <p>
-            The test task is Project 8: estimating an electron's energy from the faint radio signal it emits
-            while spiralling in a magnetic field. On it I replicated the agent's workflow on the full public
-            data, worked out why the models it designs stop improving, built physics-based baselines to test
-            that explanation, and fed what I learned back into the agent as structured guidance. I also
-            packaged the task's physics, contract and known pitfalls as a reusable skill, so the next run —
-            the agent's or a person's — starts from what the group already knows.
-        </p>
+    </section>
+
+    <section id="loop">
+        <h2>How a run works — click a step</h2>
+        <figure class="diagram" data-steps>
+            <div class="diagram-scroll">
+                <svg viewBox="0 0 980 330" role="img" aria-labelledby="sid-t sid-d" xmlns="http://www.w3.org/2000/svg"><title id="sid-t">How a SIDERIUS run works, and where my part sits</title><desc id="sid-d">A task package defines data access, splits, the score and health checks. Each iteration proposes a model, implements it, trains and evaluates it, checks validity beside the score, and feeds the result into the next iteration. Above the loop, an orchestrator — or a fixed workflow — decides which step runs next. My work is on the orchestration layer and on testing the whole loop against Project 8 physics data.</desc><defs><marker id="ah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8 z" class="d-head"/></marker></defs><g class="d-stage d-mine" data-copy="<b>Orchestration — my part.</b> SIDERIUS can run a fixed workflow, or hand control to an LLM orchestrator that decides which research step to call next and which model carries it out. I run and tune that layer, test it end to end, and file what breaks back to the maintainers."><rect x="250" y="26" width="480" height="62" rx="8"/><text x="490" y="56">Orchestrator</text><text class="d-sub" x="490" y="76">fixed workflow, or an LLM choosing which step runs next</text></g><text class="d-sub d-mine-tag" x="490" y="18">my part</text><g class="d-stage" data-copy="<b>Task package.</b> Before anything runs, the task is written down: how data may be accessed, how it is split, what the model takes in and puts out, the main score, and the health checks that must hold. The agent never gets to redefine the test."><rect x="10" y="150" width="140" height="84" rx="8"/><text x="80" y="180">Task package</text><text class="d-sub" x="80" y="200">data · splits · score</text></g><g class="d-stage d-mine" data-copy="<b>Propose.</b> A model is proposed for the task, informed by what earlier iterations measured. On Project 8 this is where the physics guidance I wrote goes in: what the signal encodes, and what a model must not throw away."><rect x="180" y="150" width="140" height="84" rx="8"/><text x="250" y="180">Propose</text><text class="d-sub" x="250" y="200">a model for the task</text></g><text class="d-sub d-mine-tag" x="250" y="142">physics guidance</text><g class="d-stage" data-copy="<b>Implement.</b> The proposal becomes real model code, written by the agent inside a sandbox."><rect x="350" y="150" width="140" height="84" rx="8"/><text x="420" y="180">Implement</text><text class="d-sub" x="420" y="200">model code, sandboxed</text></g><g class="d-stage" data-copy="<b>Train &amp; evaluate.</b> The code is trained and scored on a GPU under the budgets set in the workflow — on the validation data only, so the held-out test never leaks into the search."><rect x="520" y="150" width="140" height="84" rx="8"/><text x="590" y="180">Train · evaluate</text><text class="d-sub" x="590" y="200">GPU, validation only</text></g><g class="d-stage" data-copy="<b>Check validity.</b> Task-specific checks run beside the score. A high number that came from a shortcut, a collapsed model or an artefact of the data is exactly what this step exists to catch."><rect x="690" y="150" width="140" height="84" rx="8"/><text x="760" y="180">Check validity</text><text class="d-sub" x="760" y="200">beside the score</text></g><g class="d-stage" data-copy="<b>Next iteration.</b> What was measured steers the next proposal, and every iteration is recorded — the code, the scores, the checks — so the run can be paused, resumed with new advice, or audited afterwards."><rect x="860" y="150" width="110" height="84" rx="8"/><text x="915" y="180">Next</text><text class="d-sub" x="915" y="200">iteration</text></g><g class="d-arrow"><path marker-end="url(#ah)" d="M150 192 L174 192"/><path marker-end="url(#ah)" d="M320 192 L344 192"/><path marker-end="url(#ah)" d="M490 192 L514 192"/><path marker-end="url(#ah)" d="M660 192 L684 192"/><path marker-end="url(#ah)" d="M830 192 L854 192"/></g><g class="d-arrow d-dash"><path marker-end="url(#ah)" d="M915 234 C915 300 250 300 250 238"/><path marker-end="url(#ah)" d="M490 88 L490 144"/></g><text class="d-sub d-mine-tag" x="490" y="318">tested end to end on Project 8 physics data — my part</text></svg>
+            </div>
+            <div class="diagram-ctl">
+                <button type="button" data-walk-steps>Walk through one iteration</button>
+            </div>
+            <div class="stage-panel" data-steps-panel aria-live="polite">
+                <b>Click any box</b> to see what happens there. The ones outlined in pink are where my work sits.
+            </div>
+            <figcaption>The loop is SIDERIUS. The pink outlines are my part of it.</figcaption>
+        </figure>
+    </section>
+
+    <section>
+        <h2>My part</h2>
+        <ul>
+            <li><strong>Orchestration.</strong> I run and tune the orchestration layer — the part that decides which research step comes next and which model carries it out — and test how it behaves over long runs.</li>
+            <li><strong>End-to-end testing on real physics.</strong> The test bed is Project 8: estimating an electron's energy from the faint radio signal it emits while spiralling in a magnetic field. I replicated the agent's workflow on the full public data and worked out why the models it designs stop improving.</li>
+            <li><strong>Guidance for the agent.</strong> I turned that diagnosis into structured physics guidance the agent can use when it proposes the next model, and built physics-based baselines to check the explanation was right rather than just plausible.</li>
+            <li><strong>Feedback upstream.</strong> I file the defects I find back to the maintainers, and packaged the task's physics, contract and known pitfalls as a reusable skill so the next run starts from what the group already knows.</li>
+        </ul>
     </section>
 
     <section>
@@ -143,10 +171,18 @@
     </section>
 
     <section class="limits">
-        <h2>Why there are no numbers here</h2>
+        <h2>Use it, and tell us what broke</h2>
         <p>
-            This work is unpublished and belongs to the group. The results stay inside the lab until they are
-            written up, so this page says what I do and how, not what it scored.
+            SIDERIUS is open source and the point is for people outside the group to use it. If you have a
+            dataset and a question, <a href="https://github.com/yuema137/SIDERIUS">start from the
+            repository</a> — your own coding agent can set it up with you — and
+            <a href="https://github.com/yuema137/SIDERIUS/issues">open an issue</a> when something is unclear
+            or wrong. I am also happy to hear about it directly at
+            <a href="mailto:zhw124@ucsd.edu">zhw124@ucsd.edu</a>.
+        </p>
+        <p>
+            The paper reports the agent's own results, including Project 8. The results of my work on top of it
+            are unpublished and belong to the group, so they stay in the lab until they are written up.
         </p>
     </section>
 
@@ -164,6 +200,6 @@
     <a href="https://github.com/zhenzhenfufu">GitHub</a>
 </footer>
 
-<script src="app.js?v=289c6519" defer></script>
+<script src="app.js?v=0ce72a73" defer></script>
 </body>
 </html>

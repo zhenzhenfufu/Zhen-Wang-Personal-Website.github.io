@@ -9,7 +9,7 @@
 <meta property="og:title" content="Zhen Wang | AI Agents · Machine Learning · Data Science">
 <meta property="og:description" content="UCSD undergraduate building AI agents whose answers can be checked — ML for physics time series, clinical filings at Pfizer, a validated course planner, and an Unreal Engine puzzle game.">
 <meta property="og:type" content="profile">
-<link rel="stylesheet" href="style.css?v=289c6519">
+<link rel="stylesheet" href="style.css?v=0ce72a73">
 </head>
 <body>
 
@@ -26,6 +26,7 @@
         <a href="mailto:zhw124@ucsd.edu" class="sidebar-link"><span aria-hidden="true">✉</span> zhw124@ucsd.edu</a>
         <a href="https://github.com/zhenzhenfufu" class="sidebar-link">GitHub</a>
         <a href="https://ucsd-course-planning-tutor.streamlit.app/" class="sidebar-link">Course Planning Agent — demo</a>
+        <a href="https://github.com/yuema137/SIDERIUS" class="sidebar-link">SIDERIUS — open-source agent</a>
         <a href="https://aobol.github.io/AoboLi/" class="sidebar-link">Rare AI Lab · Prof. Aobo Li</a>
         <a href="https://space.bilibili.com/3493110992603365" class="sidebar-link">Bilibili · 155K+ views</a>
         <!-- Upload one canonical CV next to index.html as cv.pdf, then uncomment:
@@ -34,6 +35,7 @@
 
     <nav class="sidebar-sections" aria-label="On this page">
         <a href="#about">About</a>
+        <a href="#siderius">SIDERIUS</a>
         <a href="#work">What I do</a>
         <a href="#graph">Course graph</a>
         <a href="#timeline">Timeline</a>
@@ -61,6 +63,34 @@
         </p>
     </section>
 
+    <section id="siderius" class="feature" aria-labelledby="siderius-h">
+        <p class="feature-eyebrow">What I am working on now</p>
+        <h2 id="siderius-h">SIDERIUS</h2>
+        <p class="feature-sub">An open-source auto-ML agent for science · Rare AI Lab, UC San Diego</p>
+        <p>
+            Give it a dataset and a research question. It proposes models, writes them, trains and evaluates
+            them, and uses what came back to decide what to try next — keeping a record of every iteration,
+            and checking validity alongside the score so a model that wins for the wrong reason gets caught.
+            It runs as a fixed workflow, or with an LLM orchestrator that composes the research steps itself.
+        </p>
+        <ul class="feature-roles" aria-label="My part">
+            <li>Orchestration — running and tuning it</li>
+            <li>End-to-end testing on Project 8 physics data</li>
+            <li>Physics guidance for the agent</li>
+            <li>Defect reports upstream</li>
+        </ul>
+        <p>
+            It is open source and we want it used. If you have a dataset and a question, try it — and tell us
+            what broke.
+        </p>
+        <div class="feature-links">
+            <a class="primary" href="https://github.com/yuema137/SIDERIUS">Try it on GitHub</a>
+            <a href="https://arxiv.org/abs/2610.14024">Read the paper</a>
+            <a href="https://github.com/yuema137/SIDERIUS/issues">Give feedback</a>
+            <a href="aobo-lab.html">How it works &amp; my part</a>
+        </div>
+    </section>
+
     <section id="work">
         <h2>What I have been doing</h2>
         <div class="filters" role="group" aria-label="Filter by kind">
@@ -74,7 +104,7 @@
                 <span class="row-mark" aria-hidden="true">RL</span>
                 <span class="row-body">
                     <span class="row-head">
-                        <span class="row-title">AI for Neutrino &amp; Dark Matter</span>
+                        <span class="row-title">SIDERIUS · AI for Neutrino &amp; Dark Matter</span>
                         <span class="row-when"><span class="chip-now">Current</span> Sep 2026 – now</span>
                     </span>
                     <span class="row-org"><span class="row-chip">Research</span>Rare AI Lab · Prof. Aobo Li · HDSI &amp; Physics, UC San Diego</span>
@@ -315,6 +345,6 @@
 
 </main>
 
-<script src="app.js?v=289c6519" defer></script>
+<script src="app.js?v=0ce72a73" defer></script>
 </body>
 </html>
