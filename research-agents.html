@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Evaluating Research Agents | Zhen Wang</title>
+<meta name="description" content="Undergraduate research with Dr. Zhen Wang on evidence-based rewards and the observability gap in AI research agents. In progress, unpublished.">
+<link rel="stylesheet" href="style.css?v=cd5aa7eb">
+</head>
+<body class="detail" data-ink="star">
+
+<header class="topbar">
+    <a class="home-link" href="index.html"><span aria-hidden="true">←</span> Zhen Wang</a>
+    <nav class="topnav" aria-label="Project pages">
+        <a href="pfizer.html">Pfizer</a>
+        <a href="course-planner.html">Course Agent</a>
+        <a href="aobo-lab.html">SIDERIUS</a>
+        <a href="research-agents.html" aria-current="page">Research Agents</a>
+        <a href="edge-ai.html">Edge AI</a>
+        <a href="night-water-academy.html">Night Water Academy</a>
+        <a href="majorana.html">Majorana</a>
+        <a href="data-projects.html">Data Projects</a>
+        <a href="beyond-code.html">Beyond Code</a>
+    </nav>
+</header>
+
+<main class="page">
+<article>
+
+    <p class="eyebrow">Undergraduate research · Oct 2026 – present</p>
+    <h1>Evaluating Research Agents</h1>
+    <p class="role">With <a href="https://zhenwang9102.github.io/">Dr. Zhen Wang</a>
+       (postdoctoral researcher, UC San Diego; incoming Assistant Professor of CSE, UT Arlington)</p>
+
+    <p class="lede">
+        AI agents are starting to run experiments and draw conclusions. I work on two questions about
+        whether we can trust what they report.
+    </p>
+
+    <section>
+        <h2>Rewarding evidence, not memory</h2>
+        <p>
+            <a href="https://arxiv.org/abs/2602.02905">FIRE-Bench</a> (ICML 2026, by Zhen Wang et al.)
+            asks agents to rediscover findings from published ML papers. A model may already know the
+            paper's answer without looking at the data. I am turning such rediscovery tasks into a
+            reinforcement-learning environment for small research agents, with a reward that credits only
+            the conclusions that actually require the data.
+        </p>
+        <p>
+            My part: environment and reward design, training and evaluation runs on GPU clusters, and
+            pre-registered comparisons.
+        </p>
+        <p class="note">Status: in progress, unpublished. The end-to-end training pipeline (GRPO with TRL and vLLM, answers isolated in a sandbox) is running, with multi-seed, pre-registered runs on open models from 3B to 27B parameters on H100 GPUs.</p>
+    </section>
+
+    <section>
+        <h2>The observability gap</h2>
+        <p>
+            A person looks at a web page, a slide or a 3D model and sees what is wrong; a coding agent
+            mostly sees the code, or a screenshot passed to a vision model. The idea came from Zhen;
+            I am testing whether the gap is real and where it comes from, by giving model judges the same
+            artifact through different channels (code only, image only, both, or a rendering tool) in
+            pre-registered pilot studies, with a human baseline next.
+        </p>
+        <p class="note">Status: in progress, exploratory, not yet a paper. Two rounds of pilots are done; a pre-registered robustness study on SVG is running, and the human baseline comes next.</p>
+    </section>
+
+    <p class="note">Results stay inside the group until they are written up.</p>
+
+</article>
+
+<nav class="pager" aria-label="More pages">
+    <a class="pager-prev" href="aobo-lab.html"><span aria-hidden="true">←</span> Previous: SIDERIUS</a>
+    <a class="pager-next" href="edge-ai.html">Next: Edge AI <span aria-hidden="true">→</span></a>
+</nav>
+</main>
+
+<footer class="sitefoot">
+    <a href="index.html">Overview</a> ·
+    <a href="mailto:zhw124@ucsd.edu">zhw124@ucsd.edu</a> ·
+    <a href="https://github.com/zhenzhenfufu">GitHub</a>
+</footer>
+
+<script src="app.js?v=cd5aa7eb" defer></script>
+</body>
+</html>
